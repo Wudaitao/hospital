@@ -1,0 +1,24 @@
+2019-12-04 22:33:48.661 INFO [restartedMain]com.hosptialsys.App.logStarting:50 -Starting App on DESKTOP-ST4S1L6 with PID 83656 (started by 伍代涛20164401 in C:\Users\伍代涛20164401\Downloads\eclipse-jee-oxygen-R-win32-x86_64\eclipse-jee-oxygen-R-win32-x86_64\eclipse\hosptialsys)
+2019-12-04 22:33:48.667 INFO [restartedMain]com.hosptialsys.App.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-12-04 22:33:48.819 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-12-04 22:33:48.835 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-12-04 22:33:50.528 WARN [restartedMain]org.mybatis.spring.mapper.ClassPathMapperScanner.doScan:166 -No MyBatis mapper was found in '[com.hosptialsys.mapper]' package. Please check your configuration.
+2019-12-04 22:33:51.011 WARN [restartedMain]org.mybatis.spring.mapper.ClassPathMapperScanner.doScan:166 -No MyBatis mapper was found in '[com.hosptialsys]' package. Please check your configuration.
+2019-12-04 22:33:51.274 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-12-04 22:33:51.278 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-04 22:33:51.359 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 27ms. Found 0 repository interfaces.
+2019-12-04 22:33:52.800 INFO [restartedMain]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$bf385dc0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-04 22:33:55.066 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8081 (http)
+2019-12-04 22:33:55.248 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8081"]
+2019-12-04 22:33:55.336 INFO [restartedMain]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-12-04 22:33:55.337 INFO [restartedMain]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-12-04 22:33:56.022 INFO [restartedMain]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-12-04 22:33:56.023 INFO [restartedMain]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 7187 ms
+2019-12-04 22:33:57.248 INFO [restartedMain]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-04 22:33:59.627 INFO [restartedMain]o.s.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer:57 -LiveReload server is running on port 35729
+2019-12-04 22:33:59.710 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8081"]
+2019-12-04 22:33:59.873 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8081 (http) with context path ''
+2019-12-04 22:33:59.878 INFO [restartedMain]com.hosptialsys.App.logStarted:59 -Started App in 12.355 seconds (JVM running for 13.491)
+2019-12-04 22:35:28.264 INFO [http-nio-8081-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-12-04 22:35:28.265 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-12-04 22:35:28.432 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 167 ms

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>登录页面</title>
+  <style type="text/css" rel="stylesheet">
+      .wrap{margin:0 auto;width:300px; color:#db7093;} 
+      .img{position:relative;width:100px;left:30%;}
+      .wrap1{background: #eeeed1}
+      .wordCenter{position:relative;left:30%;}  
+      .wordCenter1{position:relative;left:35%;}
+      .round_icon{
+	  width: 100px;
+	  height: 100px;
+	  display: flex;
+	  border-radius: 50%;
+	  align-items: center;
+	  justify-content: center;
+	  overflow: hidden;        
+  </style>
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+  <script type="text/javascript">
+            function getFileUrl(sourceId) {
+                var url;
+                if (navigator.userAgent.indexOf("MSIE")>=1) { // IE
+                    url = document.getElementById(sourceId).value;
+                } else if(navigator.userAgent.indexOf("Firefox")>0) { // Firefox
+                    url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+                } else if(navigator.userAgent.indexOf("Chrome")>0) { // Chrome
+                    url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+                }
+                return url;
+            }
+            function preImg(sourceId, targetId) { 
+                var url = getFileUrl(sourceId); 
+                var imgPre = document.getElementById(targetId); 
+                imgPre.src = url; 
+            }
+            function uploadFile() 
+            { 
+            	document.getElementById("imgOne").click(); 
+            } 
+
+            function bclickforfile() {
+                $("[name=head_img]").click();
+            }
+            function jump(){
+                window.location.href="/html/register.html";
+            }
+            function checkInput(){
+            	var name = $("#name").val();
+            	var account = $("#account").val();
+            	var pwd = $("#pwd").val();
+            	console.log(name);
+            	if(name==""||account==""||pwd==""){
+            		$("#message").text("输入有空值");
+            		return false;
+            	}
+            	return true;
+            }
+            function getVerify(obj){
+                obj.src ="/api/v1/user/getcode?"+Math.random();
+            }
+   </script> 
+</head>
+    <body>
+        <div class="wrap" >
+          <h1 class="wordCenter">用户登录</h1> 
+          <font color="red">
+          	<span class="wordCenter1" id="message" th:text="${msg}"></span>
+          </font>
+             
+          <fieldset class="wrap1">
+            <form enctype="multipart/form-data" action="/api/v1/user/page/login" method="post" >
+                
+				<div class="img">
+					<input type="file" name="head_img" id="imgOne" onchange="preImg(this.id,'photo');" style="display:none" />
+					<img class="round_icon" id="photo" src="/image/f7d05b4f-88b5-4937-809b-a772da24f3a7.jpg" width="100px" height="100px" style="display: block;" onclick="uploadFile()"></img>				                                              
+				</div>
+				<div>
+					<p>用户名:&nbsp; <input type="text" name="name" id="name" placeholder="请输入用户名"/></p>
+                	<p>手&nbsp;&nbsp;&nbsp;&nbsp;机: <input type="text" name="account" id="account" placeholder="请输入账号"/></p>
+                	<p>密&nbsp;&nbsp;&nbsp;&nbsp;码: <input type="password" name="pwd" id="pwd" placeholder="请输入密码"/></p>
+					<div style="margin: 0 auto;text-align: left;position: relative" >
+					  <input class="form-group__input" type="tel" id="verify_input" name="code" placeholder="请输入验证码" maxlength="5" style="width: 40%;display: inline-block">
+					  <div style="width: 100px;height:40px;position: absolute;top:-5px;left: 45%">
+					    <a href="javascript:void(0);" title="点击更换验证码">
+					    	<img id="imgVerify" src="/api/v1/user/getcode" alt="更换验证码" height="40" width="100%" onclick="getVerify(this)">
+					  	</a>
+				  	  </div>
+				  	 </div>
+				  	 <br>
+					<div style="width:50%;padding:0;margin:0;float:left;box-sizing:border-box;">
+						<input style="width:100px" type="submit" name="ButtonAibang" value="登录" id="Button1" onclick="return checkInput()">
+					</div>     
+    				<div style="width:50%;padding:0;margin:0;float:right;box-sizing:border-box;">
+    					<input style="width:100px" type="button" name="ButtonBaidu" value="注册" id="Button2" onclick="jump()">
+    				</div>				
+    			</div>                
+            </form>
+          </fieldset>
+        </div>
+    </body>
+</html>
