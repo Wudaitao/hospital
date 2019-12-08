@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version 5.7.11)
-# Date: 2019-12-08 11:34:13
+# Date: 2019-12-08 21:46:30
 # Generator: MySQL-Front 6.1  (Build 1.24)
 
 
@@ -24,7 +24,7 @@ CREATE TABLE `docresinfo` (
 
 CREATE TABLE `examitem` (
   `check_item_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `uer_id` varchar(20) NOT NULL,
+  `user_id` varchar(20) NOT NULL DEFAULT '',
   `check_user_name` varchar(50) DEFAULT NULL,
   `check_date` varchar(50) DEFAULT NULL,
   `check_time_slot` varchar(50) DEFAULT NULL,
@@ -134,7 +134,6 @@ CREATE TABLE `usercase` (
   `case_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` varchar(20) NOT NULL,
   `case_date` varchar(100) DEFAULT NULL,
-  `case_time_slot` varchar(100) DEFAULT NULL,
   `case_is_finish` tinyint(1) DEFAULT NULL,
   `case_result` varchar(1024) DEFAULT NULL,
   PRIMARY KEY (`case_id`)
