@@ -3,10 +3,20 @@ package com.hosptialsys.domain;
 public class User {
 	
 	private String  userId;
+
 	private String  userName;
 	private String  userPassword;
 	private String  userGender;
 	private String  userAge;
+	
+	public User(String userId, String userName, String userPassword, String userGender, String userAge) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.userPassword = userPassword;
+		this.userGender = userGender;
+		this.userAge = userAge;
+	}
 	
 	public String getUserId() {
 		return userId;

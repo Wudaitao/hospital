@@ -10,9 +10,15 @@ import com.hosptialsys.service.UserService;
 @Service
 public class UserSerciveImpl implements UserService{
 
-	@Autowired UserMapper userMapper;
+	@Autowired 
+	private UserMapper userMapper;
 	public int saveUser(User user) {
-		return userMapper.save(user);
+		if (userMapper.findById(user.getUserId()) == null) {
+			return userMapper.save(user);
+		}
+		else {
+			return -1;
+		}
 	}
 
 	public User findById(String userId) {
