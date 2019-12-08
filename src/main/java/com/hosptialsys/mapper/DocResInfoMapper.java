@@ -14,7 +14,7 @@ public interface DocResInfoMapper {
 
 	/**
 	 * 根据主键查找
-	 * @param userId
+	 * @param drId
 	 * @return
 	 */
 	@Select("select * from docresinfo where dr_id = #{drId}")

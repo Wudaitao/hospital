@@ -27,7 +27,6 @@ import com.hosptialsys.domain.DocResInfo;
 import com.hosptialsys.domain.JsonData;
 import com.hosptialsys.domain.ResInfo;
 import com.hosptialsys.domain.User;
-import com.hosptialsys.domain.Worker;
 import com.hosptialsys.service.DocResvInfoService;
 import com.hosptialsys.service.ResInfoService;
 import com.hosptialsys.service.UserService;
@@ -209,7 +208,6 @@ public class PatientController {
 						if (priQueueMap.get(doctorId) != null) {
 							priNum = priQueueMap.get(doctorId).size();
 						}
-						comQueueMap.get(doctorId).add(userId);
 						return JsonData.buildSuccess(priNum+1,"线下预约专家号排队成功，专家ID:"+doctorId);
 					}
 					else {
@@ -230,7 +228,6 @@ public class PatientController {
 						Queue<String> priQueue = new LinkedList<>();
 						priQueue.add(userId);
 						priQueueMap.put(resDep, priQueue);
-						System.out.println(resDep);
 						return JsonData.buildSuccess(1,"线上科室号排队成功，科室："+resDep);
 					}
 					else {
@@ -250,7 +247,6 @@ public class PatientController {
 						if (priQueueMap.get(resDep) != null) {
 							priNum = priQueueMap.get(resDep).size();
 						}
-						comQueueMap.get(resDep).add(userId);
 						return JsonData.buildSuccess(priNum+1,"线下科室号排队成功，科室："+resDep);
 					}
 					else {
@@ -281,8 +277,9 @@ public class PatientController {
 		String doctorId = request.getParameter("doctor_id");
 		String userId = request.getParameter("user_id");
 		String resvDep = request.getParameter("resv_department");
+		//System.out.println(doctorId + " " + userId + " " + resvDep);
 		AtomicInteger num = new AtomicInteger(0);
-		if (doctorId != null) {
+		if (!doctorId.equals("")) {
 			Queue<String> priQueue = priQueueMap.get(doctorId);
 			Queue<String> comQueue = comQueueMap.get(doctorId);
 			if (priQueue != null) {
@@ -294,17 +291,18 @@ public class PatientController {
 						return JsonData.buildSuccess("查询成功！前面还有人数：" + num.get());
 					}
 				}
-				if (comQueue != null) {
-					for (String s : comQueue) {
-						if(!s.equals(userId)) {
-							num.getAndIncrement();
-						} else {
-							num.getAndIncrement();
-							return JsonData.buildSuccess("查询成功！前面还有人数：" + num.get());
-						}
+			}
+			if (comQueue != null) {
+				for (String s : comQueue) {
+					if(!s.equals(userId)) {
+						num.getAndIncrement();
+					} else {
+						num.getAndIncrement();
+						return JsonData.buildSuccess("查询成功！前面还有人数：" + num.get());
 					}
 				}
-			}	
+			}
+			System.out.println(userId + " " + doctorId );
 		} else {
 			Queue<String> priQueue = priQueueMap.get(resvDep);
 			Queue<String> comQueue = comQueueMap.get(resvDep);
@@ -317,17 +315,20 @@ public class PatientController {
 						return JsonData.buildSuccess("查询成功！前面还有人数：" + num.get());
 					}
 				}
-				if (comQueue != null) {
-					for (String s : comQueue) {
-						if(!s.equals(userId)) {
-							num.getAndIncrement();
-						} else {
-							num.getAndIncrement();
-							return JsonData.buildSuccess("查询成功！前面还有人数：" + num.get());
-						}
+			}
+			if (comQueue != null) {
+				for (String s : comQueue) {
+					if(!s.equals(userId)) {
+						num.getAndIncrement();
+					} else {
+						num.getAndIncrement();
+						return JsonData.buildSuccess("查询成功！前面还有人数：" + num.get());
 					}
 				}
 			}
+			System.out.println(priQueue);
+			System.out.println(comQueue);
+			System.out.println(userId + " " + resvDep);
 		}
 		return JsonData.buildError("查询失败！您已经不在队列里");
 	}
@@ -336,7 +337,7 @@ public class PatientController {
 	 * 医生拉取病人信息api
 	 */
 	@RequestMapping(value="getPatientInfo",method=RequestMethod.GET)
-	public Object getPatientInfo(String Id) {
+	public JsonData getPatientInfo(String Id) {
 		if (!Id.equals("")) {
 			Queue<String> priQueue = priQueueMap.get(Id);
 			Queue<String> comQueue = comQueueMap.get(Id);
@@ -346,13 +347,13 @@ public class PatientController {
 				return JsonData.buildSuccess(patientInfo,"拉取成功！");
 			} 
 			//然后取普通队列里的病人
-			if (comQueue != null && priQueue.isEmpty() && !comQueue.isEmpty()) {
+			else if (comQueue != null && !comQueue.isEmpty()) {
 				String patientInfo = comQueue.poll();
 				return JsonData.buildSuccess(patientInfo,"拉取成功！");
 			}
 			//两个队列里都没有病人
-			if (priQueue.isEmpty() && comQueue.isEmpty()) {
-				System.out.println(comQueue);
+			else {
+				//System.out.println(comQueue);
 				return JsonData.buildError("已经没有病人！");
 			}
 		} 

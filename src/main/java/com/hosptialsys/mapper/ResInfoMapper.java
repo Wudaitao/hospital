@@ -11,7 +11,7 @@ import com.hosptialsys.domain.ResInfo;
 public interface ResInfoMapper {
 	/**
 	 * 根据主键查找
-	 * @param userId
+	 * @param resvId
 	 * @return
 	 */
 	@Select("select * from reservationinfo where resv_id = #{resvId}")
