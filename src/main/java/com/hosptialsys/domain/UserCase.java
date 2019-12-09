@@ -4,7 +4,7 @@ public class UserCase {
 	
 	private Integer caseId;         //病历ID
 	private String  userId;         //病人ID
-	private String  caseResult;     //病人此次检查的结果
+	private String  caseResult;     //病人此次看病的结果
 	private Integer caseIsFinish;   //这次病历是否完成
 	private String  caseDate;       //此次病历的日期
 	

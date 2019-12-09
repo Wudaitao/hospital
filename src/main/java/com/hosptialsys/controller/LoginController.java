@@ -4,9 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hosptialsys.domain.JsonData;
@@ -18,9 +21,9 @@ import com.hosptialsys.service.WorkerService;
 public class LoginController {
 
 	private static final String EXPERT = "专家";
-	private static final String GENERAL_DOCTOR = "普通医生";
+	private static final String GENERAL_DOCTOR = "普通";
 	private static final String REGISTER_STAFF = "挂号人员";
-	private static final String TOLL_MAN = "收费员";
+	private static final String TOLL_MAN = "收费人员";
 	private static final String PHARMACIAT = "药剂师";
 	@Autowired
 	private WorkerService workerSevice;
@@ -59,10 +62,32 @@ public class LoginController {
 		}
 	}
 	
+	@ResponseBody 
+	@RequestMapping(value = "register", method = RequestMethod.POST)
+	@Transactional(propagation=Propagation.REQUIRED)
+	public Object regist(HttpServletRequest request) {
+		String userName = request.getParameter("user_name");
+		String userId = request.getParameter("user_id");
+		String userAge = request.getParameter("user_age");
+		String userPassword = request.getParameter("user_password");
+		String userGender = request.getParameter("gender");
+		String workDepartment = request.getParameter("work_department");
+		String workType = request.getParameter("work_type");
+		if (workerSevice.findById(userId) == null) {
+			Worker worker = new Worker(userId, userName, userPassword, userGender, userAge, workType, workDepartment);
+			int id = workerSevice.saveWorker(worker);
+			return JsonData.buildSuccess(id, "注册成功，请前往登录页面");
+		} else {
+			return JsonData.buildError("注册失败,该账号已被注册");
+		}
+	}
+	
 	@RequestMapping(value="/toLogin",method=RequestMethod.GET)
 	public String toLogin(ModelMap map,HttpServletRequest request) {
 		map.addAttribute("msg", request.getParameter("msg"));
 		//System.out.println(request.getParameter("msg"));
 		return "admin/login";
 	}
+	
+	
 }

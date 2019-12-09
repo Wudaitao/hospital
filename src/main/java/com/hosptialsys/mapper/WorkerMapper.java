@@ -25,7 +25,7 @@ public interface WorkerMapper {
 	@Insert("INSERT INTO `worker` ( `user_id`, `user_name`, " +
 	        "`user_gender`, `user_password`, `user_age`,`worker_type`, `worker_department`)" +
 	        "VALUES" +
-	        "(#{userId},#{userName},#{userGender},#{userPassword},#{userAge},#{workerType},#{workerDepartment}")
+	        "(#{userId},#{userName},#{userGender},#{userPassword},#{userAge},#{workerType},#{workerDepartment})")
     //@Options(useGeneratedKeys=true, keyProperty="id", keyColumn="id")//将自增ID映射到实体类的id字段
 	int save(Worker worker);
 }
