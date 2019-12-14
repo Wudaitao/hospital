@@ -13,19 +13,20 @@
 
 <form enctype="multipart/form-data" action="/api/v1/user/login" method="post" >
 	<div class="layui-container">
-	    <input id="userid" name="user_id" class="layui-input" style="width: 36%; height: 36px; 
+	     <input id="userid" name="user_id" class="layui-input" style="width: 36%; height: 36px; 
 	           margin-left: 371px; margin-top: 246px; top: 43px;" 
-	           type="text" autocomplete="off" placeholder="请输入用户名" />
+	           type="text" autocomplete="off" placeholder="请输入用户ID" />
 	
 		  <input id="passwd" name="user_password" class="layui-input" style="width: 36%; height: 36px; 
 	           padding-top: 0px; margin-top: 72px; margin-left: 371px;" 
 	           autocomplete="off" type="password" placeholder="请输入密码" />
 	
 		  <button id="login_btn" type="submit" class="layui-btn" style="margin-top: 72px; 
-	    margin-left: 338px; height: 50px; width: 20%; font-size: 28px;" onclick="return checkInput()">登录</button>
+	    	margin-left: 338px; height: 50px; width: 20%; font-size: 28px;" onclick="return checkInput()">登录</button>
 	
-		  <button id="register_btn" class="layui-btn" style="margin-top: -70px; 
-	    margin-left: 608px; height: 50px; width: 20%; font-size: 28px;">注册</button>
+		  <button id="register_btn" type="button" class="layui-btn" style="margin-top: -70px; 
+	    	margin-left: 608px; height: 50px; width: 20%; font-size: 28px;"
+	    	onclick="jump()">注册</button>
 	</div>
 </form>
 <script src="/layui/layui.js"></script>
@@ -92,14 +93,6 @@ script>
              var imgPre = document.getElementById(targetId); 
              imgPre.src = url; 
          }
-         function uploadFile() 
-         { 
-         	document.getElementById("imgOne").click(); 
-         } 
-
-         function bclickforfile() {
-             $("[name=head_img]").click();
-         }
          function jump(){
              window.location.href="/html/register.html";
          }
@@ -108,9 +101,13 @@ script>
          	var pwd = $("#passwd").val();
          	console.log(name);
          	if(name==""||pwd==""){
-         		alert("输入有空值");
+         		layui.use('layer', function(){
+          		  var layer = layui.layer;
+					  layer.msg("必填项不能为空");
+          		});
          		return false;
          	}
+         	sessionStorage.setItem("workerId",$("#userid").val());
          	return true;
          }
          function getVerify(obj){

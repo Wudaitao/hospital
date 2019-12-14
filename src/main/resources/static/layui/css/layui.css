@@ -1946,7 +1946,7 @@ a cite {
 }
 
 .layui-textarea {
-	min-height: 100px;
+	min-height: 70px;
 	height: auto;
 	line-height: 20px;
 	padding: 6px 10px;
@@ -2013,11 +2013,11 @@ a cite {
 	vertical-align: middle
 }
 
-.layui-form-item .layui-input-inline {
+/* .layui-form-item .layui-input-inline {
 	float: left;
 	width: 190px;
 	margin-right: 10px
-}
+} */
 
 .layui-form-text .layui-input-inline {
 	width: auto
@@ -2375,7 +2375,7 @@ a cite {
 }
 
 .layui-form-pane .layui-form-label {
-	width: 110px;
+	width: 150px;
 	padding: 8px 15px;
 	height: 38px;
 	line-height: 20px;

@@ -1,5 +1,7 @@
 package com.hosptialsys.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
@@ -18,6 +20,12 @@ public interface ItemMapper {
 	 */
 	@Select("select * from item where item_name = #{itemName}")
 	Item findByName(@Param("itemName")String itemName);
+	
+	@Select("select item_name from item")
+	List<String> findAll();
+	
+	@Select("select item_price from item where item_name = #{itemName}")
+	Float getPrice(@Param("itemName")String itemName);
 	
 	@Insert("INSERT INTO `item` ( `item_name`, `item_price`)" +
 	        "VALUES" +

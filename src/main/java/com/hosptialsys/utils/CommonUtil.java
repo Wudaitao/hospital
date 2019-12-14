@@ -1,6 +1,8 @@
 package com.hosptialsys.utils;
 
 import java.security.MessageDigest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -32,5 +34,14 @@ public class CommonUtil {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+
+	public static String getFormatedSystemTime() {
+		// 获取指定格式的系统时间
+		Date now = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+		String ans = dateFormat.format(now);
+		return ans;
 	}
 }

@@ -1,5 +1,7 @@
 package com.hosptialsys.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,16 @@ public class WorkerServiceImpl implements WorkerService{
 
 	public Worker findUser(String userId, String userPassword) {
 		return workerMapper.findUser(userId, userPassword);	
+	}
+
+	@Override
+	public List<String> findByDep(String workDepartment) {
+		return workerMapper.findByDep(workDepartment);
+	}
+
+	@Override
+	public String findIdByName(String userName) {
+		return workerMapper.findIdByName(userName);
 	}
 	
 }

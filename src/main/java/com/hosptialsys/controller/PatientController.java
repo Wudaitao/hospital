@@ -1,9 +1,12 @@
 package com.hosptialsys.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,17 +35,21 @@ import com.hosptialsys.domain.User;
 import com.hosptialsys.service.DocResvInfoService;
 import com.hosptialsys.service.ResInfoService;
 import com.hosptialsys.service.UserService;
+import com.hosptialsys.service.WorkerService;
 import com.hosptialsys.utils.CreateQrCodeUtil;
 import com.hosptialsys.utils.WXPayUtil;
 
 @RestController
 @RequestMapping("/api/v1/patient/")
+@PropertySource({"classpath:application.properties"})
 public class PatientController {
 
+	@Value("${web.images-path}")
+	private String filePath;
 	private static AtomicInteger count = new AtomicInteger(0);
 	private static Map<String, Queue<String>> comQueueMap = new HashMap<>();
 	private static Map<String, Queue<String>> priQueueMap = new HashMap<>();
-	private DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MM.dd");
+	private DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy.MM.dd");
 	private DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("HH:mm"); 
 	@Autowired
 	private UserService userService;
@@ -48,11 +57,13 @@ public class PatientController {
 	private DocResvInfoService docResvInfoService;
 	@Autowired
 	private ResInfoService resInfoService;
+	@Autowired
+	private WorkerService workerService;
 	
 	/*
 	 *预约或线下挂号api
 	 */
-	@RequestMapping(value="register",method=RequestMethod.GET)
+	@RequestMapping(value="register",method=RequestMethod.POST)
 	@Transactional(propagation=Propagation.REQUIRED)
 	public Object regist(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String userId = request.getParameter("user_id");
@@ -64,7 +75,8 @@ public class PatientController {
 		String resvTimeSlot = request.getParameter("resv_time_slot");
 		String resvDate = request.getParameter("resv_date");
 		String resvOnline = request.getParameter("resv_online");
-		User user = new User(userId, userName, null, userGender, userAge);
+		String resvDocName = request.getParameter("resv_doctor_name");
+		User user = new User(userId, userName, userGender, userAge);
 		ResInfo resInfo = new ResInfo();
 		Map<String, String> info = new HashMap<>();
 		DocResInfo docResInfo = docResvInfoService.findDocInfo(doctorId, resvDepartment, resvTimeSlot, resvDate);
@@ -88,6 +100,7 @@ public class PatientController {
 				} else {
 					resInfo.setResvDoctorId(doctorId);
 					resInfo.setResvType("专家预约");
+					resInfo.setResvDoctorName(resvDocName);
 					info.put("resv_type", "专家预约");
 					info.put("doctor_id", doctorId);
 				}
@@ -97,7 +110,10 @@ public class PatientController {
 				info.put("resv_num", String.valueOf(count.get()));
 				info.put("resv_department", resvDepartment);
 				info.put("resv_online", resvOnline);
-				userService.saveUser(user);
+				int code = userService.saveUser(user);
+				/*if (code == -1) {
+					return JsonData.buildError("复诊病人");
+				}*/
 				docResvInfoService.update(docResInfo);
 				Integer resvId = resInfoService.save(resInfo);
 				//System.out.println(resvId);   预约号：取消预约时需要
@@ -105,7 +121,7 @@ public class PatientController {
 				//返回二维码，表示预约信息
 				String result = WXPayUtil.mapToXml(info);
 				try {
-					CreateQrCodeUtil.createQrCode(response.getOutputStream(),result,250, "JPEG");
+					CreateQrCodeUtil.createQrCode(new FileOutputStream(new File(filePath + "qrcode"+ resvId + ".jpg")),result,400, "JPEG");
 					return JsonData.buildSuccess(resvId, "预约成功");
 				} catch (WriterException e) {
 					e.printStackTrace();
@@ -116,26 +132,64 @@ public class PatientController {
 				return JsonData.buildError("预约失败，名额已满！");
 			}
 		} else {
-			return JsonData.buildError("预约失败，无此条记录！");
+			return JsonData.buildError("预约失败，无此条预约记录！");
 		}
 		return JsonData.buildError("预约失败！");
 	}
     
 	/*
-     * 获取专家或者科室预约信息api
+     * 根据专家或者科室获取预约日期
      */
-	@RequestMapping(value="getResInfo",method=RequestMethod.GET)
-	public Object getResInfo(HttpServletRequest request) {
-		String docId = request.getParameter("doctor_id");
-		String drDepartment = request.getParameter("dr_department");
-		List<DocResInfo> docResInfos =docResvInfoService.findAll(docId, drDepartment);
-        return JsonData.buildSuccess(docResInfos);
+	@RequestMapping(value="getResInfoDate",method=RequestMethod.GET)
+	public Object getResInfoDate(HttpServletRequest request) {
+		String docName = request.getParameter("doctor_name");
+		String drDepartment = request.getParameter("work_department");
+		List<String> dateInfos = new ArrayList<String>();
+		String doctorId;
+		Object[] info = new Object[2];
+		if (docName.equals("")) {
+			doctorId = "";
+			dateInfos = docResvInfoService.findDate1(drDepartment);
+		} else {
+			doctorId = workerService.findIdByName(docName);
+			dateInfos = docResvInfoService.findDate(docName, drDepartment);
+		}
+		info[0]=doctorId;
+		info[1]=dateInfos;
+        return JsonData.buildSuccess(info);
+	}
+	
+	/*
+     * 根据专家或者科室和预约日期获取时间段
+     */
+	@RequestMapping(value="getResInfoTimeSlot",method=RequestMethod.GET)
+	public Object getResInfoTimeSlot(HttpServletRequest request) {
+		String docName = request.getParameter("doctor_name");
+		String drDepartment = request.getParameter("work_department");
+		String drDate = request.getParameter("dr_date");
+		List<String> timeSlotInfos = new ArrayList<String>();
+		if (docName.equals("")) {
+			timeSlotInfos = docResvInfoService.findTimeSlot1(drDepartment, drDate);
+		} else {
+			timeSlotInfos =docResvInfoService.findTimeSlot(docName, drDepartment, drDate);
+		} 
+        return JsonData.buildSuccess(timeSlotInfos);
+	}
+	
+	/*
+	 * 根据科室获取医生
+	 */
+	@RequestMapping(value="getDocInfo",method=RequestMethod.POST)
+	public Object getDocInfo(@RequestParam(value = "work_department",required=true)String workDepartment) {
+		List<String> docInfo = workerService.findByDep(workDepartment);
+		docInfo.add("只约科室");
+		return JsonData.buildSuccess(docInfo);
 	}
 	
 	/*
 	 * 取消预约api
 	 */
-	@RequestMapping(value="delRegist",method=RequestMethod.GET)
+	@RequestMapping(value="delRegist",method=RequestMethod.POST)
 	@Transactional(propagation=Propagation.REQUIRED)
 	public Object delRegist(@RequestParam(value = "resv_id",required=true)int resvId) {
 		ResInfo resInfo = resInfoService.findById(resvId);
@@ -146,13 +200,16 @@ public class PatientController {
 				String resvDocId = resInfo.getResvDoctorId();
 				String resvDate = resInfo.getResvDate();
 				String resvTimeSlot = resInfo.getResvTimeSlot();
+				if (resvDocId == null) {
+					resvDocId = "";
+				}
 				DocResInfo docResInfo = docResvInfoService.findDocInfo(resvDocId, resvDep, resvTimeSlot, resvDate);
 				int resvNum = docResInfo.getDrResvNum();
 				docResInfo.setDrResvNum(resvNum-1);
 				resInfo.setResvIsValid("0");
 				docResvInfoService.update(docResInfo);
-				resInfoService.updateState(resInfo);
-				return JsonData.buildSuccess("取消预约成功！");
+				resInfoService.updateState("0",resvId);
+				return JsonData.buildSuccess(1, "预约取消成功！");
 			} else {
 				return JsonData.buildError("已经取消预约，请勿多次取消！");
 			}
@@ -163,21 +220,30 @@ public class PatientController {
 	/*
 	 * 分诊台排队取号api
 	 */
-	@RequestMapping(value="lineUp",method=RequestMethod.GET)
-	public Object lineUp(HttpServletRequest request) {
-		String doctorId = request.getParameter("doctor_id");
-		String userId = request.getParameter("user_id");
-		String resDep = request.getParameter("resv_department");
+	@RequestMapping(value="lineUp",method=RequestMethod.POST)
+	public Object lineUp(@RequestParam(value = "resv_id",required=true)int resvId) {
+		ResInfo resInfo = resInfoService.findById(resvId);
+		if (resInfo == null) {
+			return JsonData.buildError("没有该预约信息！");
+		}
+		if (resInfo.getResvIsValid().equals("0")) {
+			return JsonData.buildError("该预约已经排号，请勿重复排号！");
+		}
+		String doctorId = resInfo.getResvDoctorId();
+		String doctorName = resInfo.getResvDoctorName();
+		String userId = resInfo.getUserId();
+		String resDep = resInfo.getResvDepartment();
 		//String resvNum = request.getParameter("resv_num");
-		String resvType = request.getParameter("resv_type");
-		String resvDate = request.getParameter("resv_date");
-		String resvTimeSlot = request.getParameter("resv_time_slot");
-		String resvOnline = request.getParameter("resv_online");
+		String resvType = resInfo.getResvType();
+		String resvDate = resInfo.getResvDate();
+		String resvTimeSlot = resInfo.getResvTimeSlot();
+		String resvOnline = resInfo.getResvOnline();
 		String resvTimeBegin = resvTimeSlot.split("-")[0];
 		LocalDate date = LocalDate.now();
 		LocalTime time = LocalTime.now();
 		String dateNow = date.format(formatter1);
 		String timeNow = time.format(formatter2);
+		Map<String, Object> result = new HashMap<>();
 		System.out.println(resvDate + " " + resvTimeBegin);
 		System.out.println(dateNow + " " + timeNow);
 		
@@ -189,7 +255,11 @@ public class PatientController {
 						Queue<String> priQueue = new LinkedList<>();
 						priQueue.add(userId);
 						priQueueMap.put(doctorId, priQueue);
-						return JsonData.buildSuccess(1,"线上预约专家号排队成功，专家ID:"+doctorId);
+						result.put("number", 1);
+						result.put("department", resDep);
+						result.put("doctor_name", doctorName);
+						resInfoService.updateState("0",resvId);
+						return JsonData.buildSuccess(result,"线上预约专家号排队成功");
 					}
 					else {
 						int num = priQueueMap.get(doctorId).size();
@@ -197,7 +267,11 @@ public class PatientController {
 							num += comQueueMap.get(doctorId).size();
 						}
 						priQueueMap.get(doctorId).add(userId);
-						return JsonData.buildSuccess(num+1, "线上预约专家号排队成功，专家ID:"+doctorId);
+						result.put("number", num+1);
+						result.put("department", resDep);
+						result.put("doctor_name", doctorName);
+						resInfoService.updateState("0",resvId);
+						return JsonData.buildSuccess(result, "线上预约专家号排队成功");
 					}
 				} else {
 					if (comQueueMap.get(doctorId)==null) {
@@ -208,7 +282,11 @@ public class PatientController {
 						if (priQueueMap.get(doctorId) != null) {
 							priNum = priQueueMap.get(doctorId).size();
 						}
-						return JsonData.buildSuccess(priNum+1,"线下预约专家号排队成功，专家ID:"+doctorId);
+						result.put("number", priNum+1);
+						result.put("department", resDep);
+						result.put("doctor_name", doctorName);
+						resInfoService.updateState("0",resvId);
+						return JsonData.buildSuccess(result,"线下预约专家号排队成功");
 					}
 					else {
 						int priNum = 0;
@@ -217,7 +295,11 @@ public class PatientController {
 						}
 						int comNum = comQueueMap.get(doctorId).size();
 						comQueueMap.get(doctorId).add(userId);
-						return JsonData.buildSuccess(priNum+comNum+1, "线下预约专家号排队成功，专家ID:"+doctorId);
+						result.put("number", priNum+comNum+1);
+						result.put("department", resDep);
+						result.put("doctor_name", doctorName);
+						resInfoService.updateState("0",resvId);
+						return JsonData.buildSuccess(result, "线下预约专家号排队成功");
 					}
 				}
 			}
@@ -228,7 +310,11 @@ public class PatientController {
 						Queue<String> priQueue = new LinkedList<>();
 						priQueue.add(userId);
 						priQueueMap.put(resDep, priQueue);
-						return JsonData.buildSuccess(1,"线上科室号排队成功，科室："+resDep);
+						result.put("number",1);
+						result.put("department", resDep);
+						result.put("doctor_name", "无");
+						resInfoService.updateState("0",resvId);
+						return JsonData.buildSuccess(result,"线上科室号排队成功");
 					}
 					else {
 						int num = priQueueMap.get(resDep).size();
@@ -236,7 +322,11 @@ public class PatientController {
 							num += comQueueMap.get(resDep).size();
 						}
 						priQueueMap.get(resDep).add(userId);
-						return JsonData.buildSuccess(num+1, "线上科室号排队成功，科室："+resDep);
+						result.put("number",num+1);
+						result.put("department", resDep);
+						result.put("doctor_name", "无");
+						resInfoService.updateState("0",resvId);
+						return JsonData.buildSuccess(result, "线上科室号排队成功");
 					}
 				} else {
 					if (comQueueMap.get(resDep)==null) {
@@ -247,7 +337,11 @@ public class PatientController {
 						if (priQueueMap.get(resDep) != null) {
 							priNum = priQueueMap.get(resDep).size();
 						}
-						return JsonData.buildSuccess(priNum+1,"线下科室号排队成功，科室："+resDep);
+						result.put("number",priNum+1);
+						result.put("department", resDep);
+						result.put("doctor_name", "无");
+						resInfoService.updateState("0",resvId);
+						return JsonData.buildSuccess(result,"线下科室号排队成功");
 					}
 					else {
 						int priNum = 0;
@@ -256,14 +350,18 @@ public class PatientController {
 						}
 						int comNum = comQueueMap.get(resDep).size();
 						comQueueMap.get(resDep).add(userId);
-						return JsonData.buildSuccess(priNum+comNum+1, "线下科室号排队成功，科室："+resDep);
+						result.put("number",priNum+comNum+1);
+						result.put("department", resDep);
+						result.put("doctor_name", "无");
+						resInfoService.updateState("0",resvId);
+						return JsonData.buildSuccess(result, "线下科室号排队成功");
 					}
 				}
 			}
 		} else if (dateNow.compareTo(resvDate) < 0) {
 			return JsonData.buildError("预约日期还未到");
 		} else {
-			return JsonData.buildError("预约已失效");
+			return JsonData.buildError("预约日期已过");
 		}
 		
 		return JsonData.buildError("排队失败");
@@ -272,7 +370,7 @@ public class PatientController {
 	/*
 	 * 查看排队信息api
 	 */
-	@RequestMapping(value="queryLineupNumber",method=RequestMethod.GET)
+	@RequestMapping(value="queryLineupNumber",method=RequestMethod.POST)
 	public Object query(HttpServletRequest request) {
 		String doctorId = request.getParameter("doctor_id");
 		String userId = request.getParameter("user_id");
@@ -288,7 +386,7 @@ public class PatientController {
 						num.getAndIncrement();
 					} else {
 						num.getAndIncrement();
-						return JsonData.buildSuccess("查询成功！前面还有人数：" + num.get());
+						return JsonData.buildSuccess(num.get());
 					}
 				}
 			}
@@ -298,7 +396,7 @@ public class PatientController {
 						num.getAndIncrement();
 					} else {
 						num.getAndIncrement();
-						return JsonData.buildSuccess("查询成功！前面还有人数：" + num.get());
+						return JsonData.buildSuccess(num.get());
 					}
 				}
 			}
@@ -312,7 +410,7 @@ public class PatientController {
 						num.getAndIncrement();
 					} else {
 						num.getAndIncrement();
-						return JsonData.buildSuccess("查询成功！前面还有人数：" + num.get());
+						return JsonData.buildSuccess(num.get());
 					}
 				}
 			}
@@ -322,7 +420,7 @@ public class PatientController {
 						num.getAndIncrement();
 					} else {
 						num.getAndIncrement();
-						return JsonData.buildSuccess("查询成功！前面还有人数：" + num.get());
+						return JsonData.buildSuccess(num.get());
 					}
 				}
 			}
@@ -336,11 +434,11 @@ public class PatientController {
 	/*
 	 * 医生拉取病人信息api
 	 */
-	@RequestMapping(value="getPatientInfo",method=RequestMethod.GET)
-	public JsonData getPatientInfo(String Id) {
-		if (!Id.equals("")) {
-			Queue<String> priQueue = priQueueMap.get(Id);
-			Queue<String> comQueue = comQueueMap.get(Id);
+	@RequestMapping(value="getPatientInfo",method=RequestMethod.POST)
+	public JsonData getPatientInfo(String id) {
+		if (!id.equals("")) {
+			Queue<String> priQueue = priQueueMap.get(id);
+			Queue<String> comQueue = comQueueMap.get(id);
 			//先取优先队列里的病人
 			if (priQueue != null && !priQueue.isEmpty()) {
 				String patientInfo = priQueue.poll();
@@ -354,7 +452,7 @@ public class PatientController {
 			//两个队列里都没有病人
 			else {
 				//System.out.println(comQueue);
-				return JsonData.buildError("已经没有病人！");
+				return JsonData.buildError("暂时没有病人了！");
 			}
 		} 
 		return JsonData.buildError("已经没有病人！");

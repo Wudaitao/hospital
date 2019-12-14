@@ -21,9 +21,9 @@ public interface UserMapper {
 	User findUser(@Param("userId") String userId,@Param("userPassword") String userPassword);
 
 	@Insert("INSERT INTO `user` ( `user_id`, `user_name`, " +
-	        "`user_gender`, `user_password`, `user_age`)" +
+	        "`user_gender`, `user_age`)" +
 	        "VALUES" +
-	        "(#{userId},#{userName},#{userGender},#{userPassword},#{userAge})")
+	        "(#{userId},#{userName},#{userGender},#{userAge})")
     //@Options(useGeneratedKeys=true, keyProperty="id", keyColumn="id")//将自增ID映射到实体类的id字段
 	int save(User user);
 	

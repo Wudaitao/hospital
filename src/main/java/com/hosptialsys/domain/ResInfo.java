@@ -10,6 +10,7 @@ public class ResInfo {
 	private Integer resvId;           //预约信息ID
 	private String  userId;           //预约病人的ID
 	private String  resvDoctorId;     //预约的医生ID
+	private String  resvDoctorName;   //预约的医生名字
 	private String  resvDepartment;   //预约医生所属科室
 	private String  resvDate;         //预约的日期
 	private String  resvTimeSlot;     //预约的时间段
@@ -96,6 +97,14 @@ public class ResInfo {
 	
 	public void setResvNum(Integer resvNum) {
 		this.resvNum = resvNum;
+	}
+
+	public String getResvDoctorName() {
+		return resvDoctorName;
+	}
+
+	public void setResvDoctorName(String resvDoctorName) {
+		this.resvDoctorName = resvDoctorName;
 	}
 	
 }

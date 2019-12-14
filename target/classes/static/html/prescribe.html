@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>开处方</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.1.min.js'></script>
+  <script src="/layui/layui.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+  <style>
+    .layui-input-inline {
+      width: 200px;
+      margin-right: 20px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .one {
+      margin: 0 auto;
+      width: 1000px;
+    }
+
+    .btns {
+      margin-bottom: 5px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: .3em 1.2em;
+      border-radius: 3px;
+      background-color: teal;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    table.table {
+      box-sizing: border-box;
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table.table td,
+    table.table th {
+      border: 1px solid #ccc;
+      line-height: 2em;
+      text-align: center;
+    }
+
+    .none {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <form class="layui-form" action="">
+
+    <div class="layui-form-item" style="margin-left: 40px;margin-top: 10px;">
+      <table>
+        <!-- <tr>
+            <th>药品</th>
+            <th>数量</th>
+            <th>用量</th>
+          </tr> -->
+        <tr>
+          <td>
+            <div class="layui-input-inline layui-form">
+              <select id="medicine" name="medicine" lay-filter="MedicineFilter" lay-verify="required" lay-search="">
+                <option value="">选择药品或搜索选择</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div class="layui-input-inline">
+              <input id="amount" type="text" name="num" placeholder="请输入数量" autocomplete="off" class="layui-input"
+                lay-verify="digital">
+            </div>
+          </td>
+          <td>
+            <div class="layui-input-inline  layui-form">
+              <select id="dosage" name="dosage">
+                <option value="每日三次">每日三次</option>
+                <option value="每日两次">每日两次</option>
+                <option value="每日一次">每日一次</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <input type="button" value="添加" class="btn btn-success" id="add" onclick="addList()"
+              style="margin-left: 20px;" />
+          </td>
+        </tr>
+      </table>
+      
+      <div id='temp' style="width: 86%; height: 200px;margin-top: 20px;">
+        <table class="table table-hover table-bordered" id="mytable">
+          <thead>
+            <tr>
+              <th style="width: 28%;">药品</th>
+              <th style="width: 28%;">数量</th>
+              <th style="width: 28%;">用量</th>
+              <th style="width: 16%;">操作</th>
+            </tr>
+          </thead>
+          <tbody id="listTable">
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    <!--
+     <div class="layui-form-item layui-form-text">
+      <label class="layui-form-label">备注</label>
+      <div class="layui-input-block">
+        <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+      </div>
+    </div>
+   -->
+
+
+  </form>
+  <div class="layui-form-item">
+    <div class="layui-input-block" style="margin-top: -20px; margin-left: 700px;">
+        <button id='submit_btn' class="layui-btn">立即提交</button>
+    </div>
+  </div>
+
+  <script>
+      function addList() {
+        var medicine = document.getElementById('medicine').value; //药品
+        var amount = document.getElementById('amount').value; //数量
+        var dosage = document.getElementById('dosage').value; //用量
+  
+        var oTr = document.createElement('tr');
+        var oTd1 = document.createElement('td');
+        oTd1.innerHTML = medicine;
+        var oTd2 = document.createElement('td');
+        oTd2.innerHTML = amount;
+        var oTd3 = document.createElement('td');
+        oTd3.innerHTML = dosage;
+  
+        var oTd4 = document.createElement('td');
+        var oInput = document.createElement('input');
+        oInput.setAttribute('type', 'button');
+        oInput.setAttribute('value', '删除');
+        oInput.setAttribute('onclick', 'del(this)');
+        oInput.className = 'btn btn-danger';
+        oTd4.appendChild(oInput);
+  
+        oTr.appendChild(oTd1);
+        oTr.appendChild(oTd2);
+        oTr.appendChild(oTd3);
+        oTr.appendChild(oTd4);
+  
+        var olistTable = document.getElementById('listTable');
+        olistTable.appendChild(oTr);
+      }
+  
+      function del(obj) {
+        var oParentnode = obj.parentNode.parentNode;
+        var olistTable = document.getElementById('listTable');
+        olistTable.removeChild(oParentnode);
+      }
+    </script>
+
+    <script>
+	    layui.use('form', function(){
+			var form = layui.form;
+			//获取药品种类信息
+			$.ajax({
+		        url: "/api/v1/doctor/getMedicines",
+		        type: "post",
+		        dataType: 'json',
+		        success: function (result) {
+		        	var data = result.data;
+		        	console.log(data);
+		        	if (result.code == 0) {
+		        		$("#medicine").empty();//清空下拉框的值
+		                
+		                $.each(data, function (index, item) {
+		                   //console.log(item);
+		                   $('#medicine').append(new Option(item, item.Code));// 下拉菜单里添加元素
+		                });
+		                layui.form.render("select");//重新渲染 固定写法
+		        	}
+		        	else {
+		        		layui.use('layer', function(){
+		            		  var layer = layui.layer;
+			            	  layer.msg(result.msg);
+		            	});
+		        	}
+		      	},
+				error:function(err) {	      
+					layui.use('layer', function(){
+		        		  var layer = layui.layer;
+							  layer.msg("网络连接失败，请稍后重试",err);
+		        	});	            	
+		        }
+		    });
+			//根据药名获取库存
+			form.on('select(MedicineFilter)', function (data) {
+				var params={
+						  "medicine_name":data.value
+						 }
+				console.log(params);
+				$.ajax({
+		            url: "/api/v1/doctor/getMedicineStorage",
+		            type: "post",
+		            data: params,
+		            dataType: 'json',
+		            success: function (result) {
+		            	var data = result.data;
+		            	console.log(data);
+		            	layui.use('layer', function(){
+		            		  var layer = layui.layer;
+		  					  layer.msg("该药品库存还有："+data);
+		            	});
+		          	},
+					error:function(err) {
+		            	layui.use('layer', function(){
+		            		  var layer = layui.layer;
+		  					  layer.msg("网络连接失败，请稍后重试",err);
+		            	});
+		            }
+		        });
+		    });
+	    });
+        $(function () {
+        	$("#submit_btn").click(function () {
+                var tb = document.getElementById('mytable');  // table 的 id
+                var rows = tb.rows;                           // 获取表格所有行
+                var doctor_id = sessionStorage.getItem("workerId");
+                var user_id = sessionStorage.getItem("userId");            
+                var prescription = new Array(rows.length-1);
+                for (var i = 0; i < prescription.length; i++) {
+                  prescription[i] = new Array(rows[i].cells.length-1); //每行有10列
+                }
+        
+                for (var i = 0; i < rows.length; i++) {
+                  if (i == 0)
+                    continue;
+                  for (var j = 0; j < rows[i].cells.length - 1; j++) { // 遍历该行的 td
+                    prescription[i-1][j] = rows[i].cells[j].innerHTML;
+                  }
+                }
+                var info = {
+                  "doctor_id":doctor_id,
+                  "user_id":user_id,
+                  "rows_cnt":rows.length-1,
+                  "prescription":prescription,
+                }
+                console.log(info);
+                $.ajax({
+                    url:'/api/v1/medlist/addML',
+                    type:'post',
+                    data:info,
+                    dataType: "json",
+                    success:function(suc){
+                      	layui.use('layer', function(){
+      	            		  var layer = layui.layer;
+      	            		  console.log(suc);
+      	  					  layer.msg(suc.msg);
+      	            	});
+                    },
+      	             error:function(err) {
+      	            	layui.use('layer', function(){
+      	            		  var layer = layui.layer;
+      	  					  layer.msg("网络连接失败，请稍后重试",err);
+      	            	});
+    	            }
+                  });
+              })
+        })
+      </script>
+      
+	  <script>
+	    layui.use(['form', 'layedit', 'laydate'], function () {
+	      var form = layui.form,
+	        layer = layui.layer,
+	        layedit = layui.layedit,
+	        laydate = layui.laydate;
+	
+	      form.verify({
+	        //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
+	        digital: [
+	          /^[0-9]*[1-9][0-9]*$/, '请输入正整数'
+	        ]
+	      });
+	    });
+	  </script>
+
+</body>
+
+</html>

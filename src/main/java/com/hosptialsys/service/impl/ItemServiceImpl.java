@@ -1,5 +1,7 @@
 package com.hosptialsys.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,16 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public int updateItemPrice(String itemName, Float itemPrice) {
 		return itemMapper.updateItemPrice(itemName, itemPrice);
+	}
+
+	@Override
+	public List<String> findAll() {
+		return itemMapper.findAll();
+	}
+
+	@Override
+	public Float getPrice(String itemName) {
+		return itemMapper.getPrice(itemName);
 	}
 
 	

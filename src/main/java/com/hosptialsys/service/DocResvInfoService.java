@@ -10,8 +10,16 @@ public interface DocResvInfoService {
 	
 	DocResInfo findDocInfo(String doctorId, String drDepartment, String drTimeSlot, String drDate);
 
-	List<DocResInfo> findAll(String userId, String drDepartment);
+	DocResInfo findDocInfo1(String drDepartment, String drTimeSlot, String drDate);
+
+	List<String> findDate(String userName, String drDepartment);
 	
+	List<String> findDate1(String drDepartment);
+
+	List<String> findTimeSlot(String userName, String drDepartment, String drDate);
+	
+	List<String> findTimeSlot1(String drDepartment, String drDate);
+
 	int save(DocResInfo docResInfo);
 	
 	int update(DocResInfo docResInfo);

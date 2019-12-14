@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>收费</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+  <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+  <style>
+    .layui-form-label {
+      text-align: left;
+    }
+
+    .layui-input-inline {
+      width: 330px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .one {
+      margin: 0 auto;
+      width: 1000px;
+    }
+
+    .btns {
+      margin-bottom: 5px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: .3em 1.2em;
+      border-radius: 3px;
+      background-color: teal;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    table.table {
+      box-sizing: border-box;
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table.table td,
+    table.table th {
+      border: 1px solid #ccc;
+      line-height: 2em;
+      text-align: center;
+    }
+
+    .none {
+      display: none;
+    }
+
+    #main {
+      float: left;
+      border: 1px;
+      width: 100%;
+    }
+
+    #inspection {
+      float: left;
+      border: 1px;
+      width: 45%;
+    }
+
+    #prescription {
+      float: left;
+      border: 1px;
+      width: 45%;
+    }
+
+    .check {
+      margin-top: -10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div style="width: 100%; margin-top: 40px;margin-left: 30px;">
+    <form class="layui-form" action="">
+      <div class="layui-form-item">
+        <label class="layui-form-label">病人 ID</label>
+        <table style="width: 100px;">
+          <tr>
+            <td>
+              <div class="layui-input-inline" style="margin-left: 20px;">
+                <input id="content" type="text" name="content" placeholder="请输入病人 ID" autocomplete="off"
+                  class="layui-input">
+              </div>
+            </td>
+            <td>
+              <input type="button" value="查询" class="btn btn-success" id="lookup_btn" style="margin-left: 20px;" />
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">缴费方式</label>
+        <div class="layui-input-block">
+          <input type="radio" name="pay" value="现金" title="现金" checked="">
+          <input type="radio" name="pay" value="支付宝/微信" title="支付宝/微信">
+          <input type="radio" name="pay" value="禁" title="医保" disabled="">
+        </div>
+      </div>
+	  
+      <div class="layui-form-item" id="main" style="height:400px">
+        <div id='inspection'>
+          <table class="table table-hover table-bordered" id="mytable1">
+            <thead>
+              <tr>
+                <th style="width: 10%;"><input id="insp_check" name="insp_check" class="insp_check"
+                    lay-filter="insp_all" type="checkbox" lay-skin="primary" /></th>
+                <th style="width: 20%;">检验ID</th>
+                <th style="width: 25%;">检验项目</th>
+                <th style="width: 20%;">检验费用</th>
+                <th style="width: 25%;">检验结果</th>
+              </tr>
+            </thead>
+            <tbody id="listTable1">
+            </tbody>
+          </table>
+        </div>
+
+        <div id='prescription' style="margin-left:3%">
+          <table class="table table-hover table-bordered" id="mytable2">
+            <thead>
+              <tr>
+                <th style="width: 10%;"><input id="pres_check" name="pres_check" class="pres_check"
+                    lay-filter="pres_all" type="checkbox" lay-skin="primary" /></th>
+                <th style="width: 18%;">药单ID</th>
+                <th style="width: 27%;">药品</th>
+                <th style="width: 12%;">数量</th>
+                <th style="width: 18%;">总价</th>
+                <th style="width: 15%;">药单状态</th>
+              </tr>
+            </thead>
+            <tbody id="listTable2">
+            
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px; margin-left: 300px;">
+        <button id='charge' type="button" class="layui-btn"
+          style="height: 35px; width: 90px; font-size: 16px;">缴费</button>
+        <button id='return' type="button" class="layui-btn"
+          style="margin-left: 500px; height: 35px; width: 90px; font-size: 16px;">退费</button>
+      </div>
+
+    </form>
+
+
+  </div>
+  <script type="text/javascript" src='/layui/layui.js'></script>
+
+  <script>//填写表格函数
+    //检验添加
+    function ins_addList(obj) {
+      var oTr = document.createElement('tr');
+      //复选框
+      var oTd0 = document.createElement('td');
+      var oInput = document.createElement('input');
+      oInput.setAttribute('type', 'checkbox');
+      oInput.setAttribute('name', 'insp');
+      oInput.setAttribute('class', 'insp');
+      oInput.setAttribute('lay-filter', 'insp_one');
+      oInput.setAttribute('lay-skin', 'primary');
+      oTd0.appendChild(oInput);
+
+      var oTd1 = document.createElement('td');
+      oTd1.innerHTML = obj.checkItemId;
+      var oTd2 = document.createElement('td');
+      oTd2.innerHTML = obj.checkItemName;
+      var oTd3 = document.createElement('td');
+      oTd3.innerHTML = obj.checkPayment;
+      var oTd4 = document.createElement('td');
+      oTd4.innerHTML = obj.checkResult;
+
+      oTr.appendChild(oTd0);
+      oTr.appendChild(oTd1);
+      oTr.appendChild(oTd2);
+      oTr.appendChild(oTd3);
+      oTr.appendChild(oTd4);
+
+
+      var olistTable = document.getElementById('listTable1');
+      olistTable.appendChild(oTr);
+      
+      layui.use('form', function(){
+        	var form = layui.form;
+        	form.on('checkbox', function () {
+              form.render('checkbox');
+            });
+        });
+    }
+
+    //处方添加
+    function pres_addList(obj) {
+      var oTr = document.createElement('tr');
+      //复选框
+      var oTd0 = document.createElement('td');
+      var oInput = document.createElement('input');
+      oTd0.appendChild(oInput);
+      oInput.setAttribute('type', 'checkbox');
+      oInput.setAttribute('name', 'pres');
+      oInput.setAttribute('class', 'pres');
+      oInput.setAttribute('lay-filter', 'pres_one');
+      oInput.setAttribute('lay-skin', 'primary');
+
+      var oTd1 = document.createElement('td');
+      oTd1.innerHTML = obj.mlId;
+      var oTd2 = document.createElement('td');
+      oTd2.innerHTML = obj.medName;
+      var oTd3 = document.createElement('td');
+      oTd3.innerHTML = obj.medNum;
+      var oTd4 = document.createElement('td');
+      oTd4.innerHTML = obj.mlTotalPrice;
+      var oTd5 = document.createElement('td');
+      oTd5.innerHTML = obj.mlState;
+
+      oTr.appendChild(oTd0);
+      oTr.appendChild(oTd1);
+      oTr.appendChild(oTd2);
+      oTr.appendChild(oTd3);
+      oTr.appendChild(oTd4);
+      oTr.appendChild(oTd5);
+		
+      var olistTable = document.getElementById('listTable2');
+      olistTable.appendChild(oTr);
+      
+    }
+  </script>
+
+  <script> //从后台获取检验和药品信息填入表格
+    // var test = new Object();
+    // test.checkItemId="123";
+    // test.checkItemName="a";
+    // test.checkItemContent="aa";
+    $(function () {
+      $("#lookup_btn").click(function () {
+    	$("#listTable1").empty();
+    	$("#listTable2").empty();
+        //获取检验数据
+        var user_id=$("#content").val();
+        var info={
+        	"user_id": user_id,
+        };
+        $.ajax({
+          url: '/api/v1/doctor/getExamItems',
+          type: 'post',
+          data: info,
+          dataType: "json",
+          success: function (res) {
+        	console.log(res);
+        	if (res.code==0) {
+        		var dataSize = res.data.length;
+        		for (var i = 0; i < dataSize; i++){
+        			ins_addList(res.data[i]);
+        		}  
+        	}
+        	else {
+        		layui.use('layer', function(){
+                	var layer = layui.layer;
+      				layer.msg(res.msg);
+                });
+        	}
+          },
+		  error:function(err) {
+            layui.use('layer', function(){
+            	var layer = layui.layer;
+  				layer.msg("网络连接失败，请稍后重试",err);
+            });
+          }
+        });
+        //获取药品信息
+        $.ajax({
+          url: '/api/v1/medlist/showML',
+          type: 'post',
+          data: info,
+          dataType: "json",
+          success: function (suc) {
+          	if (suc.code==0) {
+          		var dataSize = suc.data.length;
+          		for (var i = 0; i < dataSize; i++){
+          			pres_addList(suc.data[i]);
+          		}  
+          	}
+          	else {
+          		layui.use('layer', function(){
+                  	var layer = layui.layer;
+        				layer.msg(suc.msg);
+                  });
+          	}
+          },
+  		  error:function(err) {
+              layui.use('layer', function(){
+              	var layer = layui.layer;
+    				layer.msg("网络连接失败，请稍后重试",err);
+              });
+            }
+          });
+       });
+    })
+  </script>
+
+  <script>//复选框
+    $(function () {
+      layui.use('form', function () {
+        var form = layui.form;
+        //检验全选
+        form.on('checkbox(insp_all)', function (data) {
+          var a = data.elem.checked;
+          $(".insp").prop("checked", a);
+          form.render('checkbox');
+        });
+        //有一个未选中全选取消选中
+        form.on('checkbox(insp_one)', function (data) {
+          var item = $(".insp");
+          for (var i = 0; i < item.length; i++) {
+            if (item[i].checked == false) {
+              $(".insp_check").prop("checked", false);
+              form.render('checkbox');
+              break;
+            }
+          }
+          //如果都勾选了  勾上全选
+          var all = item.length;
+          for (var i = 0; i < item.length; i++) {
+            if (item[i].checked == true) {
+              all--;
+            }
+          }
+          if (all == 0) {
+            $(".insp_check").prop("checked", true);
+            form.render('checkbox');
+          }
+        });
+
+        //药品全选
+        form.on('checkbox(pres_all)', function (data) {
+          var a = data.elem.checked;
+          $(".pres").prop("checked", a);
+          form.render('checkbox');
+        });
+        //有一个未选中全选取消选中
+        form.on('checkbox(pres_one)', function (data) {
+          var item = $(".pres");
+          for (var i = 0; i < item.length; i++) {
+            if (item[i].checked == false) {
+              $(".pres_check").prop("checked", false);
+              form.render('checkbox');
+              break;
+            }
+          }
+          //如果都勾选了  勾上全选
+          var all = item.length;
+          for (var i = 0; i < item.length; i++) {
+            if (item[i].checked == true) {
+              all--;
+            }
+          }
+          if (all == 0) {
+            $(".pres_check").prop("checked", true);
+            form.render('checkbox');
+          }
+        });
+      });
+    });
+  </script>
+
+  <script>//获取选中行的ID发送到后台
+    var op=-1;
+    function getID(tb, ck) {
+      var rows = tb.rows;
+      var res = new Array();
+      for (var i = 0; i < rows.length; i++) {
+        if (i == 0)
+          continue;
+        //tb含表头，比ck多一行
+        if (ck[i - 1].checked) {
+          res.push(rows[i].cells[1].innerHTML);
+        }
+      }
+      return res;
+    }
+
+    /* $(function () {
+      $("#return").click(function () {
+        op=0;
+      })
+    })
+
+    $(function () {
+      $("#charge").click(function () {
+        op=1;
+      })
+    }) */
+    $(function () {
+      var worker_id = sessionStorage.getItem("workerId");
+      $("#return").click(function () {
+         op=0;
+      });
+      $("#charge").click(function () {
+         op=1;
+      });
+      $("#charge,#return").click(function () {
+        /* var insp_tb = document.getElementById('mytable1');
+        var pres_tb = document.getElementById('mytable2');
+        var insp_ck = document.getElementsByClassName("insp");
+        var pres_ck = document.getElementsByClassName("pres");
+        var insp_res = getID(insp_tb, insp_ck);
+        var pres_res = getID(pres_tb, pres_ck); */
+        var res={
+          "op":op,
+          "user_id":$("#content").val(),
+          "worker_id":worker_id,
+          //"worker_id":12345678912,
+          //"insp_res":insp_res,
+          //"pres_res":pres_res,
+        };
+        console.log(res);
+        $.ajax({
+          url: '/api/v1/payment/payOrReturn',
+          type: 'post',
+          data: res,
+          success: function (suc) {
+        	  layui.use('layer', function(){
+                var layer = layui.layer;
+              	if (suc.code == 0) {
+              		layer.msg(suc.msg+suc.data+"元");
+              	} else {
+              		layer.msg(suc.msg);
+              	}	
+              });
+          },
+          error:function(err) {
+              layui.use('layer', function(){
+              	var layer = layui.layer;
+    				layer.msg("网络连接失败，请稍后重试",err);
+              });
+          }
+        });
+
+      })
+    })
+  </script>
+
+  <script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+      var form = layui.form,
+        layer = layui.layer,
+        layedit = layui.layedit,
+        laydate = layui.laydate;
+
+      //自定义验证规则
+      form.verify({
+        content: function (value) {
+          layedit.sync(editIndex);
+        },
+        digital: [
+          /^[0-9]*[1-9][0-9]*$/, '请输入数字'
+        ]
+      });
+    });
+  </script>
+
+</body>
+
+</html>

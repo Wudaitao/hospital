@@ -1,5 +1,7 @@
 package com.hosptialsys.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -18,6 +20,12 @@ public interface WorkerMapper {
 	
 	@Select("select * from worker where user_name = #{userName}")
 	Worker findByName(@Param("userName")String userName);
+	
+	@Select("select user_id from worker where user_name = #{userName}")
+	String findIdByName(@Param("userName")String userName);
+	
+	@Select("select user_name from worker where worker_department = #{workDepartment}")
+	List<String> findByDep(@Param("workDepartment")String workDepartment);
 	
 	@Select("SELECT * FROM worker WHERE user_id=#{userId} and user_password=#{userPassword}")
 	Worker findUser(@Param("userId") String userId,@Param("userPassword") String userPassword);

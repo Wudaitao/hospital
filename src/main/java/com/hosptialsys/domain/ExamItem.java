@@ -10,6 +10,9 @@ public class ExamItem {
 	private String  checkUserName;   //被检查的病人名字
 	private String  checkResult;     //检查结果
 	private String  checkItemContent;//检查内容
+	private Float   checkPayment;    //检查花费
+	private String  doctorId;        //开检查的医生
+	private String  checkDoctorId;   //做检查的医生
 	
 	public Integer getCheckItemId() {
 		return checkItemId;
@@ -73,6 +76,30 @@ public class ExamItem {
 
 	public void setCheckItemContent(String checkItemContent) {
 		this.checkItemContent = checkItemContent;
+	}
+
+	public String getDoctorId() {
+		return doctorId;
+	}
+
+	public void setDoctorId(String doctorId) {
+		this.doctorId = doctorId;
+	}
+
+	public String getCheckDoctorId() {
+		return checkDoctorId;
+	}
+
+	public void setCheckDoctorId(String checkDoctorId) {
+		this.checkDoctorId = checkDoctorId;
+	}
+
+	public Float getCheckPayment() {
+		return checkPayment;
+	}
+
+	public void setCheckPayment(Float checkPayment) {
+		this.checkPayment = checkPayment;
 	}
 	
 }

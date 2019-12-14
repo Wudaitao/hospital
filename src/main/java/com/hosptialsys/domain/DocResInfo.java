@@ -9,6 +9,7 @@ public class DocResInfo {
 	
 	private Integer drId;         //预约信息ID
 	private String  userId;       //医生ID
+	private String  userName;     //医生姓名
 	private Integer drResvNum;    //该医生或科室已预约人数
 	private Integer drMaxResvNum; //该医生或科室最大预约人数
 	private String  drDepartment; //所属科室
@@ -69,6 +70,14 @@ public class DocResInfo {
 	
 	public void setDrDate(String drDate) {
 		this.drDate = drDate;
+	}
+	
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 }

@@ -36,8 +36,28 @@ public class DocResvInfoServiceImpl implements DocResvInfoService{
 	}
 
 	@Override
-	public List<DocResInfo> findAll(String userId, String drDepartment) {
-		return docResInfoMapper.findAll(userId, drDepartment);
+	public List<String> findDate(String userName, String drDepartment) {
+		return docResInfoMapper.findDate(userName, drDepartment);
 	}
 	
+	@Override
+	public List<String> findTimeSlot(String userName, String drDepartment, String drDate) {
+		return docResInfoMapper.findTimeSlot(userName, drDepartment, drDate);
+	}
+
+	@Override
+	public List<String> findDate1(String drDepartment) {
+		return docResInfoMapper.findDate1(drDepartment);
+	}
+
+	@Override
+	public List<String> findTimeSlot1(String drDepartment, String drDate) {
+		return docResInfoMapper.findTimeSlot1(drDepartment, drDate);
+	}
+
+	@Override
+	public DocResInfo findDocInfo1(String drDepartment, String drTimeSlot, String drDate) {
+		
+		return docResInfoMapper.findDocInfo1(drDepartment, drTimeSlot, drDate);
+	}
 }

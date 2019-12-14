@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>检验</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+  <style>
+    .layui-input-inline {
+      width: 310px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .one {
+      margin: 0 auto;
+      width: 1000px;
+    }
+
+    .btns {
+      margin-bottom: 5px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: .3em 1.2em;
+      border-radius: 3px;
+      background-color: teal;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    table.table {
+      box-sizing: border-box;
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table.table td,
+    table.table th {
+      border: 1px solid #ccc;
+      line-height: 2em;
+      text-align: center;
+    }
+
+    .none {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <form class="layui-form" action="">
+
+    <div class="layui-form-item" style="margin-left: 40px;margin-top: 10px; ">
+      <table style="width: 100px;">
+        <!-- <tr>
+            <th>检验项目</th>
+            <th>检验内容</th>
+          </tr> -->
+        <tr>
+          <td>
+            <div class="layui-input-inline  layui-form">
+              <select id="checkItem" lay-verify="required" lay-filter="CheckItemFilter" lay-search="">
+                <option value="">直接选择或搜索选择</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div class="layui-input-inline" style="margin-left: 20px;">
+              <input id="content" type="text" name="content" placeholder="请输入检验内容" autocomplete="off"
+                class="layui-input">
+            </div>
+          </td>
+          <td>
+            <input type="button" value="添加" class="btn btn-success" id="add" onclick="addList()"
+              style="margin-left: 20px;" />
+          </td>
+        </tr>
+
+
+      </table>
+      <!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+      <div id='temp' style="width: 86%; height: 200px;margin-top: 20px;">
+        <table class="table table-hover table-bordered" id="mytable">
+          <thead>
+            <tr>
+              <th style="width: 43%;">检验项目</th>
+              <th style="width: 43%;">检验内容</th>
+              <th style="width: 14%;">操作</th>
+            </tr>
+          </thead>
+          <tbody id="listTable">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </form>
+  <div class="layui-form-item" style="margin-top: 10px">
+    <div class="layui-input-block" style="margin-top: 10px; margin-left: 700px;">
+      <button id='submit_btn' class="layui-btn">立即提交</button>
+    </div>
+  </div>
+  
+  <script type="text/javascript" src="/layui/layui.js" charset="utf-8"></script>
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+  <script>
+    function addList() {
+      var item = document.getElementById('checkItem').value; //检验项目
+      var content = document.getElementById('content').value; //检验内容
+
+      var oTr = document.createElement('tr');
+      var oTd1 = document.createElement('td');
+      oTd1.innerHTML = item;
+      var oTd2 = document.createElement('td');
+      oTd2.innerHTML = content;
+
+      var oTd3 = document.createElement('td');
+      var oInput = document.createElement('input');
+      oInput.setAttribute('type', 'button');
+      oInput.setAttribute('value', '删除');
+      oInput.setAttribute('onclick', 'del(this)');
+      oInput.className = 'btn btn-danger';
+      oTd3.appendChild(oInput);
+
+      oTr.appendChild(oTd1);
+      oTr.appendChild(oTd2);
+      oTr.appendChild(oTd3);
+
+      var olistTable = document.getElementById('listTable');
+      olistTable.appendChild(oTr);
+    }
+
+    function del(obj) {
+      var oParentnode = obj.parentNode.parentNode;
+      var olistTable = document.getElementById('listTable');
+      olistTable.removeChild(oParentnode);
+    }
+  </script>
+
+  <script>
+    // var inspection = new Array(); //先声明一维
+	var doctor_id = sessionStorage.getItem("workerId");
+    var user_id = sessionStorage.getItem("userId");
+    var user_name = sessionStorage.getItem("userName");
+	layui.use('form',function() {
+		var form = layui.form;
+		//获取所有项目信息
+		$.ajax({
+            url: "/api/v1/doctor/getItems",
+            type: "post",
+            dataType: 'json',
+            success: function (result) {
+            	var data = result.data;
+            	console.log(data);
+            	if (result.code == 0) {
+            		$("#checkItem").empty();//清空下拉框的值
+	                
+                    $.each(data, function (index, item) {
+                       //console.log(item);
+	                   $('#checkItem').append(new Option(item, item.Code));// 下拉菜单里添加元素
+	                });
+	                layui.form.render("select");//重新渲染 固定写法
+            	}
+            	else {
+            		layui.use('layer', function(){
+	            		  var layer = layui.layer;
+		            	  layer.msg(result.msg);
+	            	});
+            	}
+          	},
+			error:function(err) {	      
+				layui.use('layer', function(){
+            		  var layer = layui.layer;
+  					  layer.msg("网络连接失败，请稍后重试",err);
+            	});	            	
+            }
+        });
+	});
+
+    $(function () {
+      $("#submit_btn").click(function () {
+        var tb = document.getElementById('mytable'); // table 的 id
+        var rows = tb.rows; // 获取表格所有行
+		//判断检查项目是为空
+        if (rows.length==1) {
+     	   layui.use('layer', function(){
+        		  var layer = layui.layer;
+ 					  layer.msg("检验申请单为空！");
+        		});
+     	   return false;
+        }
+        
+        var inspection = new Array(rows.length-1);
+        var inspection1 = new Array(rows.length-1);
+
+        for (var i = 0; i < rows.length; i++) {
+          if (i == 0)
+            continue;
+          //for (var j = 0; j < rows[i].cells.length - 1; j++) { // 遍历该行的 td
+            inspection[i-1] = rows[i].cells[0].innerHTML;
+            inspection1[i-1] = rows[i].cells[1].innerHTML;
+          //}
+        }
+       
+       
+        var info = {
+        		"user_id":user_id,
+        		"doctor_id":doctor_id,
+        		"user_name":user_name,
+        		"inspection":inspection,
+        		"inspection1":inspection1,
+        		"row_size":inspection.length,
+        }
+        console.log(info);
+        $.ajax({
+            url:'/api/v1/doctor/saveCheckItem',
+            type:'post',
+            data:info,
+            dataType: "json",
+            success:function(result){
+            	layui.use('layer', function(){
+          		  var layer = layui.layer;
+					  layer.msg(result.msg);
+          		});
+            },
+            error:function(err) {
+            	layui.use('layer', function(){
+            		  var layer = layui.layer;
+  					  layer.msg("网络连接失败，请稍后重试",err);
+            	});
+            }
+          });
+      })
+    })
+  </script>
+
+
+
+
+  <script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+      var form = layui.form;
+
+      form.verify({
+        //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
+        digital: [
+          /^[0-9]*[1-9][0-9]*$/, '请输入正整数'
+        ]
+      });
+      /*
+            //表单取值
+            layui.$('#LAY-component-form-getval').on('click', function () {
+              var data = form.val('example');
+              alert(JSON.stringify(data));
+            });
+
+            //监听提交
+            form.on('submit(demo1)', function (data) {
+              layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息'
+              })
+              return false;
+            });
+      */
+
+    });
+  </script>
+
+
+</body>
+
+</html>

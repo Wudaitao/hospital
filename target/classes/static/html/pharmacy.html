@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>药房系统</title>
+  <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+  <style>
+    body{margin: 50px;}
+    .demo-carousel{height: 200px; line-height: 200px; text-align: center;}
+	div.background
+	{
+	  width: 100%;
+	  height: 100%;
+	  background: #A2AAB8;
+	  border: 1px solid white;
+	}
+	div.transbox
+	{
+	  width: 95%;
+	  height: 150%;
+	  margin: 5px 30px;
+	  background-color: #ffffff;
+	  border: 1px solid white;
+	  opacity:0.9;
+	}
+  </style>
+</head>
+<body>
+<div class="background" style="margin-top:-50px">
+<div class="transbox">
+	<p align="center" style="font-size:60px" > 药房系统</p>
+	<label align="left" style="font-size:20px">&emsp;&emsp;&emsp;&emsp;病人I D:&emsp;</label>
+	<label align="left" style="font-size:20px" id="userId_lbl">xxxxxxxxxxx</label>
+	<label align="left" style="font-size:20px">&emsp;&emsp;&emsp;日期:&emsp;</label>
+	<label align="left" style="font-size:20px" id="date_lbl">xxxx.xx.xx</label>
+	<button  id="nextUser_btn" class="layui-btn" style="margin-left:40%;width:10%;height:10%;">下一个</button>
+	
+	<div style="height:500px; margin-top:1%;margin-left:1%;margin-right:1%;">
+		<table  class="layui-hide" id="demo" lay-filter="test"></table>
+	</div> 
+	<div class="layui-form-item" style="margin-top:-30px;">
+		<button  id="PrepareMedi_Btn" class="layui-btn" style="margin-left:18%;width:15%;" >配药</button>
+		<button  id="GetMedi_Btn" class="layui-btn" style="margin-left:10%;width:15%;" >取药</button>
+		<a href="./withdraw.html" id="ReturnMedi_Btn" class="layui-btn" style="margin-left:10%;width:15%;" >退药</a>		
+	</div>
+  
+</div> 
+</div> 
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+ 
+<script src="/layui/layui.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+
+<script>
+ 
+layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function(){
+  var laydate = layui.laydate //日期
+  ,laypage = layui.laypage //分页
+  ,layer = layui.layer //弹层
+  ,table = layui.table //表格
+  ,carousel = layui.carousel //轮播
+  ,upload = layui.upload //上传
+  ,element = layui.element //元素操作
+  ,slider = layui.slider //滑块
+  
+  //向世界问个好
+  layer.msg('药房管理系统');
+  
+  //监听Tab切换
+  element.on('tab(demo)', function(data){
+    layer.tips('切换了 '+ data.index +'：'+ this.innerHTML, this, {
+      tips: 1
+    });
+  });
+  
+  //执行一个 table 实例
+  table.render({
+    elem: '#demo'
+    ,height: 420
+    ,url: '/api/v1/medlist/defaultMLs' //数据接口
+    ,title: '药单表'
+    ,page: true //开启分页
+    ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+    ,totalRow: true //开启合计行
+    ,cols: [[ //表头
+      {type: 'checkbox', fixed: 'left'}
+      ,{field: 'mlId', title: '药单ID', width:80, sort: true, fixed: 'left', totalRowText: '合计：'}
+	  ,{field: 'mlDoctorId', title: '处方医生ID', width:130,sort: true, totalRow: false}
+      ,{field: 'medName', title: '药品名', width:130, sort: true, totalRow: false}
+      ,{field: 'medNum', title: '药品数量', width:120, sort: true, sort: true, totalRow: true}
+      ,{field: 'mlDosage', title: '药品用量', width: 120, sort: true, totalRow: false}
+      ,{field: 'mlTotalPrice', title: '药品总价', width:120, sort: true, totalRow: true} 
+      ,{field: 'mlDate', title: '开药日期', width: 120,sort: true, totalRow: false}
+      ,{field: 'mlState', title: '药单状态', width: 120,sort: true, totalRow: false}
+      ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
+    ]]
+    ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
+        return {
+            "code": res.code, //解析接口状态
+            "msg": res.msg, //解析提示文本
+            "data": res.data, //解析数据列表
+            "count": res.count //解析数据长度
+          };
+    }
+   ,id: "mlTable"
+  });
+  
+  //监听头工具栏事件
+  table.on('toolbar(test)', function(obj){
+    var checkStatus = table.checkStatus(obj.config.id)
+    ,data = checkStatus.data; //获取选中的数据
+    switch(obj.event){
+      case 'add':
+        layer.msg('添加');
+      break;
+      case 'update':
+        if(data.length === 0){
+          layer.msg('请选择一行');
+        } else if(data.length > 1){
+          layer.msg('只能同时编辑一个');
+        } else {
+          layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
+        }
+      break;
+      case 'delete':
+        if(data.length === 0){
+          layer.msg('请选择一行');
+        } else {
+          layer.msg('删除');
+        }
+      break;
+    };
+  });
+  
+  //监听行工具事件
+  table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+    var data = obj.data //获得当前行数据
+    ,layEvent = obj.event; //获得 lay-event 对应的值
+    if(layEvent === 'detail'){
+    	layer.alert('药单ID:'+ data.mlId+'<br>处方医生ID:'+data.mlDoctorId+'<br>药品名:'+data.medName+'<br>药品数量:'+data.medNum 
+        		+'<br>药品用量:'+data.mlDosage+'<br>药品总价:'+data.mlTotalPrice+'<br>开药日期:'+data.mlDate+'<br>药单状态:'+data.mlState);
+    } else if(layEvent === 'del'){
+      layer.confirm('真的删除行么', function(index){
+        obj.del(); //删除对应行（tr）的DOM结构
+        layer.close(index);
+        //向服务端发送删除指令
+      });
+    } else if(layEvent === 'edit'){
+      layer.msg('编辑操作');
+    }
+  });
+  //配药功能
+  $(function () {
+	  var date = new Date();
+	  var year = date.getFullYear();
+	  var month = date.getMonth();
+	  var day = date.getDate();
+	  $("#date_lbl").text(year+"."+month+"."+day);
+      $("#PrepareMedi_Btn").click(function () {
+      	
+        $.ajax({
+          url:'/api/v1/pharmacy/preMedicine',
+          type:'post',
+          //data:,
+          dataType: "json",
+          success: function (data) {
+          	console.log(data);
+          	layui.use('layer', function(){
+        		  var layer = layui.layer;
+					  layer.msg(data.msg);
+        		});   
+          },
+          error:function(err) {
+          	layui.use('layer', function(){
+          		  var layer = layui.layer;
+					  layer.msg("网络连接失败，请稍后重试",err);
+          	});
+          }
+        });
+      });
+      //取药功能
+      $("#GetMedi_Btn").click(function () {
+        	
+          $.ajax({
+            url:'/api/v1/pharmacy/getMedicine',
+            type:'post',
+            //data:,
+            dataType: "json",
+            success: function (data) {
+            	console.log(data);
+            	layui.use('layer', function(){
+          		  var layer = layui.layer;
+  					  layer.msg(data.msg);
+          		});   
+            },
+            error:function(err) {
+            	layui.use('layer', function(){
+            		  var layer = layui.layer;
+  					  layer.msg("网络连接失败，请稍后重试",err);
+            	});
+            }
+          });
+        });
+      
+      //下一条处方单
+      $("#nextUser_btn").click(function () {
+        	
+    	//执行一个 table 实例
+    	  table.render({
+    	    elem: '#demo'
+    	    ,height: 420
+    	    ,url: '/api/v1/medlist/showMLs' //数据接口
+    	    ,title: '药单表'
+    	    ,page: true //开启分页
+    	    ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+    	    ,totalRow: true //开启合计行
+    	    ,cols: [[ //表头
+    	      {type: 'checkbox', fixed: 'left'}
+    	      ,{field: 'mlId', title: '药单ID', width:80, sort: true, fixed: 'left', totalRowText: '合计：'}
+    		  ,{field: 'mlDoctorId', title: '处方医生ID', width:130,sort: true, totalRow: false}
+    	      ,{field: 'medName', title: '药品名', width:130, sort: true, totalRow: false}
+    	      ,{field: 'medNum', title: '药品数量', width:120, sort: true, sort: true, totalRow: true}
+    	      ,{field: 'mlDosage', title: '药品用量', width: 120, sort: true, totalRow: false}
+    	      ,{field: 'mlTotalPrice', title: '药品总价', width:120, sort: true, totalRow: true} 
+    	      ,{field: 'mlDate', title: '开药日期', width: 120,sort: true, totalRow: false}
+    	      ,{field: 'mlState', title: '药单状态', width: 120,sort: true, totalRow: false}
+    	      ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
+    	    ]]
+    	    ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
+    	    	$("#userId_lbl").text(res.data[0].userId);
+    	    	return {
+    	            "code": res.code, //解析接口状态
+    	            "msg": res.msg, //解析提示文本
+    	            "data": res.data, //解析数据列表
+    	            "count": res.count //解析数据长度
+    	          };
+    	    }
+    	   ,id: "mlTable"
+    	  });
+        });
+	});
+  	
+  //分页
+  laypage.render({
+    elem: 'pageDemo' //分页容器的id
+    ,count: 100 //总页数
+    ,skin: '#1E9FFF' //自定义选中色值
+    //,skip: true //开启跳页
+    ,jump: function(obj, first){
+      if(!first){
+        layer.msg('第'+ obj.curr +'页', {offset: 'b'});
+      }
+    }
+  });
+});
+</script>
+</body>
+</html>        
+        

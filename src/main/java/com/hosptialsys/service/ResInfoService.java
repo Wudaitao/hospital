@@ -8,5 +8,5 @@ public interface ResInfoService {
 	
 	int save(ResInfo resInfo);
 	
-	int updateState(ResInfo resInfo);
+	int updateState(String resvIsValid,Integer resvId);
 }

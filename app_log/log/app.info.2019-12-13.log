@@ -1,0 +1,431 @@
+2019-12-13 10:37:28.545 INFO [restartedMain]com.hosptialsys.App.logStarting:50 -Starting App on DESKTOP-ST4S1L6 with PID 137348 (started by 伍代涛20164401 in C:\Users\伍代涛20164401\Downloads\eclipse-jee-oxygen-R-win32-x86_64\eclipse-jee-oxygen-R-win32-x86_64\eclipse\hosptialsys)
+2019-12-13 10:37:28.556 INFO [restartedMain]com.hosptialsys.App.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-12-13 10:37:28.685 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-12-13 10:37:28.686 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-12-13 10:37:32.026 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-12-13 10:37:32.036 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-13 10:37:32.168 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 98ms. Found 0 repository interfaces.
+2019-12-13 10:37:33.452 INFO [restartedMain]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9da0357c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 10:37:35.940 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8081 (http)
+2019-12-13 10:37:36.047 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8081"]
+2019-12-13 10:37:36.287 INFO [restartedMain]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-12-13 10:37:36.288 INFO [restartedMain]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-12-13 10:37:36.727 INFO [restartedMain]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-12-13 10:37:36.728 INFO [restartedMain]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 8041 ms
+2019-12-13 10:37:39.286 INFO [restartedMain]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-13 10:37:43.121 INFO [restartedMain]o.s.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer:57 -LiveReload server is running on port 35729
+2019-12-13 10:37:43.211 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8081"]
+2019-12-13 10:37:43.372 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8081 (http) with context path ''
+2019-12-13 10:37:43.377 INFO [restartedMain]com.hosptialsys.App.logStarted:59 -Started App in 15.829 seconds (JVM running for 16.803)
+2019-12-13 10:38:38.022 INFO [http-nio-8081-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-12-13 10:38:38.023 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-12-13 10:38:38.103 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 80 ms
+2019-12-13 10:38:50.493 WARN [http-nio-8081-exec-8]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2019-12-13 10:41:37.383 WARN [http-nio-8081-exec-1]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2019-12-13 11:01:26.211 INFO [http-nio-8081-exec-1]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-12-13 11:03:03.433 WARN [http-nio-8081-exec-7]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2019-12-13 11:36:23.311 WARN [http-nio-8081-exec-6]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required int parameter 'resv_id' is not present]
+2019-12-13 11:41:47.831 WARN [http-nio-8081-exec-5]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required int parameter 'resv_id' is not present]
+2019-12-13 11:41:47.831 WARN [http-nio-8081-exec-10]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required int parameter 'resv_id' is not present]
+2019-12-13 11:46:13.567 WARN [http-nio-8081-exec-9]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required int parameter 'resv_id' is not present]
+2019-12-13 11:46:13.568 WARN [http-nio-8081-exec-2]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required int parameter 'resv_id' is not present]
+2019-12-13 11:46:16.256 WARN [http-nio-8081-exec-6]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required int parameter 'resv_id' is not present]
+2019-12-13 11:46:16.258 WARN [http-nio-8081-exec-4]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required int parameter 'resv_id' is not present]
+2019-12-13 11:47:53.771 WARN [http-nio-8081-exec-8]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required int parameter 'resv_id' is not present]
+2019-12-13 11:47:55.450 WARN [http-nio-8081-exec-1]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required int parameter 'resv_id' is not present]
+2019-12-13 11:49:29.650 WARN [http-nio-8081-exec-9]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required int parameter 'resv_id' is not present]
+2019-12-13 11:49:33.717 WARN [http-nio-8081-exec-7]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required int parameter 'resv_id' is not present]
+2019-12-13 11:49:34.291 WARN [http-nio-8081-exec-5]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required int parameter 'resv_id' is not present]
+2019-12-13 11:49:35.301 WARN [http-nio-8081-exec-10]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required int parameter 'resv_id' is not present]
+2019-12-13 11:49:39.310 WARN [http-nio-8081-exec-8]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required int parameter 'resv_id' is not present]
+2019-12-13 11:49:43.341 WARN [http-nio-8081-exec-1]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required int parameter 'resv_id' is not present]
+2019-12-13 12:02:12.872 INFO [restartedMain]com.hosptialsys.App.logStarting:50 -Starting App on DESKTOP-ST4S1L6 with PID 149704 (started by 伍代涛20164401 in C:\Users\伍代涛20164401\Downloads\eclipse-jee-oxygen-R-win32-x86_64\eclipse-jee-oxygen-R-win32-x86_64\eclipse\hosptialsys)
+2019-12-13 12:02:12.878 INFO [restartedMain]com.hosptialsys.App.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-12-13 12:02:13.008 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-12-13 12:02:13.008 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-12-13 12:02:15.355 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-12-13 12:02:15.364 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-13 12:02:15.520 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 118ms. Found 0 repository interfaces.
+2019-12-13 12:02:16.314 INFO [restartedMain]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$20795676] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 12:02:19.620 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8081 (http)
+2019-12-13 12:02:19.655 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8081"]
+2019-12-13 12:02:19.835 INFO [restartedMain]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-12-13 12:02:19.836 INFO [restartedMain]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-12-13 12:02:20.152 INFO [restartedMain]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-12-13 12:02:20.154 INFO [restartedMain]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 7145 ms
+2019-12-13 12:02:21.876 INFO [restartedMain]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-13 12:02:23.608 INFO [restartedMain]o.s.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer:57 -LiveReload server is running on port 35729
+2019-12-13 12:02:23.746 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8081"]
+2019-12-13 12:02:23.898 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8081 (http) with context path ''
+2019-12-13 12:02:23.915 INFO [restartedMain]com.hosptialsys.App.logStarted:59 -Started App in 11.897 seconds (JVM running for 12.783)
+2019-12-13 12:02:43.133 INFO [http-nio-8081-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-12-13 12:02:43.134 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-12-13 12:02:43.152 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 18 ms
+2019-12-13 12:03:58.098 INFO [http-nio-8081-exec-5]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-12-13 12:11:10.695 WARN [http-nio-8081-exec-2]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2019-12-13 12:13:17.469 INFO [restartedMain]com.hosptialsys.App.logStarting:50 -Starting App on DESKTOP-ST4S1L6 with PID 137340 (started by 伍代涛20164401 in C:\Users\伍代涛20164401\Downloads\eclipse-jee-oxygen-R-win32-x86_64\eclipse-jee-oxygen-R-win32-x86_64\eclipse\hosptialsys)
+2019-12-13 12:13:17.474 INFO [restartedMain]com.hosptialsys.App.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-12-13 12:13:17.609 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-12-13 12:13:17.610 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-12-13 12:13:19.661 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-12-13 12:13:19.666 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-13 12:13:19.764 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 67ms. Found 0 repository interfaces.
+2019-12-13 12:13:20.607 INFO [restartedMain]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$40cc6403] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 12:13:21.953 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8081 (http)
+2019-12-13 12:13:21.982 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8081"]
+2019-12-13 12:13:22.139 INFO [restartedMain]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-12-13 12:13:22.141 INFO [restartedMain]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-12-13 12:13:22.411 INFO [restartedMain]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-12-13 12:13:22.412 INFO [restartedMain]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 4801 ms
+2019-12-13 12:13:23.969 INFO [restartedMain]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-13 12:13:25.455 INFO [restartedMain]o.s.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer:57 -LiveReload server is running on port 35729
+2019-12-13 12:13:25.520 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8081"]
+2019-12-13 12:13:25.569 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8081 (http) with context path ''
+2019-12-13 12:13:25.581 INFO [restartedMain]com.hosptialsys.App.logStarted:59 -Started App in 9.117 seconds (JVM running for 10.171)
+2019-12-13 12:13:35.532 INFO [http-nio-8081-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-12-13 12:13:35.533 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-12-13 12:13:35.550 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 16 ms
+2019-12-13 12:16:42.524 INFO [restartedMain]com.hosptialsys.App.logStarting:50 -Starting App on DESKTOP-ST4S1L6 with PID 136120 (started by 伍代涛20164401 in C:\Users\伍代涛20164401\Downloads\eclipse-jee-oxygen-R-win32-x86_64\eclipse-jee-oxygen-R-win32-x86_64\eclipse\hosptialsys)
+2019-12-13 12:16:42.529 INFO [restartedMain]com.hosptialsys.App.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-12-13 12:16:42.671 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-12-13 12:16:42.671 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-12-13 12:16:44.995 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-12-13 12:16:45.006 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-13 12:16:45.171 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 114ms. Found 0 repository interfaces.
+2019-12-13 12:16:46.122 INFO [restartedMain]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$b7f51f9f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 12:16:47.281 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8081 (http)
+2019-12-13 12:16:47.308 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8081"]
+2019-12-13 12:16:47.326 INFO [restartedMain]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-12-13 12:16:47.326 INFO [restartedMain]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-12-13 12:16:47.695 INFO [restartedMain]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-12-13 12:16:47.696 INFO [restartedMain]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 5024 ms
+2019-12-13 12:16:49.113 INFO [restartedMain]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-13 12:16:50.593 INFO [restartedMain]o.s.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer:57 -LiveReload server is running on port 35729
+2019-12-13 12:16:50.692 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8081"]
+2019-12-13 12:16:50.766 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8081 (http) with context path ''
+2019-12-13 12:16:50.773 INFO [restartedMain]com.hosptialsys.App.logStarted:59 -Started App in 9.115 seconds (JVM running for 10.002)
+2019-12-13 12:17:01.642 INFO [http-nio-8081-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-12-13 12:17:01.643 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-12-13 12:17:01.656 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 13 ms
+2019-12-13 12:27:07.962 INFO [http-nio-8081-exec-2]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-12-13 12:34:11.509 WARN [http-nio-8081-exec-1]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2019-12-13 12:34:16.611 WARN [http-nio-8081-exec-2]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: ""]
+2019-12-13 12:34:18.207 WARN [http-nio-8081-exec-3]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: ""]
+2019-12-13 12:34:50.331 WARN [http-nio-8081-exec-1]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2019-12-13 12:50:53.512 INFO [restartedMain]com.hosptialsys.App.logStarting:50 -Starting App on DESKTOP-ST4S1L6 with PID 146164 (started by 伍代涛20164401 in C:\Users\伍代涛20164401\Downloads\eclipse-jee-oxygen-R-win32-x86_64\eclipse-jee-oxygen-R-win32-x86_64\eclipse\hosptialsys)
+2019-12-13 12:50:53.517 INFO [restartedMain]com.hosptialsys.App.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-12-13 12:50:53.644 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-12-13 12:50:53.644 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-12-13 12:50:55.877 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-12-13 12:50:55.884 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-13 12:50:55.977 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 68ms. Found 0 repository interfaces.
+2019-12-13 12:50:56.717 INFO [restartedMain]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$317100] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 12:50:58.064 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8081 (http)
+2019-12-13 12:50:58.095 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8081"]
+2019-12-13 12:50:58.228 INFO [restartedMain]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-12-13 12:50:58.230 INFO [restartedMain]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-12-13 12:50:58.485 INFO [restartedMain]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-12-13 12:50:58.486 INFO [restartedMain]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 4841 ms
+2019-12-13 12:51:00.380 INFO [restartedMain]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-13 12:51:01.902 INFO [restartedMain]o.s.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer:57 -LiveReload server is running on port 35729
+2019-12-13 12:51:02.010 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8081"]
+2019-12-13 12:51:02.094 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8081 (http) with context path ''
+2019-12-13 12:51:02.108 INFO [restartedMain]com.hosptialsys.App.logStarted:59 -Started App in 9.472 seconds (JVM running for 10.31)
+2019-12-13 12:53:01.163 INFO [http-nio-8081-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-12-13 12:53:01.163 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-12-13 12:53:01.181 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 16 ms
+2019-12-13 12:53:01.515 INFO [http-nio-8081-exec-1]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-12-13 14:08:42.916 INFO [restartedMain]com.hosptialsys.App.logStarting:50 -Starting App on DESKTOP-ST4S1L6 with PID 136492 (started by 伍代涛20164401 in C:\Users\伍代涛20164401\Downloads\eclipse-jee-oxygen-R-win32-x86_64\eclipse-jee-oxygen-R-win32-x86_64\eclipse\hosptialsys)
+2019-12-13 14:08:42.923 INFO [restartedMain]com.hosptialsys.App.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-12-13 14:08:43.093 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-12-13 14:08:43.094 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-12-13 14:08:45.342 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-12-13 14:08:45.346 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-13 14:08:45.438 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 46ms. Found 0 repository interfaces.
+2019-12-13 14:08:46.332 INFO [restartedMain]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4145cf66] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 14:08:48.407 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8081 (http)
+2019-12-13 14:08:48.476 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8081"]
+2019-12-13 14:08:48.639 INFO [restartedMain]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-12-13 14:08:48.640 INFO [restartedMain]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-12-13 14:08:48.907 INFO [restartedMain]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-12-13 14:08:48.908 INFO [restartedMain]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 5813 ms
+2019-12-13 14:08:50.715 INFO [restartedMain]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-13 14:08:52.885 INFO [restartedMain]o.s.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer:57 -LiveReload server is running on port 35729
+2019-12-13 14:08:52.964 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8081"]
+2019-12-13 14:08:53.176 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8081 (http) with context path ''
+2019-12-13 14:08:53.183 INFO [restartedMain]com.hosptialsys.App.logStarted:59 -Started App in 11.055 seconds (JVM running for 11.893)
+2019-12-13 14:09:46.430 INFO [http-nio-8081-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-12-13 14:09:46.431 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-12-13 14:09:46.476 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 44 ms
+2019-12-13 14:10:25.082 INFO [http-nio-8081-exec-2]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-12-13 14:11:52.354 INFO [restartedMain]com.hosptialsys.App.logStarting:50 -Starting App on DESKTOP-ST4S1L6 with PID 151052 (started by 伍代涛20164401 in C:\Users\伍代涛20164401\Downloads\eclipse-jee-oxygen-R-win32-x86_64\eclipse-jee-oxygen-R-win32-x86_64\eclipse\hosptialsys)
+2019-12-13 14:11:52.359 INFO [restartedMain]com.hosptialsys.App.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-12-13 14:11:52.549 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-12-13 14:11:52.550 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-12-13 14:11:54.691 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-12-13 14:11:54.700 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-13 14:11:54.835 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 100ms. Found 0 repository interfaces.
+2019-12-13 14:11:55.667 INFO [restartedMain]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$a77f0ea0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 14:11:57.049 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8081 (http)
+2019-12-13 14:11:57.081 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8081"]
+2019-12-13 14:11:57.103 INFO [restartedMain]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-12-13 14:11:57.104 INFO [restartedMain]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-12-13 14:11:57.604 INFO [restartedMain]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-12-13 14:11:57.605 INFO [restartedMain]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 5054 ms
+2019-12-13 14:11:59.181 INFO [restartedMain]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-13 14:12:00.886 INFO [restartedMain]o.s.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer:57 -LiveReload server is running on port 35729
+2019-12-13 14:12:01.012 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8081"]
+2019-12-13 14:12:01.090 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8081 (http) with context path ''
+2019-12-13 14:12:01.101 INFO [restartedMain]com.hosptialsys.App.logStarted:59 -Started App in 9.602 seconds (JVM running for 10.414)
+2019-12-13 14:12:04.344 INFO [http-nio-8081-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-12-13 14:12:04.345 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-12-13 14:12:04.374 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 29 ms
+2019-12-13 14:12:08.131 INFO [http-nio-8081-exec-3]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-12-13 14:13:10.603 WARN [http-nio-8081-exec-4]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: ""]
+2019-12-13 14:19:39.572 WARN [http-nio-8081-exec-2]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: ""]
+2019-12-13 14:30:00.502 INFO [restartedMain]com.hosptialsys.App.logStarting:50 -Starting App on DESKTOP-ST4S1L6 with PID 150696 (started by 伍代涛20164401 in C:\Users\伍代涛20164401\Downloads\eclipse-jee-oxygen-R-win32-x86_64\eclipse-jee-oxygen-R-win32-x86_64\eclipse\hosptialsys)
+2019-12-13 14:30:00.507 INFO [restartedMain]com.hosptialsys.App.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-12-13 14:30:00.638 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-12-13 14:30:00.639 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-12-13 14:30:02.768 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-12-13 14:30:02.773 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-13 14:30:02.866 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 69ms. Found 0 repository interfaces.
+2019-12-13 14:30:03.742 INFO [restartedMain]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$b22f6f52] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 14:30:05.277 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8081 (http)
+2019-12-13 14:30:05.306 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8081"]
+2019-12-13 14:30:05.463 INFO [restartedMain]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-12-13 14:30:05.464 INFO [restartedMain]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-12-13 14:30:05.710 INFO [restartedMain]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-12-13 14:30:05.711 INFO [restartedMain]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 5072 ms
+2019-12-13 14:30:07.100 INFO [restartedMain]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-13 14:30:08.898 INFO [restartedMain]o.s.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer:57 -LiveReload server is running on port 35729
+2019-12-13 14:30:08.963 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8081"]
+2019-12-13 14:30:09.069 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8081 (http) with context path ''
+2019-12-13 14:30:09.077 INFO [restartedMain]com.hosptialsys.App.logStarted:59 -Started App in 9.539 seconds (JVM running for 10.418)
+2019-12-13 14:30:21.741 INFO [http-nio-8081-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-12-13 14:30:21.742 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-12-13 14:30:21.772 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 29 ms
+2019-12-13 14:30:25.624 INFO [http-nio-8081-exec-5]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-12-13 14:31:49.128 INFO [restartedMain]com.hosptialsys.App.logStarting:50 -Starting App on DESKTOP-ST4S1L6 with PID 129248 (started by 伍代涛20164401 in C:\Users\伍代涛20164401\Downloads\eclipse-jee-oxygen-R-win32-x86_64\eclipse-jee-oxygen-R-win32-x86_64\eclipse\hosptialsys)
+2019-12-13 14:31:49.134 INFO [restartedMain]com.hosptialsys.App.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-12-13 14:31:49.262 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-12-13 14:31:49.262 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-12-13 14:31:51.584 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-12-13 14:31:51.590 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-13 14:31:51.697 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 77ms. Found 0 repository interfaces.
+2019-12-13 14:31:52.416 INFO [restartedMain]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4cf730dc] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 14:31:53.779 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8081 (http)
+2019-12-13 14:31:53.806 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8081"]
+2019-12-13 14:31:53.939 INFO [restartedMain]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-12-13 14:31:53.940 INFO [restartedMain]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-12-13 14:31:54.172 INFO [restartedMain]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-12-13 14:31:54.172 INFO [restartedMain]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 4909 ms
+2019-12-13 14:31:55.696 INFO [restartedMain]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-13 14:31:57.189 INFO [restartedMain]o.s.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer:57 -LiveReload server is running on port 35729
+2019-12-13 14:31:57.254 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8081"]
+2019-12-13 14:31:57.300 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8081 (http) with context path ''
+2019-12-13 14:31:57.307 INFO [restartedMain]com.hosptialsys.App.logStarted:59 -Started App in 9.031 seconds (JVM running for 9.981)
+2019-12-13 14:32:17.904 INFO [http-nio-8081-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-12-13 14:32:17.905 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-12-13 14:32:17.921 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 16 ms
+2019-12-13 14:32:18.236 INFO [http-nio-8081-exec-1]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-12-13 14:36:01.249 INFO [restartedMain]com.hosptialsys.App.logStarting:50 -Starting App on DESKTOP-ST4S1L6 with PID 146052 (started by 伍代涛20164401 in C:\Users\伍代涛20164401\Downloads\eclipse-jee-oxygen-R-win32-x86_64\eclipse-jee-oxygen-R-win32-x86_64\eclipse\hosptialsys)
+2019-12-13 14:36:01.256 INFO [restartedMain]com.hosptialsys.App.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-12-13 14:36:01.414 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-12-13 14:36:01.415 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-12-13 14:36:03.961 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-12-13 14:36:03.971 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-13 14:36:04.078 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 71ms. Found 0 repository interfaces.
+2019-12-13 14:36:04.910 INFO [restartedMain]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$ef822fa2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 14:36:06.479 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8081 (http)
+2019-12-13 14:36:06.504 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8081"]
+2019-12-13 14:36:06.643 INFO [restartedMain]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-12-13 14:36:06.644 INFO [restartedMain]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-12-13 14:36:06.921 INFO [restartedMain]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-12-13 14:36:06.923 INFO [restartedMain]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 5507 ms
+2019-12-13 14:36:08.593 INFO [restartedMain]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-13 14:36:10.249 INFO [restartedMain]o.s.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer:57 -LiveReload server is running on port 35729
+2019-12-13 14:36:10.391 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8081"]
+2019-12-13 14:36:10.439 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8081 (http) with context path ''
+2019-12-13 14:36:10.444 INFO [restartedMain]com.hosptialsys.App.logStarted:59 -Started App in 10.168 seconds (JVM running for 11.183)
+2019-12-13 14:36:14.665 INFO [http-nio-8081-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-12-13 14:36:14.666 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-12-13 14:36:14.683 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 17 ms
+2019-12-13 14:36:17.851 INFO [http-nio-8081-exec-3]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-12-13 16:02:50.307 INFO [restartedMain]com.hosptialsys.App.logStarting:50 -Starting App on DESKTOP-ST4S1L6 with PID 152276 (started by 伍代涛20164401 in C:\Users\伍代涛20164401\Downloads\eclipse-jee-oxygen-R-win32-x86_64\eclipse-jee-oxygen-R-win32-x86_64\eclipse\hosptialsys)
+2019-12-13 16:02:50.321 INFO [restartedMain]com.hosptialsys.App.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-12-13 16:02:50.546 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-12-13 16:02:50.547 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-12-13 16:02:54.276 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-12-13 16:02:54.283 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-13 16:02:54.604 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 124ms. Found 0 repository interfaces.
+2019-12-13 16:02:58.405 INFO [restartedMain]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$f760d50c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 16:03:00.710 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8081 (http)
+2019-12-13 16:03:00.892 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8081"]
+2019-12-13 16:03:01.032 INFO [restartedMain]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-12-13 16:03:01.032 INFO [restartedMain]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-12-13 16:03:02.127 INFO [restartedMain]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-12-13 16:03:02.128 INFO [restartedMain]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 11580 ms
+2019-12-13 16:03:04.346 INFO [restartedMain]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-13 16:03:06.485 INFO [restartedMain]o.s.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer:57 -LiveReload server is running on port 35729
+2019-12-13 16:03:06.569 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8081"]
+2019-12-13 16:03:06.763 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8081 (http) with context path ''
+2019-12-13 16:03:06.777 INFO [restartedMain]com.hosptialsys.App.logStarted:59 -Started App in 17.653 seconds (JVM running for 19.099)
+2019-12-13 16:03:14.302 INFO [http-nio-8081-exec-4]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-12-13 16:03:14.304 INFO [http-nio-8081-exec-4]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-12-13 16:03:14.331 INFO [http-nio-8081-exec-4]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 27 ms
+2019-12-13 16:09:24.434 WARN [http-nio-8081-exec-6]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2019-12-13 16:09:24.434 WARN [http-nio-8081-exec-5]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2019-12-13 16:16:02.860 WARN [http-nio-8081-exec-1]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2019-12-13 16:16:02.860 WARN [http-nio-8081-exec-2]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2019-12-13 16:22:31.856 WARN [http-nio-8081-exec-5]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2019-12-13 16:22:44.163 WARN [http-nio-8081-exec-6]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2019-12-13 16:23:25.783 WARN [http-nio-8081-exec-3]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2019-12-13 16:24:25.710 WARN [http-nio-8081-exec-10]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2019-12-13 16:24:36.774 WARN [http-nio-8081-exec-9]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2019-12-13 16:44:54.478 INFO [http-nio-8081-exec-1]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-12-13 17:13:16.390 INFO [restartedMain]com.hosptialsys.App.logStarting:50 -Starting App on DESKTOP-ST4S1L6 with PID 150172 (started by 伍代涛20164401 in C:\Users\伍代涛20164401\Downloads\eclipse-jee-oxygen-R-win32-x86_64\eclipse-jee-oxygen-R-win32-x86_64\eclipse\hosptialsys)
+2019-12-13 17:13:16.396 INFO [restartedMain]com.hosptialsys.App.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-12-13 17:13:16.546 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-12-13 17:13:16.547 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-12-13 17:13:18.881 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-12-13 17:13:18.885 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-13 17:13:18.945 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 41ms. Found 0 repository interfaces.
+2019-12-13 17:13:19.806 INFO [restartedMain]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$2a52fd3e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 17:13:20.998 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8081 (http)
+2019-12-13 17:13:21.025 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8081"]
+2019-12-13 17:13:21.160 INFO [restartedMain]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-12-13 17:13:21.161 INFO [restartedMain]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-12-13 17:13:21.450 INFO [restartedMain]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-12-13 17:13:21.452 INFO [restartedMain]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 4904 ms
+2019-12-13 17:13:23.054 INFO [restartedMain]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-13 17:13:24.751 INFO [restartedMain]o.s.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer:57 -LiveReload server is running on port 35729
+2019-12-13 17:13:24.868 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8081"]
+2019-12-13 17:13:24.956 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8081 (http) with context path ''
+2019-12-13 17:13:24.962 INFO [restartedMain]com.hosptialsys.App.logStarted:59 -Started App in 9.421 seconds (JVM running for 10.336)
+2019-12-13 17:13:43.955 INFO [http-nio-8081-exec-2]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-12-13 17:13:43.956 INFO [http-nio-8081-exec-2]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-12-13 17:13:43.974 INFO [http-nio-8081-exec-2]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 18 ms
+2019-12-13 17:13:44.446 INFO [http-nio-8081-exec-2]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-12-13 17:23:19.084 INFO [restartedMain]com.hosptialsys.App.logStarting:50 -Starting App on DESKTOP-ST4S1L6 with PID 140392 (started by 伍代涛20164401 in C:\Users\伍代涛20164401\Downloads\eclipse-jee-oxygen-R-win32-x86_64\eclipse-jee-oxygen-R-win32-x86_64\eclipse\hosptialsys)
+2019-12-13 17:23:19.089 INFO [restartedMain]com.hosptialsys.App.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-12-13 17:23:19.217 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-12-13 17:23:19.218 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-12-13 17:23:21.610 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-12-13 17:23:21.619 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-13 17:23:21.773 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 109ms. Found 0 repository interfaces.
+2019-12-13 17:23:22.701 INFO [restartedMain]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9b89cad6] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 17:23:23.894 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8081 (http)
+2019-12-13 17:23:23.921 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8081"]
+2019-12-13 17:23:24.134 INFO [restartedMain]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-12-13 17:23:24.136 INFO [restartedMain]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-12-13 17:23:24.971 INFO [restartedMain]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-12-13 17:23:24.972 INFO [restartedMain]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 5754 ms
+2019-12-13 17:23:26.639 INFO [restartedMain]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-13 17:23:28.301 INFO [restartedMain]o.s.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer:57 -LiveReload server is running on port 35729
+2019-12-13 17:23:28.432 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8081"]
+2019-12-13 17:23:28.526 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8081 (http) with context path ''
+2019-12-13 17:23:28.534 INFO [restartedMain]com.hosptialsys.App.logStarted:59 -Started App in 10.256 seconds (JVM running for 11.12)
+2019-12-13 17:23:41.098 INFO [http-nio-8081-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-12-13 17:23:41.098 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-12-13 17:23:41.120 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 21 ms
+2019-12-13 17:23:50.818 INFO [http-nio-8081-exec-5]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-12-13 17:48:02.965 WARN [http-nio-8081-exec-3]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2019-12-13 20:01:58.570 INFO [restartedMain]com.hosptialsys.App.logStarting:50 -Starting App on DESKTOP-ST4S1L6 with PID 142488 (started by 伍代涛20164401 in C:\Users\伍代涛20164401\Downloads\eclipse-jee-oxygen-R-win32-x86_64\eclipse-jee-oxygen-R-win32-x86_64\eclipse\hosptialsys)
+2019-12-13 20:01:58.608 INFO [restartedMain]com.hosptialsys.App.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-12-13 20:01:58.862 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-12-13 20:01:58.863 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-12-13 20:02:03.442 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-12-13 20:02:03.500 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-13 20:02:03.811 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 143ms. Found 0 repository interfaces.
+2019-12-13 20:02:05.826 INFO [restartedMain]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$19657653] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 20:02:10.537 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8081 (http)
+2019-12-13 20:02:10.754 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8081"]
+2019-12-13 20:02:11.123 INFO [restartedMain]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-12-13 20:02:11.126 INFO [restartedMain]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-12-13 20:02:13.226 INFO [restartedMain]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-12-13 20:02:13.227 INFO [restartedMain]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 14362 ms
+2019-12-13 20:02:19.218 INFO [restartedMain]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-13 20:02:24.195 INFO [restartedMain]o.s.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer:57 -LiveReload server is running on port 35729
+2019-12-13 20:02:24.288 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8081"]
+2019-12-13 20:02:24.538 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8081 (http) with context path ''
+2019-12-13 20:02:24.542 INFO [restartedMain]com.hosptialsys.App.logStarted:59 -Started App in 27.132 seconds (JVM running for 28.85)
+2019-12-13 20:04:04.309 INFO [http-nio-8081-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-12-13 20:04:04.310 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-12-13 20:04:04.337 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 25 ms
+2019-12-13 20:04:12.385 WARN [http-nio-8081-exec-5]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'user_id' is not present]
+2019-12-13 20:04:49.720 WARN [http-nio-8081-exec-10]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'user_id' is not present]
+2019-12-13 20:11:01.302 WARN [http-nio-8081-exec-5]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'user_id' is not present]
+2019-12-13 20:11:24.162 INFO [http-nio-8081-exec-2]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-12-13 20:33:30.483 INFO [restartedMain]com.hosptialsys.App.logStarting:50 -Starting App on DESKTOP-ST4S1L6 with PID 155380 (started by 伍代涛20164401 in C:\Users\伍代涛20164401\Downloads\eclipse-jee-oxygen-R-win32-x86_64\eclipse-jee-oxygen-R-win32-x86_64\eclipse\hosptialsys)
+2019-12-13 20:33:30.488 INFO [restartedMain]com.hosptialsys.App.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-12-13 20:33:30.614 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-12-13 20:33:30.615 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-12-13 20:33:32.737 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-12-13 20:33:32.741 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-13 20:33:32.822 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 57ms. Found 0 repository interfaces.
+2019-12-13 20:33:33.626 INFO [restartedMain]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$b3d42dea] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 20:33:35.478 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8081 (http)
+2019-12-13 20:33:35.505 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8081"]
+2019-12-13 20:33:35.654 INFO [restartedMain]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-12-13 20:33:35.655 INFO [restartedMain]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-12-13 20:33:35.883 INFO [restartedMain]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-12-13 20:33:35.884 INFO [restartedMain]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 5269 ms
+2019-12-13 20:33:37.372 INFO [restartedMain]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-13 20:33:38.895 INFO [restartedMain]o.s.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer:57 -LiveReload server is running on port 35729
+2019-12-13 20:33:38.958 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8081"]
+2019-12-13 20:33:39.001 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8081 (http) with context path ''
+2019-12-13 20:33:39.007 INFO [restartedMain]com.hosptialsys.App.logStarted:59 -Started App in 9.339 seconds (JVM running for 10.204)
+2019-12-13 20:33:47.236 INFO [http-nio-8081-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-12-13 20:33:47.237 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-12-13 20:33:47.259 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 22 ms
+2019-12-13 20:33:54.932 INFO [http-nio-8081-exec-2]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-12-13 21:18:19.021 INFO [restartedMain]com.hosptialsys.App.logStarting:50 -Starting App on DESKTOP-ST4S1L6 with PID 155308 (started by 伍代涛20164401 in C:\Users\伍代涛20164401\Downloads\eclipse-jee-oxygen-R-win32-x86_64\eclipse-jee-oxygen-R-win32-x86_64\eclipse\hosptialsys)
+2019-12-13 21:18:19.055 INFO [restartedMain]com.hosptialsys.App.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-12-13 21:18:20.013 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-12-13 21:18:20.014 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-12-13 21:18:30.729 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-12-13 21:18:30.758 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-13 21:18:30.977 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 95ms. Found 0 repository interfaces.
+2019-12-13 21:18:33.322 INFO [restartedMain]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$22145247] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 21:18:36.499 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8081 (http)
+2019-12-13 21:18:36.670 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8081"]
+2019-12-13 21:18:36.887 INFO [restartedMain]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-12-13 21:18:36.888 INFO [restartedMain]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-12-13 21:18:37.285 INFO [restartedMain]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-12-13 21:18:37.286 INFO [restartedMain]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 17272 ms
+2019-12-13 21:18:39.268 INFO [restartedMain]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-13 21:18:41.859 INFO [restartedMain]o.s.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer:57 -LiveReload server is running on port 35729
+2019-12-13 21:18:41.932 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8081"]
+2019-12-13 21:18:42.077 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8081 (http) with context path ''
+2019-12-13 21:18:42.083 INFO [restartedMain]com.hosptialsys.App.logStarted:59 -Started App in 33.023 seconds (JVM running for 36.156)
+2019-12-13 21:20:00.766 INFO [http-nio-8081-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-12-13 21:20:00.768 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-12-13 21:20:00.787 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 19 ms
+2019-12-13 21:20:01.565 INFO [http-nio-8081-exec-1]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-12-13 22:06:51.431 INFO [restartedMain]com.hosptialsys.App.logStarting:50 -Starting App on DESKTOP-ST4S1L6 with PID 154544 (started by 伍代涛20164401 in C:\Users\伍代涛20164401\Downloads\eclipse-jee-oxygen-R-win32-x86_64\eclipse-jee-oxygen-R-win32-x86_64\eclipse\hosptialsys)
+2019-12-13 22:06:51.438 INFO [restartedMain]com.hosptialsys.App.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-12-13 22:06:51.594 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-12-13 22:06:51.595 INFO [restartedMain]o.s.b.devtools.env.DevToolsPropertyDefaultsPostProcessor.logTo:227 -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-12-13 22:06:53.808 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected:244 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-12-13 22:06:53.813 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:126 -Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-13 22:06:53.917 INFO [restartedMain]o.s.d.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn:182 -Finished Spring Data repository scanning in 78ms. Found 0 repository interfaces.
+2019-12-13 22:06:54.773 INFO [restartedMain]o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization:330 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$2234579] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-13 22:06:55.941 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8081 (http)
+2019-12-13 22:06:55.967 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8081"]
+2019-12-13 22:06:56.103 INFO [restartedMain]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-12-13 22:06:56.104 INFO [restartedMain]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-12-13 22:06:56.557 INFO [restartedMain]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-12-13 22:06:56.559 INFO [restartedMain]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 4963 ms
+2019-12-13 22:06:58.003 INFO [restartedMain]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-13 22:06:59.719 INFO [restartedMain]o.s.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer:57 -LiveReload server is running on port 35729
+2019-12-13 22:06:59.779 INFO [restartedMain]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8081"]
+2019-12-13 22:06:59.825 INFO [restartedMain]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8081 (http) with context path ''
+2019-12-13 22:06:59.834 INFO [restartedMain]com.hosptialsys.App.logStarted:59 -Started App in 9.249 seconds (JVM running for 10.123)
+2019-12-13 22:08:31.129 INFO [http-nio-8081-exec-2]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-12-13 22:08:31.130 INFO [http-nio-8081-exec-2]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-12-13 22:08:31.146 INFO [http-nio-8081-exec-2]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 15 ms
+2019-12-13 22:08:31.493 INFO [http-nio-8081-exec-2]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-12-13 22:15:22.651 WARN [http-nio-8081-exec-3]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2019-12-13 22:22:08.415 WARN [http-nio-8081-exec-8]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: ""]
+2019-12-13 22:22:46.867 WARN [http-nio-8081-exec-9]o.s.w.s.mvc.support.DefaultHandlerExceptionResolver.logException:197 -Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]

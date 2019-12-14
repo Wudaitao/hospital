@@ -2,7 +2,7 @@ package com.hosptialsys.utils;
 
 import java.util.Date;
 
-import com.hosptialsys.domain.User;
+import com.hosptialsys.domain.Worker;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -24,7 +24,7 @@ public class JwtUtil {
 	 * @param user
 	 * @return String(token)
 	 */
-	public static String geneJsonWebToken(User user) {
+	public static String geneJsonWebToken(Worker user) {
 		if(user==null||user.getUserId()==null||user.getUserName()==null||user.getUserPassword()==null) {
 			return null;
 		}

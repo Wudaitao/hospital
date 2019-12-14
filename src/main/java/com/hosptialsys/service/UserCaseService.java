@@ -10,6 +10,8 @@ public interface UserCaseService {
 	
 	List<UserCase> findByUserId(String userId);
 	
+	UserCase findByUserDate(String userId, String caseDate);
+	
 	int save(UserCase userCase);
 	
 	int updateCaseIsFinish(UserCase userCase);

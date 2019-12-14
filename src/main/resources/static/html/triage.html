@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>分诊台</title>
+  <link rel="stylesheet" href="/layui/css/layui.css">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <style>
+	div.background
+	{
+	  width: 100%;
+	  height: 100%;
+	  background: #A2AAB8;
+	  border: 2px solid white;
+	  margin-top:1%;
+	}
+	div.transbox
+	{
+	  width: 90%;
+	  height: 150%;
+	  margin: 25px 70px;
+	  background-color: #ffffff;
+	  border: 1px solid white;
+	  opacity:0.9;
+	}
+	</style>
+</head>
+<body class="layui-layout-body">
+<div class="background">
+<div class="transbox">
+	<p align="center" style="font-size:56px;margin-top:5%" > 分诊台</p>	
+	<input class="layui-input" id="resvId" style="margin-top:8%;margin-left:25%;height: 45px; width: 50%;" type="text" autocomplete="off" placeholder="请输入您的就诊ID"/>
+	<div class="site-demo-button" id="layerDemo" style="margin-bottom: 0;">
+	<button id="lineUp_btn" class="layui-btn" data-method="offset" data-type="auto" style="margin-top:10%;margin-left:45%;width: 10%; height: 45px;">确认排号</button>
+	<ins class="adsbygoogle" style="display:inline-block;width:970px;height:90px" data-ad-client="ca-pub-6111334333458862" data-ad-slot="3820120620"></ins>
+	</div>
+	<form class="layui-form" style="height:0px;"></form>
+<script src="/layui/layui.js" charset="utf-8"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+
+<script>
+$(function () {
+	$("#lineUp_btn").click(function () {
+		var resv_id = $("#resvId").val();
+		var info = {
+			"resv_id":resv_id,
+		};		
+		console.log(info);
+		$.ajax({
+			url: "/api/v1/patient/lineUp",
+			type: "post",
+			data: info,
+			dataType: "json",
+			success: function (result) {
+				console.log(result);
+				if (result.code == 0) {
+				  var order=result.data.number;
+				  var depart=result.data.department;
+				  var doctor=result.data.doctor_name;
+				  layui.use('layer', function(){
+						var layer = layui.layer;
+						var type;
+						layer.open({
+					        type: 1
+					        ,offset: type //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+					        ,id: 'layerDemo'+type //防止重复弹出
+							,content: '<div style="margin-left:50px;margin-top:20px;margin-right:50px;">'+'<p>'+
+									"您现在排第： "+order+"位"+'<br><br><br>'+"预约科室为： "+depart +
+									'<br><br><br>'+"预约医生： "+doctor+
+									'</p>'+'</div>'
+					        ,btn: '好的'
+					        ,btnAlign: 'c' //按钮居中
+					        ,shade: 0 //不显示遮罩
+					        ,yes: function(){
+					          layer.closeAll();
+					        }
+					      });
+					});  
+				}
+				else {
+					layui.use('layer', function(){
+						var layer = layui.layer;
+						layer.msg(result.msg);
+					});
+				}
+			},
+			error:function(err) {
+				layui.use('layer', function(){
+					  var layer = layui.layer;
+					  layer.msg("网络连接失败，请稍后重试",err);
+				});
+			}
+		});
+	});
+});
+</script>
+<!-- <script>
+layui.use('layer', function(){ //独立版的layer无需执行这一句
+  var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+  
+  //触发事件
+  var active = {
+    setTop: function(){
+      var that = this; 
+      //多窗口模式，层叠置顶
+      layer.open({
+        type: 2 //此处以iframe举例
+        ,title: '当你选择该窗体时，即会在最顶端'
+        ,area: ['390px', '260px']
+        ,shade: 0
+        ,maxmin: true
+        ,offset: [ //为了演示，随机坐标
+          Math.random()*($(window).height()-300)
+          ,Math.random()*($(window).width()-390)
+        ] 
+        ,content: '//layer.layui.com/test/settop.html'
+        ,btn: ['继续弹出', '全部关闭'] //只是为了演示
+        ,yes: function(){
+          $(that).click(); 
+        }
+        ,btn2: function(){
+          layer.closeAll();
+        }
+        
+        ,zIndex: layer.zIndex //重点1
+        ,success: function(layero){
+          layer.setTop(layero); //重点2
+        }
+      });
+    }
+    
+    
+    ,offset: function(othis){
+      var type = othis.data('type')
+      ,text = othis.text();
+      var order=35;
+	  var depart="口腔科";
+	  var doctor="李医生";
+      layer.open({
+        type: 1
+        ,offset: type //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+        ,id: 'layerDemo'+type //防止重复弹出
+	
+		,content: '<div style="margin-left:50px;margin-top:20px;margin-right:50px;">'+'<p>'+
+				"您现在排在： "+order+"位"+'<br><br><br>'+"预约科室为： "+depart +
+				'<br><br><br>'+"预约医生： "+doctor+
+				'</p>'+'</div>'
+        ,btn: '好的'
+        ,btnAlign: 'c' //按钮居中
+        ,shade: 0 //不显示遮罩
+        ,yes: function(){
+          layer.closeAll();
+        }
+      });
+    }
+  };
+  
+  $('#layerDemo .layui-btn').on('click', function(){
+    var othis = $(this), method = othis.data('method');
+    active[method] ? active[method].call(this, othis) : '';
+  });
+  
+});
+</script> -->
+
+	
+</div>
+</div>
+</body>
+</html>
+      

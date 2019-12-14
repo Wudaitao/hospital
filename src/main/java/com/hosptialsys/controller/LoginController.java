@@ -21,10 +21,11 @@ import com.hosptialsys.service.WorkerService;
 public class LoginController {
 
 	private static final String EXPERT = "专家";
-	private static final String GENERAL_DOCTOR = "普通";
+	private static final String GENERAL_DOCTOR = "普通医生";
 	private static final String REGISTER_STAFF = "挂号人员";
-	private static final String TOLL_MAN = "收费人员";
+	private static final String TOLL_MAN = "财务人员";
 	private static final String PHARMACIAT = "药剂师";
+	private static final String FENZHEN = "分诊人员";
 	@Autowired
 	private WorkerService workerSevice;
 	
@@ -36,21 +37,22 @@ public class LoginController {
 		if (worker != null) {
 			String workType = worker.getWorkerType();
 			if (workType.equals(EXPERT)) {
-				modelMap.addAttribute("title","登录成功");
-				modelMap.addAttribute("status","成功");
-				return "admin/info";                      //专家页面
+				return "redirect:/html/doctor.html";         //专家页面
 			}
 			else if (workType.equals(GENERAL_DOCTOR)) {
-				return "admin/general_doctor";            //普通医生页面
+				return "redirect:/html/doctor.html";         //普通医生页面
 			}
 			else if (workType.equals(REGISTER_STAFF)) {
-				return "admin/register_staff";            //挂号人员页面
+				return "redirect:/html/rigist.html";         //挂号人员页面
 			}
-			else if (workType.equals(TOLL_MAN)) {      
-				return "admin/toll_man";                  //收费人员页面
+			else if (workType.equals(TOLL_MAN)) { 
+				return "redirect:/html/finance.html";         //收费人员页面
 			}
 			else if (workType.equals(PHARMACIAT)) {
-				return "admin/pharmaciat";                //药剂师页面
+				return "redirect:/html/pharmacy.html";         //药剂师页面
+			}
+			else if (workType.equals(FENZHEN)) {
+				return "redirect:/html/triage.html";         //分诊台页面
 			}
 			else {
 				return JsonData.buildError("不识别职位类别！");
@@ -74,7 +76,7 @@ public class LoginController {
 		String workDepartment = request.getParameter("work_department");
 		String workType = request.getParameter("work_type");
 		if (workerSevice.findById(userId) == null) {
-			Worker worker = new Worker(userId, userName, userPassword, userGender, userAge, workType, workDepartment);
+			Worker worker = new Worker(userId, userName, userGender, userAge, userPassword, workType, workDepartment);
 			int id = workerSevice.saveWorker(worker);
 			return JsonData.buildSuccess(id, "注册成功，请前往登录页面");
 		} else {

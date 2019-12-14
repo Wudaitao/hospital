@@ -18,12 +18,14 @@ public interface ResInfoMapper {
 	ResInfo findById(@Param("resvId")Integer resvId);
 	
 	@Update("UPDATE reservationinfo SET resv_is_valid=#{resvIsValid} WHERE resv_id=#{resvId}")
-	int updateState(ResInfo resInfo);
+	int updateState(@Param("resvIsValid")String resvIsValid,@Param("resvId")Integer resvId);
 	
 	@Insert("INSERT INTO `reservationinfo` ( `user_id`, `resv_type`, `resv_department`, " +
-	        "`resv_doctor_id`, `resv_is_valid`, `resv_num`,`resv_time_slot`,`resv_date`,`resv_online`)" +
+	        "`resv_doctor_id`, `resv_doctor_name`, `resv_is_valid`, "
+	        + "`resv_num`,`resv_time_slot`,`resv_date`,`resv_online`)" +
 	        "VALUES" +
-	        "(#{userId},#{resvType},#{resvDepartment},#{resvDoctorId},#{resvIsValid},#{resvNum},#{resvTimeSlot},#{resvDate},#{resvOnline})")
+	        "(#{userId},#{resvType},#{resvDepartment},#{resvDoctorId},"
+	        + "#{resvDoctorName},#{resvIsValid},#{resvNum},#{resvTimeSlot},#{resvDate},#{resvOnline})")
     @Options(useGeneratedKeys=true, keyProperty="resvId", keyColumn="resv_id")//将自增ID映射到实体类的id字段
 	int save(ResInfo resInfo);
 }

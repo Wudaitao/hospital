@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>医生管理界面</title>
+  <link rel="stylesheet" href="/layui/css/layui.css">
+ <style type="text/css">
+ 	.layui-form-label
+ 	{
+      width: 180px;
+      text-align: left;
+    }
+ 
+ </style>
+</head>
+<body class="layui-layout-body">
+<strong style="margin-top: 180px; margin-left: 1px; margin-bottom: -188px; 
+        padding-right: 0px; top: -180px; position: absolute; 
+        left: 260px; font-size: 30px;">医生管理界面</strong>
+
+		
+<div class="layui-form" style="margin-left:18%;margin-right:13%;
+    margin-top:3.5%;">
+    <div class="layui-form-item">
+        <p class="layui-form-label" id="user_name" text="" style="margin-top: -8px;" >病人姓名:</p>
+        <p class="layui-form-label" id="visit_id" text="" style="margin-left: 336px;">病人  I D:</p>
+    </div>
+    <div class="layui-form-item">
+        <p class="layui-form-label"id="user_age" text="">病人年龄:</p>
+        <p class="layui-form-label" id="user_sex" text="" style="margin-left: 336px;">病人性别:</label>
+    </div>
+
+    <div >
+		<iframe id="function" src="./docfuction.html" width="95%" height="420px" scrolling="yes" marginheight="0" marginwidth="0"></iframe>
+	</div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block" style="margin-top:3%">
+            <button class="layui-btn" id="next" style="margin-left:81%">下一个</button>
+        </div>
+    </div>
+</div>
+
+<script src="/layui/layui.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+
+
+<script>
+    var doctor_id = sessionStorage.getItem("workerId");
+    var worker_type;   //普通医生或者专家
+    var worker_dep;    //科室
+    console.log(doctor_id);
+    var info={
+    		"doctor_id":doctor_id,
+    }
+    
+    $.ajax({
+        url: "/api/v1/doctor/getDoctorInfo",
+        type: "post",
+        data: info,
+        dataType: "json",
+        success: function (data) {
+        	console.log(data);
+        	if (data.code == 0) {
+            	worker_type = data.data.workerType;
+            	worker_dep = data.data.workerDepartment;
+        	}
+        	else {
+        		layui.use('layer', function(){
+            		  var layer = layui.layer;
+  					  layer.msg(data.msg);
+            	});
+        	}
+		},
+    	error:function(err) {
+        	layui.use('layer', function(){
+        		  var layer = layui.layer;
+					  layer.msg("网络连接失败，请稍后重试",err);
+        	});
+        }
+    });
+    $(function () {
+        $("#next").click(function () {
+        	var id;
+        	if (worker_type == "专家") {
+        		id = doctor_id;
+        	} else if (worker_type == "普通医生"){
+        		id = worker_dep;
+        	}
+            var info = {
+            		"id":id,
+            }
+        	$.ajax({
+                url: "/api/v1/doctor/pull",
+                type: "post",
+                data: info,
+                dataType: "json",
+                success: function (data) {
+                	console.log(data);
+                	if (data.code == 0) {
+                		$("#user_name").text("病人姓名："+data.data[0].userName);
+                        $("#visit_id").text("病人 I D："+data.data[0].userId);
+                        $("#user_age").text("病人年龄："+data.data[0].userAge);
+                        $("#user_sex").text("病人性别："+data.data[0].userGender);
+                        /* (function transfer(){
+                            var receiver = document.getElementById('function_frame').contentWindow;
+                            receiver.postMessage(data.data[1],"*");
+                            }()) */
+                        sessionStorage.setItem("userId",data.data[0].userId);
+                        sessionStorage.setItem("userName",data.data[0].userName);
+                        sessionStorage.setItem("usercases",JSON.stringify(data.data[1]));
+                        document.getElementById('function').contentWindow.location.reload(true);
+                	}
+                	else {
+                		layui.use('layer', function(){
+                    		  var layer = layui.layer;
+          					  layer.msg(data.msg);
+                    		});
+                	}
+        		},
+	        	error:function(err) {
+	            	layui.use('layer', function(){
+	            		  var layer = layui.layer;
+	  					  layer.msg("网络连接失败，请稍后重试",err);
+	            	});
+	            }
+            });
+        })
+ })
+    
+</script>
+</body>
+</html>
+      

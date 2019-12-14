@@ -12,15 +12,15 @@
         left: 464px; font-size: 74px;">医院管理系统</strong>
 <font color="red" size="4px">
 	<span class="wordCenter1" id="message" style="width: 36%; height: 36px; 
-     margin-left: 670px; margin-top: 400px; top: 400px;" th:text="${msg}">
+     margin-left: 668px; margin-top: 400px; top: 400px;" th:text="${msg}">
     </span>
 </font>
 <form enctype="multipart/form-data" action="/api/v1/user/login" method="post" >
 	<div class="layui-container">
 		  
 	      <input id="userid" name="user_id" class="layui-input" style="width: 36%; height: 36px; 
-	           margin-left: 371px; margin-top: 246px; top: 43px;" 
-	           type="text" autocomplete="off" placeholder="请输入用户名" />
+	           margin-left: 371px; margin-top: 222px; top: 43px;" 
+	           type="tel" autocomplete="off" placeholder="请输入用户名" />
 	
 		  <input id="passwd" name="user_password" class="layui-input" style="width: 36%; height: 36px; 
 	           padding-top: 0px; margin-top: 72px; margin-left: 371px;" 
@@ -36,32 +36,7 @@
 <script src="/layui/layui.js"></script>
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
 
-<!-- 
-<script>
-  $(function () {
-      $("#login_btn").click(function () {
-    	  var login={
-   	            "user_id":$("#userid").val(),
-   	            "user_password":$("#passwd").val(),
-   	          };
-          $.ajax({
-              type:'POST',
-              url:'/api/v1/user/login',
-              data:login,  //转变传递的参数为字符串格式
-              dataType:'json',//希望服务器返回json格式的数据
-              success: function (dat) {
-                      console.log(dat)
-                      if (dat=1){
-                          window.location.href="/html/layui.html"
-                        }else {
-                          alert("1")
-                        }
-                 }
-              })
-          })
-      })
-</script>
--->
+
 <script type="text/javascript">
          function getFileUrl(sourceId) {
              var url;
@@ -103,6 +78,22 @@
          function getVerify(obj){
              obj.src ="/api/v1/user/getcode?"+Math.random();
          }
+
+       //自定义验证规则
+         form.verify({
+           title: function(value){
+             if(value.length < 5){
+               return '标题至少得5个字符啊';
+             }
+           }
+           ,pass: [
+             /^[\S]{6,12}$/
+             ,'密码必须6到12位，且不能出现空格'
+           ]
+           ,content: function(value){
+             layedit.sync(editIndex);
+           }
+         });
 </script> 
 </body>
 </html>

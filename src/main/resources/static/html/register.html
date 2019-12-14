@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>医院登陆</title>
+  <link rel="stylesheet" href="/layui/css/layui.css">
+  
+</head>
+<body class="layui-layout-body">
+<strong style="margin-top: 180px; margin-left: 14px; margin-bottom: -188px; 
+        padding-right: 0px; top: -160px; position: absolute; 
+        left: 464px; font-size: 74px;">医院管理系统</strong>
+
+
+<div class="layui-container">    
+    <input id="reg_name" class="layui-input" style="width: 36%; height: 36px; 
+           margin-left: 371px; margin-top: 130px; top: 43px;"  
+           type="text" autocomplete="off" placeholder="姓名" />
+
+	<input id="reg_age" class="layui-input" style="width: 36%; margin-left: 371px;margin-top: 18px;"  
+           type="text" autocomplete="off" placeholder="年龄" />
+		   
+    <input id="reg_id" class="layui-input" style="width: 36%; margin-left: 371px;margin-top: 18px;"
+           type="text"  autocomplete="off" placeholder="电话" />
+	  
+    <input id="reg_passwd" class="layui-input" style="width: 36%; margin-left: 371px;margin-top: 18px;"
+           type="password" autocomplete="off" placeholder="密码" />  
+    <input id="sure_passwd" class="layui-input" style="width: 36%; margin-left: 371px;margin-top: 18px;"
+           type="password" autocomplete="off" placeholder="确认密码" /> 
+    <select id="reg_gender" class="layui-select" style="height: 36px; width: 36%;margin-left: 371px;margin-top: 18px;">
+       <option value="男">男</option>
+       <option value="女">女</option>
+    </select>
+
+    <select id="reg_dep" class="layui-select" style="height: 36px; width: 36%;margin-left: 371px;margin-top: 18px;">
+       <option value="后勤">后勤</option>
+	   <option value="内科">内科</option>
+       <option value="外科">外科</option>
+       <option value="口腔科">口腔科</option>
+       <option value="神经科">神经科</option>
+    </select>
+
+    <select id="reg_work_type" class="layui-select" style="height: 36px; width: 36%;margin-left: 371px;margin-top: 18px;">
+       <option value="普通">普通医生</option>
+       <option value="专家">专家</option>
+       <option value="药剂师">药剂师</option>
+       <option value="财务人员">财务人员</option>
+       <option value="挂号人员">挂号人员</option>
+       <option value="分诊人员">分诊人员</option>
+    </select>
+
+	<button id="login_btn" class="layui-btn" style="margin-top: 18px; 
+              margin-left: 338px; height: 50px; width: 20%; font-size: 28px;"
+              onclick="window.location.href = '/html/login.html'">登录</button>
+
+	<button id="register_btn" class="layui-btn" style="margin-top: -68px; 
+    margin-left: 608px; height: 50px; width: 20%; font-size: 28px;">注册</button>
+</div>
+
+
+<script src="/layui/layui.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+
+<script>
+ $(function () {
+        $("#register_btn").click(function () {
+        	var user_name = $("#reg_name").val();
+         	var user_password = $("#reg_passwd").val();
+         	var sure_password = $("#sure_passwd").val();
+         	var user_age = $("#reg_age").val();
+         	var user_id = $("#reg_id").val();
+         	console.log(name);
+         	if(user_name==""||user_password==""||user_age==""||user_id==""){
+         		layui.use('layer', function(){
+            		  var layer = layui.layer;
+  					  layer.msg("必填项不能为空");
+            	});
+         		return false;
+         	}
+         	if(user_password != sure_password) {
+         		layui.use('layer', function(){
+          		  var layer = layui.layer;
+					  layer.msg("两次输入密码不一致");
+          		});
+       			return false;
+         	}
+              var register={
+              "user_name":user_name,
+              "user_id":user_id,
+			  "user_age":user_age,
+              "user_password":user_password,
+              "gender":$("#reg_gender").val(),
+              "work_department":$("#reg_dep").val(),
+              "work_type":$("#reg_work_type").val(),
+          };
+          console.log(register);
+          $.ajax({
+            url:'/api/v1/user/register',
+            type:'post',
+            data:register,
+            dataType: "json",
+            success: function (data) {
+            	console.log(data);
+            	layui.use('layer', function(){
+          		  var layer = layui.layer;
+					  layer.msg(data.msg);
+          		});   
+            },
+            error:function(err) {
+            	layui.use('layer', function(){
+            		  var layer = layui.layer;
+  					  layer.msg("网络连接失败，请稍后重试",err);
+            	});
+            }
+          });
+        })
+ 	})
+</script>
+
+</body>
+</html>
+      

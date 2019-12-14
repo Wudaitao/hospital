@@ -26,8 +26,8 @@ public class ResvInfoServiceImpl implements ResInfoService{
 	}
 
 	@Override
-	public int updateState(ResInfo resInfo) {
-		return resInfoMapper.updateState(resInfo);
+	public int updateState(String resvIsValid,Integer resvId) {
+		return resInfoMapper.updateState(resvIsValid,resvId);
 	}
 
 }

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>线上预约挂号</title>
+	<style>
+	div.background
+	{
+	  width: 100%;
+	  height: 100%;
+	  background: #A2AAB8;
+	  border: 2px solid white;
+	}
+	div.transbox
+	{
+	  width: 90%;
+	  height: 150%;
+	  margin: 25px 70px;
+	  background-color: #ffffff;
+	  border: 1px solid white;
+	  opacity:0.9;
+	}
+	.layui-input-inline,.layui-form
+ 	{
+      width: 433px;
+      text-align: left;
+    }
+	</style>
+  <link rel="stylesheet" href="/layui/css/layui.css">
+</head>
+<body class="layui-layout-body">
+<div class="background">
+<div class="transbox">
+
+<div class="layui-container" style="top: -5px;">
+<strong style="margin-left:43%; font-size: 36px;">预约挂号</strong>
+    <div class="layui-row" style="top: 150px;margin-left:5%;margin-top:1%">
+        <div class="layui-col-md6">
+            <input id="ResvName" class="layui-input" style="width:80%;margin-top:1.5%" type="text" autocomplete="off" placeholder="姓名" />
+			<div class="layui-input-inline layui-form" style="margin-top:15px">
+				<select id="ResvGender" class="layui-select" style="width: 80%; margin-top: 3%; ">
+				<option value>请选择性别</option>
+				<option value="男">男</option>
+				<option value="女">女</option>
+			</select>
+			</div>
+			
+			<input id="ResvAge" class="layui-input" style="width:80%;margin-top:3%" type="text" autocomplete="off" placeholder="年龄" />
+			<input id="ResvId" class="layui-input" style="width:80%;margin-top:3%" type="text" autocomplete="off" placeholder="电话" />
+			<div class="layui-row" style="margin-top:15px">
+                <div class="layui-input-inline layui-form" >
+                <select id="ResvDepartment" lay-filter="DepFilter" lay-search="" class="layui-select" style="width: 80%; margin-top: 3%;">
+					<option value>请选择科室</option>
+					<option value="内科">内科</option>
+					<option value="外科">外科</option>
+					<option value="口腔科">口腔科</option>
+					<option value="神经科">神经科</option>
+				</select>
+                </div>
+                <div class="layui-input-inline layui-form" style="margin-top:15px">
+                    <select id="ResvDoctorID" lay-verify="required" lay-filter="DoctorIdFilter" lay-search="" class="layui-select" style="width:80%;margin-top:3%">
+						<option value>请选择医生</option>
+					</select>
+                </div>
+                <div class="layui-input-inline layui-form" style="margin-top:15px">
+                    <select id="ResvDate" lay-filter="DateFilter" lay-search="" class="layui-select" style="width:80%;margin-top:3%">
+						<option value>请选择日期</option>
+					</select>
+                </div>
+				<div class="layui-input-inline layui-form" style="margin-top:15px">
+                    <select id="ResvTimeSlot" class="layui-select" style="width:80%;margin-top:3%">
+						<option value>请选择时间段</option>
+					</select>
+                </div>
+				<div>
+					<button id="submit_reserve_button"  class="layui-btn" style="margin-top: 4%;margin-left: 30%;width:20%;height:15%;"> 
+						预约
+					</button>
+				</div>
+				
+            </div>
+        </div>
+        <div class="layui-col-md6">
+			<div id="resvInfo" class="layui-form-item">
+					<p  class="layui-form-label" id="user_name" style="text-align: left; font-size: 20px; width: 40%;">
+						姓名：xxx
+					</p>
+					<p class="layui-form-label" id="resv_id" style="text-align: left; font-size: 20px; width: 40%;">
+						就诊ID：xxx
+					</p>
+					<p class="layui-form-label" id="resv_dep" style="text-align: left; font-size: 20px; width: 40%;">
+						预约科室：xxx
+					</p>
+					<p class="layui-form-label" id="resv_doc" style="text-align: left; font-size: 20px; width: 40%;">
+						预约医生：xxx
+					</p>
+					<p class="layui-form-label" id="resv_date" style="text-align: left; font-size: 20px; width: 40%;">
+						预约日期：xxxx.xx.xx
+					</p>
+					<p class="layui-form-label" id="resv_time_slot" style="text-align: left; font-size: 20px; width: 40%;">
+						预约时间：xx:xx
+					</p>
+					<p style="margin-left:23%">
+						<img id="infoImg" src="qrcode.jpg" alt="二维码预约凭证" width="260" height="260">
+					</p>
+					<!-- <script>
+						function cancelResv(){
+							document.getElementById("resvInfo").innerHTML="预约已经取消";
+						}
+					</script> -->
+			</div>
+            <div id="order" class="layui-form-item">
+				<p id="queueNunber"class="layui-form-label" style="margin-left:10px;text-align: left; font-size: 20px; width: 40%;">
+					当前排队人数 ：xxx人
+				</p>
+				<p id="medicineState"class="layui-form-label" style="text-align: left; font-size: 20px; width: 40%;">
+					取药状态 ：xxx
+				</p>
+			</div>
+			<!-- <div class="layui-form-item">
+				<button  id="cancelResv" class="layui-btn" style="margin-top: 0%;margin-left: 30%;width:20%;height:15%;">取消预约</button>
+			</div> -->
+			<p>
+				<button  id="cancelResv" class="layui-btn" style="margin-top: 0%;margin-left: 5%;width:20%;height:10%;" >取消预约</button>
+				<button  id="checkQueue_btn" class="layui-btn" style="margin-top: 0%;margin-left: 10%;width:20%;height:10%;" >查看排队人数</button>
+				<button  id="checkMedi_btn" class="layui-btn" style="margin-top: 0%;margin-left: 10%;width:20%;height:10%;">查看取药状态</button>
+			</p>
+			<script src="/layui/layui.js"></script>
+			<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+			
+			<script>
+				var doctor_id="";
+				var resv_id="";
+				// 联动
+				layui.use('form', function(){
+					var form = layui.form;
+					//根据科室获取医生
+					form.on('select(DepFilter)', function (data) {
+						var params={
+								  work_department:data.value
+								 }
+						console.log(params);
+						$.ajax({
+				            url: "/api/v1/patient/getDocInfo",
+				            type: "post",
+				            data:params,
+				            dataType: 'json',
+				            success: function (result) {
+				            	var data = result.data;
+				            	console.log(data);
+				                $("#ResvDoctorID").empty();//清空下拉框的值
+				                
+			                    $.each(data, function (index, item) {
+			                       //console.log(item);
+				                   $('#ResvDoctorID').append(new Option(item, item.Code));// 下拉菜单里添加元素
+				                });
+				                layui.form.render("select");//重新渲染 固定写法
+				          	},
+							error:function(err) {
+				            	layui.use('layer', function(){
+				            		  var layer = layui.layer;
+				  					  layer.msg("网络连接失败，请稍后重试",err);
+				            	});
+				            }
+				        });
+				    });
+					//根据医生获取日期
+					form.on('select(DoctorIdFilter)', function (data) {
+						var doctor_name;
+						if (data.value=="只约科室") {
+							doctor_name = "";
+						}else {
+							doctor_name = data.value;
+						}
+						console.log(doctor_name);
+						var params={
+							"work_department":$('#ResvDepartment').val(),
+							"doctor_name":doctor_name,			 
+						}
+						console.log(params);
+						$.ajax({
+				            url: "/api/v1/patient/getResInfoDate",
+				            type: "get",
+				            data:params,
+				            dataType: 'json',
+				            success: function (result) {
+				            	doctor_id = result.data[0];
+				            	var data = result.data[1];
+				            	console.log(doctor_id);
+				                $("#ResvDate").empty();//清空下拉框的值
+				                $("#ResvTimeSlot").empty();
+			                    $.each(data, function (index, item) {
+				                   $('#ResvDate').append(new Option(item, item.Code));// 下拉菜单里添加元素
+			                    });
+				                layui.form.render("select");//重新渲染 固定写法
+				          	},
+							error:function(err) {
+				            	layui.use('layer', function(){
+				            		  var layer = layui.layer;
+				  					  layer.msg("网络连接失败，请稍后重试",err);
+				            	});
+				            }
+				        });
+				    }); 
+					
+					//根据日期获取时间段
+					form.on('select(DateFilter)', function (data) {
+						var doctor_name;
+						if ($('#ResvDoctorID').val()=="只约科室") {
+							doctor_name = "";
+						}else {
+							doctor_name = $('#ResvDoctorID').val();
+						}
+						console.log(doctor_name);
+						var params={
+							"work_department":$('#ResvDepartment').val(),
+							"doctor_name":doctor_name,
+							"dr_date":data.value,
+						}
+						console.log(params);
+						$.ajax({
+				            url: "/api/v1/patient/getResInfoTimeSlot",
+				            type: "get",
+				            data:params,
+				            dataType: 'json',
+				            success: function (result) {
+				            	var data = result.data;
+				            	console.log(data);
+				                $("#ResvTimeSlot").empty();
+			                    $.each(data, function (index, item) {
+				                   $('#ResvTimeSlot').append(new Option(item, item.Code));
+			                    });
+				                layui.form.render("select");//重新渲染 固定写法
+				          	},
+							error:function(err) {
+				            	layui.use('layer', function(){
+				            		  var layer = layui.layer;
+				  					  layer.msg("网络连接失败，请稍后重试",err);
+				            	});
+				            }
+				        });
+				    }); 
+				});
+			 //预约功能	
+			 $(function () {
+					$("#submit_reserve_button").click(function () {
+						var user_name = $('#ResvName').val();
+						var resv_date = $("#ResvDate").val();
+						var resv_time_slot = $("#ResvTimeSlot").val();
+						var resv_department = $("#ResvDepartment").val();
+						var resv_doctor_name = $("#ResvDoctorID").val();
+						var submit_reserve={
+						"user_name":user_name,
+						"user_gender":$('#ResvGender').val(),
+						"user_age":$("#ResvAge").val(),
+						"user_id":$("#ResvId").val(),
+						"resv_date":resv_date,
+						"resv_time_slot":resv_time_slot,
+						"resv_department":resv_department,
+						"resv_doctor_name":resv_doctor_name,
+						"doctor_id":doctor_id,
+						"resv_online":1,
+					  };
+						if(user_name==""||submit_reserve.user_gender==""||submit_reserve.user_age==""||submit_reserve.user_id==""){
+			         		layui.use('layer', function(){
+			            		  var layer = layui.layer;
+			  					  layer.msg("必填项不能为空");
+			            	});
+			         		return false;
+			         	}
+						console.log(submit_reserve);
+					  $.ajax({
+						url:'/api/v1/patient/register',
+						type:'post',
+						data:submit_reserve,
+						dataType: 'json',
+						success: function (result) {
+							layui.use('layer', function(){
+								var layer = layui.layer;
+								if (result.code == 0) {
+									resv_id=result.data;
+									$("#user_name").text("姓名："+user_name);
+			                        $("#resv_id").text("就诊ID："+resv_id);
+			                        $("#resv_dep").text("预约科室："+resv_department);
+			                        $("#resv_doc").text("预约医生："+resv_doctor_name);
+			                        $("#resv_date").text("预约日期："+resv_date);
+			                        $("#resv_time_slot").text("预约时段："+resv_time_slot);
+			                        $('#infoImg').removeAttr('src');
+			                        //$('#infoImg').src = '/images/qrcode'+result.data+'.jpg';
+			                        var img = document.getElementById("infoImg");
+			                        img.src = '/images/qrcode'+resv_id+'.jpg';
+								}
+								layer.msg(result.msg); 
+			              	});
+			          	  },
+						  error:function(err) {
+				            	layui.use('layer', function(){
+				            		  var layer = layui.layer;
+				  					  layer.msg("网络连接失败，请稍后重试",err);
+				            	});
+				          }
+					  });
+					});
+					//取消预约
+					$("#cancelResv").click(function () {
+						var info = {
+							"resv_id":resv_id,
+						};
+						$.ajax({
+				            url: "/api/v1/patient/delRegist",
+				            type: "post",
+				            data:info,
+				            dataType: 'json',
+				            success: function (result) {
+				            	layui.use('layer', function(){
+									var layer = layui.layer;
+									console.log(result.msg);
+									layer.msg(result.msg); 
+				              	});
+				          	},
+							error:function(err) {
+				            	layui.use('layer', function(){
+				            		  var layer = layui.layer;
+				  					  layer.msg("网络连接失败，请稍后重试",err);
+				            	});
+				            }
+				        });
+					});
+					//查看排队人数
+					$("#checkQueue_btn").click(function () {
+						var resv_department = $("#ResvDepartment").val();
+						var resv_doctor_name = $("#ResvDoctorID").val();
+						var user_id = $("#ResvId").val();
+						if (resv_doctor_name == "只约科室") {
+							doctor_id = "";
+						}
+						var info = {
+							"user_id":user_id,
+							"doctor_id":doctor_id,
+							"resv_department":resv_department,
+						};
+						console.log(info);
+						$.ajax({
+				            url: "/api/v1/patient/queryLineupNumber",
+				            type: "post",
+				            data: info,
+				            dataType: 'json',
+				            success: function (result) {
+				            	console.log(result);
+				            	layui.use('layer', function(){
+									var layer = layui.layer;
+									if (result.code == 0) {
+										$("#queueNunber").text("当前排队人数 ："+result.data+"人");
+									} else {
+										layer.msg(result.msg);
+									}									 
+				              	});
+				          	},
+							error:function(err) {
+				            	layui.use('layer', function(){
+				            		  var layer = layui.layer;
+				  					  layer.msg("网络连接失败，请稍后重试",err);
+				            	});
+				            }
+				        });
+					});
+					//查看拿药状态
+					$("#checkMedi_btn").click(function () {
+						var info = {
+							"resv_id":resv_id,
+						};
+						$.ajax({
+				            url: "/api/v1/patient/",
+				            type: "post",
+				            data:info,
+				            dataType: 'json',
+				            success: function (result) {
+				            	layui.use('layer', function(){
+									var layer = layui.layer;
+									console.log(result.msg);
+									layer.msg(result.msg); 
+				              	});
+				          	},
+							error:function(err) {
+				            	layui.use('layer', function(){
+				            		  var layer = layui.layer;
+				  					  layer.msg("网络连接失败，请稍后重试",err);
+				            	});
+				            }
+				        });
+					});
+			 	})
+			 
+			</script>
+		</div>
+    
+
+    </div>
+    </div>
+	</div>
+    </div>
+
+	
+	
+</body>
+</html>
+      

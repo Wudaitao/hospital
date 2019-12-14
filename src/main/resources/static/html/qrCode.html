@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>测试二维码页面</h1>
+<div class="input-group">
+	<span class="input-group-addon" >二维码</span>
+	<input type="text" class="form-control" placeholder="请输入" id="swineEar">
+	<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+ </div>
+ <div>
+	<div style="float: left;">
+	<img src="" id="npcImg" width="250" height="250" onclick="getCode()"/>
+	<input type="hidden" id="photo" name="photo"/>
+	</div>				                                              
+	
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+<script type="text/javascript">
+function getCode () {
+    $('#npcImg').removeAttr('src')
+    var img = document.getElementById("npcImg");
+    img.src = '/images/qrcode'+10+'.jpg'
+}
+</script>
+</body>
+</html>

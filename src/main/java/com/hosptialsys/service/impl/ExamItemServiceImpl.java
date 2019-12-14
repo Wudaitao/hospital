@@ -38,13 +38,18 @@ public class ExamItemServiceImpl implements ExamItemService {
 	}
 
 	@Override
-	public int updateCheckIsPaid(String userId, String checkDate) {
-		return examItemMapper.updateCheckIsPaid(userId, checkDate);
+	public int updateCheckIsPaid(String userId, String checkDate, String checkIsPaid) {
+		return examItemMapper.updateCheckIsPaid(userId, checkDate, checkIsPaid);
 	}
 
 	@Override
 	public int updateCheckResult(Integer checkItemId, String checkResult) {
 		return examItemMapper.updateCheckResult(checkItemId, checkResult);
+	}
+
+	@Override
+	public Float getTotal(String userId, String checkDate) {
+		return examItemMapper.getTotal(userId, checkDate);
 	}
 	
 	

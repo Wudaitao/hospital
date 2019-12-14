@@ -36,6 +36,11 @@ public class UserCaseServiceImpl implements UserCaseService {
 	public int updateCaseIsFinish(UserCase userCase) {
 		return userCaseMapper.updateCaseIsFinish(userCase);
 	}
+
+	@Override
+	public UserCase findByUserDate(String userId, String caseDate) {
+		return userCaseMapper.findByUserDate(userId, caseDate);
+	}
 	
 	
 }
