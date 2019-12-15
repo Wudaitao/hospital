@@ -164,8 +164,8 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
       $("#PrepareMedi_Btn").click(function () {
       	
         $.ajax({
-          url:'/api/v1/pharmacy/preMedicine',
-          type:'post',
+          url:'/api/v1/med/premed',
+          type:'get',
           //data:,
           dataType: "json",
           success: function (data) {
@@ -178,7 +178,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
           error:function(err) {
           	layui.use('layer', function(){
           		  var layer = layui.layer;
-					  layer.msg("网络连接失败，请稍后重试",err);
+          		  layer.msg("病人Id为" + data.data + data.msg);
           	});
           }
         });
@@ -187,15 +187,15 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
       $("#GetMedi_Btn").click(function () {
         	
           $.ajax({
-            url:'/api/v1/pharmacy/getMedicine',
-            type:'post',
+            url:'/api/v1/med/takeMed',
+            type:'get',
             //data:,
             dataType: "json",
             success: function (data) {
             	console.log(data);
             	layui.use('layer', function(){
           		  var layer = layui.layer;
-  					  layer.msg(data.msg);
+  					  layer.msg("病人Id为" + data.data + data.msg);
           		});   
             },
             error:function(err) {
@@ -214,7 +214,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
     	  table.render({
     	    elem: '#demo'
     	    ,height: 420
-    	    ,url: '/api/v1/medlist/showMLs' //数据接口
+    	    ,url: '/api/v1/med/nextPatient' //数据接口
     	    ,title: '药单表'
     	    ,page: true //开启分页
     	    ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档

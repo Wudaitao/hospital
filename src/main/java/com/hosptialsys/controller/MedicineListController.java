@@ -69,7 +69,7 @@ public class MedicineListController {
 	// 查询指定用户ID的药单记录
 	@RequestMapping(value="showMLs",method=RequestMethod.GET)
 	public Object showMLs(HttpServletRequest request) {
-		String userId = "15923818625";
+		String userId = request.getParameter("user_id");
 		List<MedicineList> result = medicineListService.findByUserIdAndDate(userId, CommonUtil.getFormatedSystemTime());
 		Integer count = result.size();
 		if(count != 0)
@@ -99,7 +99,7 @@ public class MedicineListController {
 		}
 		Integer num = medicineList.getMedNum();
 		String medName = medicineList.getMedName();
-		medicineListService.updateMlState(mlId);
+		medicineListService.updateMlState(mlId,"已退药");
 		medicineService.updateMedicineStorage(medName, num);
 		return JsonData.buildSuccess(num);
 	}

@@ -30,4 +30,17 @@ public class ResvInfoServiceImpl implements ResInfoService{
 		return resInfoMapper.updateState(resvIsValid,resvId);
 	}
 
+	@Override
+	public ResInfo findByUserIdAndDate(String userId, String resvDoctorId, String resvDepartment, String resvTimeSlot,
+			String resvDate) {
+		return resInfoMapper.findByUserIdAndDate(userId, resvDoctorId, resvDepartment, resvTimeSlot, resvDate);
+	}
+
+	@Override
+	public ResInfo findByUserIdAndDate1(String userId, String resvDepartment, String resvTimeSlot, String resvDate) {
+		return resInfoMapper.findByUserIdAndDate1(userId, resvDepartment, resvTimeSlot, resvDate);
+	}
+	
+	 
+
 }

@@ -367,18 +367,22 @@
 					});
 					//查看拿药状态
 					$("#checkMedi_btn").click(function () {
+						var user_id = $("#ResvId").val();
 						var info = {
-							"resv_id":resv_id,
+							"user_id":user_id,
 						};
 						$.ajax({
-				            url: "/api/v1/patient/",
-				            type: "post",
-				            data:info,
+				            url: "/api/v1/med/checkState",
+				            type: "get",
+				            data: info,
 				            dataType: 'json',
 				            success: function (result) {
+				            
 				            	layui.use('layer', function(){
 									var layer = layui.layer;
-									console.log(result.msg);
+									if (result.code==0){
+										$("#medicineState").text("取药状态 ："+result.data);
+									} 
 									layer.msg(result.msg); 
 				              	});
 				          	},

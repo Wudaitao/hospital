@@ -47,8 +47,8 @@ public class MedicineListServiceImpl implements MedicineListService{
 	}
 
 	@Override
-	public int updateMlState(Integer medicineListId) {
-		return medicineListMapper.updateMlState(medicineListId);
+	public int updateMlState(Integer medicineListId, String newState) {
+		return medicineListMapper.updateMlState(medicineListId, newState);
 	}
 	
 }

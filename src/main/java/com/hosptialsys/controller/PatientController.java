@@ -79,7 +79,22 @@ public class PatientController {
 		User user = new User(userId, userName, userGender, userAge);
 		ResInfo resInfo = new ResInfo();
 		Map<String, String> info = new HashMap<>();
+		//限制只能预约一次，可以先取消在预约
+		ResInfo resInfo2 = new ResInfo();
+		if ("".equals(doctorId)) {
+			resInfo2 = resInfoService.findByUserIdAndDate1(userId, resvDepartment, resvTimeSlot, resvDate);
+			if (resInfo2 != null) {
+				return JsonData.buildError("不能重复预约，可以先取消预约再重新预约！");
+			}
+		} else {
+			resInfo2 = resInfoService.findByUserIdAndDate(userId, doctorId, resvDepartment, resvTimeSlot, resvDate);
+			if (resInfo2 != null) {
+				return JsonData.buildError("不能重复预约，可以先取消预约再重新预约！");
+			}
+		}
+		
 		DocResInfo docResInfo = docResvInfoService.findDocInfo(doctorId, resvDepartment, resvTimeSlot, resvDate);
+		
 		if (docResInfo != null) {
 			Integer num = docResInfo.getDrResvNum();
 			
@@ -110,7 +125,7 @@ public class PatientController {
 				info.put("resv_num", String.valueOf(count.get()));
 				info.put("resv_department", resvDepartment);
 				info.put("resv_online", resvOnline);
-				int code = userService.saveUser(user);
+				userService.saveUser(user);
 				/*if (code == -1) {
 					return JsonData.buildError("复诊病人");
 				}*/

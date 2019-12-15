@@ -20,10 +20,10 @@ public interface DocResInfoMapper {
 	@Select("select * from docresinfo where dr_id = #{drId}")
 	DocResInfo findById(@Param("drId")Integer drId);
 	
-	@Select("SELECT * FROM docresinfo WHERE user_id=#{userId}  and dr_department=#{drDepartment} and dr_time_slot=#{drTimeSlot} and dr_date=#{drDate}")
+	@Select("SELECT * FROM docresinfo WHERE user_id=#{userId} and dr_department=#{drDepartment} and dr_time_slot=#{drTimeSlot} and dr_date=#{drDate}")
 	DocResInfo findDocInfo(@Param("userId") String userId,@Param("drDepartment") String drDepartment,@Param("drTimeSlot") String drTimeSlot,@Param("drDate") String drDate);
 
-	@Select("SELECT * FROM docresinfo WHERE user_id is NULL  and dr_department=#{drDepartment} and dr_time_slot=#{drTimeSlot} and dr_date=#{drDate}")
+	@Select("SELECT * FROM docresinfo WHERE user_id is NULL and dr_department=#{drDepartment} and dr_time_slot=#{drTimeSlot} and dr_date=#{drDate}")
 	DocResInfo findDocInfo1(@Param("drDepartment") String drDepartment,@Param("drTimeSlot") String drTimeSlot,@Param("drDate") String drDate);
 
 	@Select("SELECT DISTINCT(dr_date) FROM docresinfo WHERE user_name=#{userName} and dr_department=#{drDepartment} and dr_date >= DATE_FORMAT(now(),'%y.%m.%d')")		

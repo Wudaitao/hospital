@@ -73,6 +73,7 @@ public class PaymentController {
 			}
 			payment.setPaymentAmount(sum);
 			paymentService.save(payment);
+			MedicineController.prescribeQueue.add(userId);
 			return JsonData.buildSuccess(sum, "收费成功，收费：");
 		}
 		return JsonData.buildError("操作失败！");

@@ -20,5 +20,5 @@ public interface MedicineListService {
 	
 	int updateIsPaid(String userId, String mlDate, String mlIsPaid);
 	
-	int updateMlState(Integer medicineListId);
+	int updateMlState(Integer medicineListId, String newState);
 }

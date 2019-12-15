@@ -32,7 +32,7 @@ public interface MedicineListMapper {
 	@Update("update medicinelist set ml_is_paid=#{mlIsPaid} where user_id=#{userId} and ml_date=#{mlDate}")
 	int updateIsPaid(@Param("userId")String userId, @Param("mlDate")String mlDate, @Param("mlIsPaid")String mlIsPaid);
 	
-	@Update("update medicinelist set ml_state='已退药' where ml_id=#{medicineListId}")
-	int updateMlState(@Param("medicineListId")Integer medicineListId);
+	@Update("update medicinelist set ml_state=#{newState} where ml_id=#{medicineListId}")
+	int updateMlState(@Param("medicineListId")Integer medicineListId, @Param("newState")String newState);
 
 }

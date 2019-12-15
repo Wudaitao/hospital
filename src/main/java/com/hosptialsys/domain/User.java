@@ -3,7 +3,6 @@ package com.hosptialsys.domain;
 public class User {
 	
 	private String  userId;
-
 	private String  userName;
 	private String  userGender;
 	private String  userAge;
