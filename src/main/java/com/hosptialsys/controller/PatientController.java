@@ -49,7 +49,7 @@ public class PatientController {
 	private static AtomicInteger count = new AtomicInteger(0);
 	private static Map<String, Queue<String>> comQueueMap = new HashMap<>();
 	private static Map<String, Queue<String>> priQueueMap = new HashMap<>();
-	private DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+	private DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	private DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("HH:mm"); 
 	@Autowired
 	private UserService userService;
@@ -136,6 +136,7 @@ public class PatientController {
 				//返回二维码，表示预约信息
 				String result = WXPayUtil.mapToXml(info);
 				try {
+					System.out.println(filePath);
 					CreateQrCodeUtil.createQrCode(new FileOutputStream(new File(filePath + "qrcode"+ resvId + ".jpg")),result,400, "JPEG");
 					return JsonData.buildSuccess(resvId, "预约成功");
 				} catch (WriterException e) {

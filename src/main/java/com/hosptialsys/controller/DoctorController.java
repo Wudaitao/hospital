@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hosptialsys.domain.DocResInfo;
 import com.hosptialsys.domain.ExamItem;
 import com.hosptialsys.domain.JsonData;
+import com.hosptialsys.domain.LayuiData;
 import com.hosptialsys.domain.User;
 import com.hosptialsys.domain.UserCase;
 import com.hosptialsys.domain.Worker;
+import com.hosptialsys.service.DocResvInfoService;
 import com.hosptialsys.service.ExamItemService;
 import com.hosptialsys.service.ItemService;
 import com.hosptialsys.service.MedicineService;
@@ -30,7 +33,7 @@ import com.hosptialsys.service.WorkerService;
 @RequestMapping("/api/v1/doctor/")
 public class DoctorController {
 
-	private DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+	private DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 	@Autowired
 	private PatientController patientController;
@@ -46,7 +49,8 @@ public class DoctorController {
 	private MedicineService medicineService;
 	@Autowired
 	private WorkerService workService;
-	
+	@Autowired
+	private DocResvInfoService docResvInfoService;
 	/*
 	 * 获得医生信息api
 	 */
@@ -157,8 +161,8 @@ public class DoctorController {
 	 * 更新检验结果api
 	 */
 	@RequestMapping(value="updateCheckResult",method=RequestMethod.GET)
-	public Object updateCheckResult(Integer check_item_id, String check_result) {
-		examItemService.updateCheckResult(check_item_id, check_result);
+	public Object updateCheckResult(Integer check_item_id, String check_result,String check_doctor_id) {
+		examItemService.updateCheckResult(check_item_id, check_result,check_doctor_id);
 		return JsonData.buildSuccess("更新成功！");
 	}
 
@@ -225,6 +229,74 @@ public class DoctorController {
 			return JsonData.buildError("该病人没有检验项目！");
 		}
 		return JsonData.buildSuccess(examItems);
+	}
+	/*
+	 * 根据病人Id和日期查找检验项目
+	 */
+	@RequestMapping(value="getDefaultExamItem",method=RequestMethod.GET)
+	public Object getDefaultExamItem() {
+		String userId = "0";
+		LocalDate date = LocalDate.now();
+		String checkDate = date.format(formatter1);
+		List<ExamItem> examItems = examItemService.findByUserDate(userId, checkDate);
+		if (examItems.size()==0) {
+			return JsonData.buildError("没有检验项目！");
+		}
+		return JsonData.buildSuccess(examItems);
+	}
+	
+	/*
+	 * 根据病人Id和日期查找检验项目
+	 */
+	@RequestMapping(value="getExamItem",method=RequestMethod.GET)
+	public Object getExamItem(@RequestParam(value = "user_id",required=true)String userId) {
+		LocalDate date = LocalDate.now();
+		String checkDate = date.format(formatter1);
+		List<ExamItem> examItems = examItemService.findByUserDate(userId, checkDate);
+		if (examItems.size()==0) {
+			return JsonData.buildError("该病人没有检验项目！");
+		}
+		return LayuiData.buildSuccess(examItems, examItems.size());
+	}
+	
+	// 添加医生预约信息
+	@RequestMapping(value="addDocResvInfo", method=RequestMethod.POST)
+	public Object addDocResvInfo(HttpServletRequest request) {
+		
+		// user_id work_time[0][]
+		String docId = request.getParameter("user_id");
+		// 在worker表中查询到医生的信息
+		Worker doctor = workService.findById(docId);
+		
+		Integer rows = Integer.valueOf(request.getParameter("cnt"));
+		// work_time[0][]
+		System.out.println(rows);
+		for(int i = 0;i < rows; i++) {
+			// values --> [就诊日期,开始时间,结束时间,最大接诊数]
+			String[] values = request.getParameterValues("work_time["+i+"][]");
+			
+			DocResInfo docInfo = new DocResInfo();
+			// 基本信息
+			docInfo.setUserId(docId);
+			docInfo.setUserName(doctor.getUserName());
+			
+			// 设置日期 
+			docInfo.setDrDate(values[0]);
+			String[] arr1 = values[1].split(":");
+			String[] arr2 = values[2].split(":");
+			docInfo.setDrTimeSlot(arr1[0]+":"+arr1[1]+"-"+arr2[0]+":"+arr2[1]);
+			
+			// 最大预约人数
+			docInfo.setDrResvNum(0);           // 初始化0个人预约
+			docInfo.setDrMaxResvNum(Integer.valueOf(values[3]));
+		
+			// 科室设置
+			docInfo.setDrDepartment(doctor.getWorkerDepartment());
+			
+			// 存入数据库
+			docResvInfoService.save(docInfo);
+		}
+		return JsonData.buildSuccess("新增成功");
 	}
 	
 }

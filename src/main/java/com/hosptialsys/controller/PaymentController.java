@@ -22,7 +22,7 @@ import com.hosptialsys.service.PaymentService;
 @RequestMapping("/api/v1/payment/")
 public class PaymentController {
 	
-	private DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+	private DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	@Autowired
 	private PaymentService paymentService;
 	@Autowired

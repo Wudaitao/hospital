@@ -55,7 +55,7 @@
               </div>
             </td>
             <td>
-              <input type="button" value="查询" class="btn btn-success" id="lookup_btn" style="margin-left: 20px;" />
+              <input type="button" value="查询" class="layui-btn" id="lookup_btn" style="margin-left: 20px;" />
             </td>
           </tr>
         </table>
@@ -227,8 +227,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
     	      ,{field: 'mlState', title: '药单状态', width: 120,sort: true, totalRow: false}
     	      ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
     	    ]]
-    	    ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
-    	    	$("#userId_lbl").text(res.data[0].userId);
+    	    ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据 	    	
     	    	return {
     	            "code": res.code, //解析接口状态
     	            "msg": res.msg, //解析提示文本

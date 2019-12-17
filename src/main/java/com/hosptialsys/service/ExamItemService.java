@@ -18,5 +18,5 @@ public interface ExamItemService {
 	
 	int updateCheckIsPaid(String userId, String checkDate, String checkIsPaid);
 	
-	int updateCheckResult(Integer checkItemId, String checkResult);
+	int updateCheckResult(Integer checkItemId, String checkResult, String checkDoctorId);
 }

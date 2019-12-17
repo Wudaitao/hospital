@@ -24,7 +24,7 @@ import com.hosptialsys.utils.CommonUtil;
 @RequestMapping("/api/v1/med/")
 public class MedicineController {
 	
-	private DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+	private DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	public static Queue<String> prescribeQueue = new LinkedList<String>();
 	public static Queue<String> takeMedicineQueue = new LinkedList<String>();
 	@Autowired

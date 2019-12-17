@@ -26,6 +26,7 @@ public class LoginController {
 	private static final String TOLL_MAN = "财务人员";
 	private static final String PHARMACIAT = "药剂师";
 	private static final String FENZHEN = "分诊人员";
+	private static final String TESTMAN = "检验医师";
 	@Autowired
 	private WorkerService workerSevice;
 	
@@ -53,6 +54,9 @@ public class LoginController {
 			}
 			else if (workType.equals(FENZHEN)) {
 				return "redirect:/html/triage.html";         //分诊台页面
+			}
+			else if (workType.equals(TESTMAN)) {
+				return "redirect:/html/test.html";         //分诊台页面
 			}
 			else {
 				return JsonData.buildError("不识别职位类别！");

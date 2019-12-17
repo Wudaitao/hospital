@@ -15,9 +15,9 @@
  </style>
 </head>
 <body class="layui-layout-body">
-<strong style="margin-top: 180px; margin-left: 1px; margin-bottom: -188px; 
+<strong style="margin-top: 180px; margin-left: 200px; margin-bottom: -188px; 
         padding-right: 0px; top: -180px; position: absolute; 
-        left: 260px; font-size: 30px;">医生管理界面</strong>
+        left: 300px; font-size: 30px;">医生管理界面</strong>
 
 		
 <div class="layui-form" style="margin-left:18%;margin-right:13%;
@@ -48,6 +48,7 @@
 
 <script>
     var doctor_id = sessionStorage.getItem("workerId");
+    sessionStorage.setItem("workerType",$("#userid").val());
     var worker_type;   //普通医生或者专家
     var worker_dep;    //科室
     console.log(doctor_id);

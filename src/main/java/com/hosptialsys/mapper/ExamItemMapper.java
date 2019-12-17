@@ -43,7 +43,7 @@ public interface ExamItemMapper {
 	@Update("UPDATE examitem SET check_is_paid=#{checkIsPaid} WHERE user_id=#{userId} AND check_date=#{checkDate}")
 	int updateCheckIsPaid(@Param("userId")String userId,@Param("checkDate")String checkDate,@Param("checkIsPaid")String checkIsPaid);
 	
-	@Update("UPDATE examitem SET check_result=#{checkResult} WHERE check_item_id=#{checkItemId}")
-	int updateCheckResult(@Param("checkItemId")Integer checkItemId, @Param("checkResult")String checkResult);
+	@Update("UPDATE examitem SET check_result=#{checkResult} , check_doctor_id=#{checkDoctorId} WHERE check_item_id=#{checkItemId}")
+	int updateCheckResult(@Param("checkItemId")Integer checkItemId, @Param("checkResult")String checkResult, @Param("checkDoctorId")String checkDoctorId);
 	
 }

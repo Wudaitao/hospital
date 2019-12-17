@@ -43,8 +43,8 @@ public class ExamItemServiceImpl implements ExamItemService {
 	}
 
 	@Override
-	public int updateCheckResult(Integer checkItemId, String checkResult) {
-		return examItemMapper.updateCheckResult(checkItemId, checkResult);
+	public int updateCheckResult(Integer checkItemId, String checkResult, String checkDoctorId) {
+		return examItemMapper.updateCheckResult(checkItemId, checkResult, checkDoctorId);
 	}
 
 	@Override

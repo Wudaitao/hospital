@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>医院登陆</title>
+  <link rel="stylesheet" href="/layui/css/layui.css">
+  <style>
+
+	div.background
+	{
+	  width: 100%;
+	  height: 100%;
+	  background: #A2AAB8;
+	  border: 2px solid white;
+	  margin-top:1%;
+	}
+	div.transbox
+	{
+	  width: 100%;
+	  height: 150%;
+	  margin: 10px 0px;
+	  background-image:url('images/bg2.png');
+	  background-repeat:no-repeat;
+	  background-size:100% 100%; 
+	  background-color: #ffffff;
+	  border: 1px solid white;
+	  opacity:0.9;
+	}
+	.dlkcss{
+	margin-left:850px;
+	margin-top:-50px;
+	margin-bottom:30px;
+	width:300px;
+	height:358px;
+	background:rgba(255,255,255,1);
+	opacity:0.9;
+	border-radius: 6px;
+	margin-right:100px;
+	}
+	hr{
+	height:2px;
+	background-color:black;
+	margin-top:0.1%;
+	}
+	
+  </style>
+</head>
+<body class="layui-layout-body">
+
+<img height=80px src="images/cqu.png" style="margin-left:2%;margin-top:0px;">
+<strong style="margin-top: 20px; margin-left: 15%;  
+        font-size: 64px;">医院管理系统</strong>
+<a href="reverstion.html" style="margin-top:20px;margin-left:70%;color:black;font-size:18px;">预约挂号</a>
+<hr>
+<div class="transbox">
+
+<form  enctype="multipart/form-data" action="/api/v1/user/login" method="post" >
+		
+	
+	<div class="dlkcss">
+		
+		<div style="margin-top:80px;">
+		
+		<strong style="margin-top:20px;margin-left:80px;font-size: 34px;">密码登录</strong>
+	    <input id="userid" name="user_id" class="layui-input" 
+		style="width: 260px; height: 36px; 
+	           margin-left: 20px; margin-top: 30px;" 
+	           type="text" autocomplete="off" placeholder="请输入用户ID" />
+	
+		  <input id="passwd" name="user_password" class="layui-input" 
+		  style="width: 260px; height: 36px; 
+	           margin-top:30px; margin-left: 20px;" 
+	           autocomplete="off" type="password" placeholder="请输入密码" />
+	
+		  <button id="login_btn" type="submit" class="layui-btn" style="margin-top: 50px; 
+	    	margin-left: 40px; height: 35px; width: 25%; font-size: 18px;" onclick="return checkInput()">登录</button>
+	
+		  <button id="register_btn" type="button" class="layui-btn" style="margin-top: 50px; 
+	    	margin-left: 50px; height: 35px; width: 25%; font-size: 18px;"
+	    	onclick="jump()">注册</button>
+		<div>
+
+	
+</form>
+<script src="/layui/layui.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+
+<!-- 
+script>
+ $(function () {
+        $("#login_btn").click(function (obj) {
+        	console.log("iiiiii")
+       		var login={
+            "userid":$("#userid").val(),
+            "passwd":$("#passwd").val(),
+          };
+        	console.log(login)
+          $.ajax({
+            url:'/api/v1/user/login',
+            type:'post',
+            data:login,
+          });
+        })
+ })
+</script>
+ 
+<script>
+  $(function () {
+      $("#login_btn").click(function () {
+    	  var login={
+   	            "user_id":$("#userid").val(),
+   	            "user_password":$("#passwd").val(),
+   	          };
+          $.ajax({
+              type:'POST',
+              url:'/api/v1/user/login',
+              data:login,  //转变传递的参数为字符串格式
+              dataType:'json',//希望服务器返回json格式的数据
+              success: function (dat) {
+                      console.log(dat)
+                      if (dat=1){
+                          window.location.href="/html/layui.html"
+                        }else {
+                          alert("1")
+                        }
+                 }
+              })
+          })
+      })
+</script>
+-->
+<script type="text/javascript">
+         function getFileUrl(sourceId) {
+             var url;
+             if (navigator.userAgent.indexOf("MSIE")>=1) { // IE
+                 url = document.getElementById(sourceId).value;
+             } else if(navigator.userAgent.indexOf("Firefox")>0) { // Firefox
+                 url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+             } else if(navigator.userAgent.indexOf("Chrome")>0) { // Chrome
+                 url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+             }
+             return url;
+         }
+         function preImg(sourceId, targetId) { 
+             var url = getFileUrl(sourceId); 
+             var imgPre = document.getElementById(targetId); 
+             imgPre.src = url; 
+         }
+         function jump(){
+             window.location.href="register.html";
+         }
+         function checkInput(){
+         	var name = $("#userid").val();
+         	var pwd = $("#passwd").val();
+         	console.log(name);
+         	if(name==""||pwd==""){
+         		layui.use('layer', function(){
+          		  var layer = layui.layer;
+					  layer.msg("必填项不能为空");
+          		});
+         		return false;
+         	}
+         	sessionStorage.setItem("workerId",$("#userid").val());
+         	return true;
+         }
+         function getVerify(obj){
+             obj.src ="/api/v1/user/getcode?"+Math.random();
+         }
+</script> 
+</div>
+</div>
+</body>
+</html>
+      
+	  

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>检验系统</title>
+  <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+  <style>
+    body{margin: 20px;}
+    .demo-carousel{height: 200px; line-height: 200px; text-align: center;}
+	div.background
+	{
+	  width: 100%;
+	  height: 100%;
+	  background: #A2AAB8;
+	  border: 2px solid white;
+	}
+	div.transbox
+	{
+	  width: 90%;
+	  height: 150%;
+	  margin: 25px 70px;
+	  background-color: #ffffff;
+	  border: 1px solid white;
+	  opacity:0.9;
+	}
+	.layui-form-label {
+      text-align: left;
+    }
+
+    .layui-input-inline {
+      width: 330px;
+    }
+    .btn {
+      display: inline-block;
+      padding: .3em 1.2em;
+      border-radius: 3px;
+      background-color: teal;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<!-- <div class="background">
+<div class="transbox"> -->
+	<p align="center" style="margin-top:-10px;font-size:48px" > 检验系统</p>
+	<div class="layui-form-item" style="margin-top:10px">
+       <label class="layui-form-label">病人 ID</label>
+        <table style="width: 100px;">
+          <tr>
+            <td>
+              <div class="layui-input-inline" style="margin-left: 20px;">
+                <input id="content" type="text" name="content" placeholder="请输入病人 ID" autocomplete="off"
+                  class="layui-input">
+              </div>
+            </td>
+            <td>
+              <input type="button" value="查询" class="layui-btn" id="lookup_btn" style="margin-left: 20px;" />
+            </td>
+          </tr>
+        </table>
+    </div>
+    <div style="height:380px; margin-top:1%;margin-left:1%;margin-right:1%;">
+		<table  class="layui-hide" id="demo" lay-filter="test"></table>
+	</div> 
+  
+<!--</div> 
+</div>  -->
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">更新</a>
+</script>
+ 
+<script src="/layui/layui.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+
+<script>
+ 
+layui.use(['layer', 'table','element'], function(){
+  var layer = layui.layer //弹层
+  ,table = layui.table //表格
+  ,element = layui.element //元素操作
+  
+  //向世界问个好
+  layer.msg('检验管理系统');
+  
+  //监听Tab切换
+  element.on('tab(demo)', function(data){
+    layer.tips('切换了 '+ data.index +'：'+ this.innerHTML, this, {
+      tips: 1
+    });
+  });
+  
+//执行一个 table 实例
+  table.render({
+    elem: '#demo'
+    ,height: 420
+    ,url: '/api/v1/doctor/getDefaultExamItem' //数据接口
+    ,title: '药单表'
+    ,page: true //开启分页
+    ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+    ,totalRow: true //开启合计行
+    ,cols: [[ //表头
+	      {type: 'checkbox', fixed: 'left'}
+	      ,{field: 'checkItemId', title: '检验单ID', width:110, sort: true, fixed: 'left', totalRowText: '合计：'}
+	      ,{field: 'doctorId', title: '开检验医生ID', width: 130,sort: true, totalRow: false}
+	      ,{field: 'checkItemName', title: '检验项目', width:130,sort: true, totalRow: false}
+	      ,{field: 'checkItemContent', title: '检验内容', width:130, sort: true, totalRow: false}
+	      ,{field: 'checkPayment', title: '检验费用', width:130, sort: true, sort: true, totalRow: true}      
+	      ,{field: 'checkIsPaid', title: '是否付费', width:130, sort: true, sort: true, totalRow: false}      
+	      ,{field: 'checkDate', title: '检验日期', width: 140,sort: true, totalRow: false}
+	      ,{field: 'checkResult', title: '检验结果', width: 150, sort: true, edit:'text', totalRow: false}
+	      ,{fixed: 'right', width: 180, align:'center', toolbar: '#barDemo'}
+	    ]]
+	    ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
+	    	return {
+	            "code": res.code, //解析接口状态
+	            "msg": res.msg, //解析提示文本
+	            "data": res.data, //解析数据列表
+	            "count": res.count //解析数据长度
+	          };
+	    }
+	   ,id: "mlTable"
+	  });
+  
+  //监听头工具栏事件
+  table.on('toolbar(test)', function(obj){
+    var checkStatus = table.checkStatus(obj.config.id)
+    ,data = checkStatus.data; //获取选中的数据
+    switch(obj.event){
+      case 'add':
+        layer.msg('添加');
+      break;
+      case 'update':
+        if(data.length === 0){
+          layer.msg('请选择一行');
+        } else if(data.length > 1){
+          layer.msg('只能同时编辑一个');
+        } else {
+          layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
+        }
+      break;
+      case 'delete':
+        if(data.length === 0){
+          layer.msg('请选择一行');
+        } else {
+          layer.msg('删除');
+        }
+      break;
+    };
+  });
+  
+  //监听行工具事件
+  table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+	var data = obj.data //获得当前行数据
+    ,layEvent = obj.event; //获得 lay-event 对应的值
+    var check_doctor_id = sessionStorage.getItem("workerId");
+    if(layEvent === 'detail'){
+    	layer.alert('检验单ID:'+ data.checkItemId+'<br>开检验医生ID:'+data.doctorId+'<br>检验项目:'+data.checkItemName+'<br>检验内容:'+data.checkItemContent 
+        		+'<br>检验费用:'+data.checkPayment+'<br>是否付费:'+data.checkIsPaid+'<br>检验日期:'+data.checkDate+'<br>检验结果:'+data.checkResult);
+    } else if(layEvent === 'del'){
+      layer.confirm('确定提交Id为：'+data.checkItemId+"的检验单吗?", function(index){
+   	   $.ajax({
+             url:'/api/v1/doctor/updateCheckResult',
+             type:'get',
+             data:{
+            	 'check_item_id':data.checkItemId,
+            	 'check_result':data.checkResult,
+            	 'check_doctor_id':check_doctor_id,
+            	 },//向服务端发送删除的id
+             success:function(suc){
+                 if(suc.code==0){
+                     //obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                     //obj.del();
+                     layer.close(index);
+                     layer.msg("更新成功",{icon:1});
+                 }
+                 else{
+                     layer.msg("更新失败",{icon:5});
+                 }
+             },
+             error:function(err) {
+                 layui.use('layer', function(){
+                 	var layer = layui.layer;
+       				layer.msg("网络连接失败，请稍后重试",err);
+                 });
+             }
+         }); 
+    	//obj.del(); //删除对应行（tr）的DOM结构
+        layer.close(index);
+        //向服务端发送删除指令
+      });
+    } else if(layEvent === 'edit'){
+      layer.msg('编辑操作');
+    }
+  });
+  //查询检验单
+  $("#lookup_btn").click(function () {
+	  //执行一个 table 实例
+	  var user_id = $("#content").val();
+	  if (user_id=="") {
+		  layer.msg("病人ID不能未空！");
+		  return false;
+	  }
+	  table.render({
+	    elem: '#demo'
+	    ,height: 420
+	    ,url: '/api/v1/doctor/getExamItem?user_id='+user_id //数据接口
+	    ,title: '药单表'
+	    ,page: true //开启分页
+	    ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+	    ,totalRow: true //开启合计行
+	    ,cols: [[ //表头
+	      {type: 'checkbox', fixed: 'left'}
+	      ,{field: 'checkItemId', title: '检验单ID', width:110, sort: true, fixed: 'left', totalRowText: '合计：'}
+	      ,{field: 'doctorId', title: '开检验医生ID', width: 130,sort: true, totalRow: false}
+	      ,{field: 'checkItemName', title: '检验项目', width:130,sort: true, totalRow: false}
+	      ,{field: 'checkItemContent', title: '检验内容', width:130, sort: true, totalRow: false}
+	      ,{field: 'checkPayment', title: '检验费用', width:130, sort: true, sort: true, totalRow: true}      
+	      ,{field: 'checkIsPaid', title: '是否付费', width:130, sort: true, sort: true, totalRow: false}      
+	      ,{field: 'checkDate', title: '检验日期', width: 140,sort: true, totalRow: false}
+	      ,{field: 'checkResult', title: '检验结果', width: 150, sort: true, edit:'text', totalRow: false}
+	      ,{fixed: 'right', width: 180, align:'center', toolbar: '#barDemo'}
+	    ]]
+	    ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
+	    	return {
+	            "code": res.code, //解析接口状态
+	            "msg": res.msg, //解析提示文本
+	            "data": res.data, //解析数据列表
+	            "count": res.count //解析数据长度
+	          };
+	    }
+	   ,id: "mlTable"
+	  });
+    });
+});
+</script>
+</body>
+</html>        
+        
