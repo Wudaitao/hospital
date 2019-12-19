@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>开处方</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.1.min.js'></script>
+    <script src="/layui/layui.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <style>
+        .layui-input-inline {
+            width: 140px;
+            margin-right: 20px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .one {
+            margin: 0 auto;
+            width: 1000px;
+        }
+
+        .btns {
+            margin-bottom: 5px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: .3em 1.2em;
+            border-radius: 3px;
+            background-color: teal;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        table.table {
+            box-sizing: border-box;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table.table td,
+        table.table th {
+            border: 1px solid #ccc;
+            line-height: 2em;
+            text-align: center;
+        }
+
+        .none {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form class="layui-form" action="">
+
+        <div class="layui-form-item" style="margin-left: 40px;margin-top: 10px;">
+            <table>
+                <!-- <tr>
+            <th>药品</th>
+            <th>数量</th>
+            <th>用量</th>
+          </tr> -->
+                <tr>
+                    <td>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="date" placeholder="请选择工作日期" autocomplete="off">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="begin" placeholder="请选择开始时间" autocomplete="off">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="end" placeholder="请选择结束时间" autocomplete="off">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="layui-input-inline">
+                            <input id="amount" type="text" name="num" placeholder="请输入最大接诊数" autocomplete="off"
+                                class="layui-input" lay-verify="digital" style="width:150px">
+                        </div>
+                    </td>
+
+                    <td>
+                        <input type="button" value="添加" class="btn btn-success" id="add" onclick="addList()"
+                            style="margin-left: -5px;" />
+                    </td>
+                </tr>
+            </table>
+
+            <div id='temp' style="width: 86.5%; height: 200px;margin-top: 20px;">
+                <table class="table table-hover table-bordered" id="mytable">
+                    <thead>
+                        <tr>
+                            <th style="width: 21%;">就诊日期</th>
+                            <th style="width: 21%;">开始时间</th>
+                            <th style="width: 21%;">结束时间</th>
+                            <th style="width: 21%;">最大接诊数</th>
+                            <th style="width: 16%;">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listTable">
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <!--
+     <div class="layui-form-item layui-form-text">
+      <label class="layui-form-label">备注</label>
+      <div class="layui-input-block">
+        <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+      </div>
+    </div>
+   -->
+
+
+    </form>
+    <div class="layui-form-item">
+        <div class="layui-input-block" style="margin-top: 30px; margin-left: 680px;">
+            <button id='submit_btn' class="layui-btn">立即提交</button>
+        </div>
+    </div>
+
+    <script>
+        function addList() {
+            var date = document.getElementById('date').value;
+            var begin = document.getElementById('begin').value;
+            var end = document.getElementById('end').value;
+            var amount = document.getElementById('amount').value;
+
+            var oTr = document.createElement('tr');
+            var oTd1 = document.createElement('td');
+            oTd1.innerHTML = date;
+            var oTd2 = document.createElement('td');
+            oTd2.innerHTML = begin;
+            var oTd3 = document.createElement('td');
+            oTd3.innerHTML = end;
+            var oTd4 = document.createElement('td');
+            oTd4.innerHTML = amount;
+
+            var oTd5 = document.createElement('td');
+            var oInput = document.createElement('input');
+            oInput.setAttribute('type', 'button');
+            oInput.setAttribute('value', '删除');
+            oInput.setAttribute('onclick', 'del(this)');
+            oInput.className = 'btn btn-danger';
+            oTd5.appendChild(oInput);
+
+            oTr.appendChild(oTd1);
+            oTr.appendChild(oTd2);
+            oTr.appendChild(oTd3);
+            oTr.appendChild(oTd4);
+            oTr.appendChild(oTd5);
+
+            var olistTable = document.getElementById('listTable');
+            olistTable.appendChild(oTr);
+        }
+
+        function del(obj) {
+            var oParentnode = obj.parentNode.parentNode;
+            var olistTable = document.getElementById('listTable');
+            olistTable.removeChild(oParentnode);
+        }
+    </script>
+
+    <script>
+        $(function () {
+        	var doctor_id = sessionStorage.getItem("workerId");
+            $("#submit_btn").click(function () {                
+                var tb = document.getElementById('mytable'); // table 的 id
+                var rows = tb.rows; // 获取表格所有行
+
+                var worktime = new Array(rows.length - 1);
+                for (var i = 0; i < worktime.length; i++) {
+                    worktime[i] = new Array(rows[i].cells.length - 1);
+                }
+
+                for (var i = 0; i < rows.length; i++) {
+                    if (i == 0)
+                        continue;
+                    for (var j = 0; j < rows[i].cells.length - 1; j++) {
+                        worktime[i - 1][j] = rows[i].cells[j].innerHTML;
+                    }
+                }
+                var info = {
+                		"user_id":doctor_id,
+                		"work_time":worktime,
+                		"cnt":rows.length-1,
+                }
+                console.log(worktime);
+                $.ajax({
+                     url: '/api/v1/doctor/addDocResvInfo',
+                     type: 'post',
+                     data: info,
+                     dataType: "json",
+                     success:function(suc){
+                       	layui.use('layer', function(){
+       	            		  var layer = layui.layer;
+       	            		  console.log(suc);
+       	            		if (suc.code==0){
+       	            			layer.msg(suc.data,{icon:1});
+       	            		}
+       	            		else  
+       	            			layer.msg(suc.msg,{icon:5});
+       	            	});
+                     },
+       	             error:function(err) {
+       	            	layui.use('layer', function(){
+       	            		  var layer = layui.layer;
+       	  					  layer.msg("网络连接失败，请稍后重试",{icon:5});
+       	            	});
+     	            }
+                 });  
+            })
+        })
+    </script>
+
+
+    <script>
+        layui.use(['form', 'layedit', 'laydate'], function () {
+            var form = layui.form,
+                layer = layui.layer,
+                layedit = layui.layedit,
+                laydate = layui.laydate;
+
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#date',
+                trigger: 'click',
+                min: 1,
+                max: 7
+            });
+            laydate.render({
+                elem: '#begin',
+                trigger: 'click',
+                type: 'time',
+                min: '08:30:00',
+                max: '18:00:00',
+            });
+            laydate.render({
+                elem: '#end',
+                trigger: 'click',
+                type: 'time',
+                min: '09:30:00',
+                max: '21:30:00'
+            });
+
+            form.verify({
+                //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
+                digital: [
+                    /^[0-9]*[1-9][0-9]*$/, '请输入正整数'
+                ]
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -171,14 +171,14 @@
             	else {
             		layui.use('layer', function(){
 	            		  var layer = layui.layer;
-		            	  layer.msg(result.msg);
+		            	  layer.msg(result.msg,{icon:5});
 	            	});
             	}
           	},
 			error:function(err) {	      
 				layui.use('layer', function(){
             		  var layer = layui.layer;
-  					  layer.msg("网络连接失败，请稍后重试",err);
+  					  layer.msg("网络连接失败，请稍后重试",{icon:5});
             	});	            	
             }
         });
@@ -192,7 +192,7 @@
         if (rows.length==1) {
      	   layui.use('layer', function(){
         		  var layer = layui.layer;
- 					  layer.msg("检验申请单为空！");
+ 					  layer.msg("检验申请单为空！",{icon:5});
         		});
      	   return false;
         }
@@ -227,13 +227,13 @@
             success:function(result){
             	layui.use('layer', function(){
           		  var layer = layui.layer;
-					  layer.msg(result.msg);
+					  layer.msg(result.msg,{icon:1});
           		});
             },
             error:function(err) {
             	layui.use('layer', function(){
             		  var layer = layui.layer;
-  					  layer.msg("网络连接失败，请稍后重试",err);
+  					  layer.msg("网络连接失败，请稍后重试",{icon:5});
             	});
             }
           });
@@ -254,22 +254,6 @@
           /^[0-9]*[1-9][0-9]*$/, '请输入正整数'
         ]
       });
-      /*
-            //表单取值
-            layui.$('#LAY-component-form-getval').on('click', function () {
-              var data = form.val('example');
-              alert(JSON.stringify(data));
-            });
-
-            //监听提交
-            form.on('submit(demo1)', function (data) {
-              layer.alert(JSON.stringify(data.field), {
-                title: '最终的提交信息'
-              })
-              return false;
-            });
-      */
-
     });
   </script>
 

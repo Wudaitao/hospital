@@ -1,0 +1,19 @@
+2019-12-16 21:59:03.345 DEBUG[background-preinit]o.h.v.m.ResourceBundleMessageInterpolator.buildExpressionFactory:89 -Loaded expression factory via original TCCL
+2019-12-16 21:59:03.660 INFO [main]com.hosptialsys.App.logStarting:50 -Starting App v0.0.1-SNAPSHOT on DESKTOP-ST4S1L6 with PID 10976 (C:\Users\Îé´úÌÎ20164401\Downloads\eclipse-jee-oxygen-R-win32-x86_64\eclipse-jee-oxygen-R-win32-x86_64\eclipse\hosptialsys\target\hosptialsys-0.0.1-SNAPSHOT.jar started by Îé´úÌÎ20164401 in C:\Users\Îé´úÌÎ20164401\Downloads\eclipse-jee-oxygen-R-win32-x86_64\eclipse-jee-oxygen-R-win32-x86_64\eclipse\hosptialsys\target)
+2019-12-16 21:59:03.664 INFO [main]com.hosptialsys.App.logStartupProfileInfo:675 -No active profile set, falling back to default profiles: default
+2019-12-16 21:59:07.581 INFO [main]o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize:90 -Tomcat initialized with port(s): 8081 (http)
+2019-12-16 21:59:07.608 INFO [main]org.apache.coyote.http11.Http11NioProtocol.log:173 -Initializing ProtocolHandler ["http-nio-8081"]
+2019-12-16 21:59:07.636 INFO [main]org.apache.catalina.core.StandardService.log:173 -Starting service [Tomcat]
+2019-12-16 21:59:07.637 INFO [main]org.apache.catalina.core.StandardEngine.log:173 -Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-12-16 21:59:07.873 INFO [main]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring embedded WebApplicationContext
+2019-12-16 21:59:07.877 INFO [main]org.springframework.web.context.ContextLoader.prepareWebApplicationContext:296 -Root WebApplicationContext: initialization completed in 4084 ms
+2019-12-16 21:59:09.412 INFO [main]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.initialize:171 -Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-16 21:59:10.122 INFO [main]org.apache.coyote.http11.Http11NioProtocol.log:173 -Starting ProtocolHandler ["http-nio-8081"]
+2019-12-16 21:59:10.190 INFO [main]o.s.boot.web.embedded.tomcat.TomcatWebServer.start:204 -Tomcat started on port(s): 8081 (http) with context path ''
+2019-12-16 21:59:10.200 INFO [main]com.hosptialsys.App.logStarted:59 -Started App in 7.74 seconds (JVM running for 8.677)
+2019-12-16 21:59:24.607 INFO [http-nio-8081-exec-1]o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/].log:173 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-12-16 21:59:24.608 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:524 -Initializing Servlet 'dispatcherServlet'
+2019-12-16 21:59:24.630 INFO [http-nio-8081-exec-1]org.springframework.web.servlet.DispatcherServlet.initServletBean:546 -Completed initialization in 21 ms
+2019-12-16 21:59:54.121 INFO [http-nio-8081-exec-7]com.alibaba.druid.pool.DruidDataSource.init:922 -{dataSource-1} inited
+2019-12-16 22:15:50.954 INFO [Thread-3]o.s.scheduling.concurrent.ThreadPoolTaskExecutor.shutdown:208 -Shutting down ExecutorService 'applicationTaskExecutor'
+2019-12-16 22:15:50.972 INFO [Thread-3]com.alibaba.druid.pool.DruidDataSource.close:1817 -{dataSource-1} closed

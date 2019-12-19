@@ -160,7 +160,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
 	  var year = date.getFullYear();
 	  var month = date.getMonth();
 	  var day = date.getDate();
-	  $("#date_lbl").text(year+"."+month+"."+day);
+	  $("#date_lbl").text(year+"-"+month+"-"+day);
       $("#PrepareMedi_Btn").click(function () {
       	
         $.ajax({
@@ -172,13 +172,13 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
           	console.log(data);
           	layui.use('layer', function(){
         		  var layer = layui.layer;
-					  layer.msg(data.msg);
+					  layer.msg(data.msg,{icon:1});
         		});   
           },
           error:function(err) {
           	layui.use('layer', function(){
           		  var layer = layui.layer;
-          		  layer.msg("病人Id为" + data.data + data.msg);
+          		  layer.msg("网络连接失败，请稍后重试",{icon:5});
           	});
           }
         });
@@ -195,13 +195,13 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
             	console.log(data);
             	layui.use('layer', function(){
           		  var layer = layui.layer;
-  					  layer.msg("病人Id为" + data.data + data.msg);
+  					  layer.msg("病人Id为" + data.data + data.msg,{icon:1});
           		});   
             },
             error:function(err) {
             	layui.use('layer', function(){
             		  var layer = layui.layer;
-  					  layer.msg("网络连接失败，请稍后重试",err);
+  					  layer.msg("网络连接失败，请稍后重试",{icon:5});
             	});
             }
           });
@@ -232,7 +232,9 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
     	      ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
     	    ]]
     	    ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
-    	    	$("#userId_lbl").text(res.data[0].userId);
+    	    	if (res.code==0){
+    	    		$("#userId_lbl").text(res.data[0].userId);
+    	    	} 
     	    	return {
     	            "code": res.code, //解析接口状态
     	            "msg": res.msg, //解析提示文本
