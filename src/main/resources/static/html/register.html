@@ -42,7 +42,7 @@
     </select>
 
     <select id="reg_work_type" class="layui-select" style="height: 36px; width: 36%;margin-left: 371px;margin-top: 18px;">
-       <option value="普通">普通医生</option>
+       <option value="普通医生">普通医生</option>
        <option value="专家">专家</option>
        <option value="药剂师">药剂师</option>
        <option value="财务人员">财务人员</option>
@@ -75,14 +75,14 @@
          	if(user_name==""||user_password==""||user_age==""||user_id==""){
          		layui.use('layer', function(){
             		  var layer = layui.layer;
-  					  layer.msg("必填项不能为空");
+  					  layer.msg("必填项不能为空",{icon:5});
             	});
          		return false;
          	}
          	if(user_password != sure_password) {
          		layui.use('layer', function(){
           		  var layer = layui.layer;
-					  layer.msg("两次输入密码不一致");
+					  layer.msg("两次输入密码不一致",{icon:5});
           		});
        			return false;
          	}
@@ -105,13 +105,13 @@
             	console.log(data);
             	layui.use('layer', function(){
           		  var layer = layui.layer;
-					  layer.msg(data.msg);
+					  layer.msg(data.msg,{icon:1});
           		});   
             },
             error:function(err) {
             	layui.use('layer', function(){
             		  var layer = layui.layer;
-  					  layer.msg("网络连接失败，请稍后重试",err);
+  					  layer.msg("网络连接失败，请稍后重试",{icon:5});
             	});
             }
           });

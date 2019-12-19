@@ -24,6 +24,7 @@ public class InterceptorConfig implements WebMvcConfigurer{
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		//registry.addResourceHandler("/images/**").addResourceLocations("file:/home/nonword/images/");
 		registry.addResourceHandler("/images/**").addResourceLocations("file:/c:/projects/images/");
 		WebMvcConfigurer.super.addResourceHandlers(registry);
 	}

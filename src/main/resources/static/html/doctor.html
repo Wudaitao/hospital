@@ -70,14 +70,14 @@
         	else {
         		layui.use('layer', function(){
             		  var layer = layui.layer;
-  					  layer.msg(data.msg);
+  					  layer.msg(data.msg,{icon:5});
             	});
         	}
 		},
     	error:function(err) {
         	layui.use('layer', function(){
         		  var layer = layui.layer;
-					  layer.msg("网络连接失败，请稍后重试",err);
+					  layer.msg("网络连接失败，请稍后重试",{icon:5});
         	});
         }
     });
@@ -116,14 +116,14 @@
                 	else {
                 		layui.use('layer', function(){
                     		  var layer = layui.layer;
-          					  layer.msg(data.msg);
+          					  layer.msg(data.msg,{icon:5});
                     		});
                 	}
         		},
 	        	error:function(err) {
 	            	layui.use('layer', function(){
 	            		  var layer = layui.layer;
-	  					  layer.msg("网络连接失败，请稍后重试",err);
+	  					  layer.msg("网络连接失败，请稍后重试",{icon:5});
 	            	});
 	            }
             });

@@ -184,7 +184,7 @@ layui.use(['layer', 'table','element'], function(){
              error:function(err) {
                  layui.use('layer', function(){
                  	var layer = layui.layer;
-       				layer.msg("网络连接失败，请稍后重试",err);
+       				layer.msg("网络连接失败，请稍后重试",{icon:5});
                  });
              }
          }); 
@@ -201,7 +201,7 @@ layui.use(['layer', 'table','element'], function(){
 	  //执行一个 table 实例
 	  var user_id = $("#content").val();
 	  if (user_id=="") {
-		  layer.msg("病人ID不能未空！");
+		  layer.msg("病人ID不能未空！",{icon:5});
 		  return false;
 	  }
 	  table.render({

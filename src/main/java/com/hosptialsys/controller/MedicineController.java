@@ -108,7 +108,7 @@ public class MedicineController {
 		
 		List<MedicineList> medList = medicineListService.findByUserIdAndDate(userId, CommonUtil.getFormatedSystemTime());
 		
-		if (medList == null) {
+		if (medList.size() == 0) {
 			return JsonData.buildError("该病人还没有开药！");
 		}
 		if(medList.get(0).getMlState().equals("已取药"))

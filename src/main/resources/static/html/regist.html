@@ -160,7 +160,7 @@
 							error:function(err) {
 				            	layui.use('layer', function(){
 				            		  var layer = layui.layer;
-				  					  layer.msg("网络连接失败，请稍后重试",err);
+				  					  layer.msg("网络连接失败，请稍后重试",{icon:5});
 				            	});
 				            }
 				        });
@@ -198,7 +198,7 @@
 							error:function(err) {
 				            	layui.use('layer', function(){
 				            		  var layer = layui.layer;
-				  					  layer.msg("网络连接失败，请稍后重试",err);
+				  					  layer.msg("网络连接失败，请稍后重试",{icon:5});
 				            	});
 				            }
 				        });
@@ -236,7 +236,7 @@
 							error:function(err) {
 				            	layui.use('layer', function(){
 				            		  var layer = layui.layer;
-				  					  layer.msg("网络连接失败，请稍后重试",err);
+				  					  layer.msg("网络连接失败，请稍后重试",{icon:5});
 				            	});
 				            }
 				        });
@@ -265,7 +265,7 @@
 						if(user_name==""||submit_reserve.user_gender==""||submit_reserve.user_age==""||submit_reserve.user_id==""){
 			         		layui.use('layer', function(){
 			            		  var layer = layui.layer;
-			  					  layer.msg("必填项不能为空");
+			  					  layer.msg("必填项不能为空",{icon:5});
 			            	});
 			         		return false;
 			         	}
@@ -290,8 +290,11 @@
 			                        //$('#infoImg').src = '/images/qrcode'+result.data+'.jpg';
 			                        var img = document.getElementById("infoImg");
 			                        img.src = '/images/qrcode'+resv_id+'.jpg';
+			                        layer.msg(result.msg,{icon:1}); 
+								} else {
+									layer.msg(result.msg,{icon:5}); 
 								}
-								layer.msg(result.msg); 
+								
 			              	});
 			          	  },
 						  error:function(err) {

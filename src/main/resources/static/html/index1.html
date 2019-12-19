@@ -58,10 +58,8 @@
 <form  enctype="multipart/form-data" action="/api/v1/user/login" method="post" >
 		
 	
-	<div class="dlkcss">
-		
+	<div class="dlkcss">	
 		<div style="margin-top:80px;">
-		
 		<strong style="margin-top:20px;margin-left:80px;font-size: 34px;">密码登录</strong>
 	    <input id="userid" name="user_id" class="layui-input" 
 		style="width: 260px; height: 36px; 
@@ -79,12 +77,14 @@
 		  <button id="register_btn" type="button" class="layui-btn" style="margin-top: 50px; 
 	    	margin-left: 50px; height: 35px; width: 25%; font-size: 18px;"
 	    	onclick="jump()">注册</button>
-		<div>
+		</div>
+     </div>
 
 	
 </form>
 <script src="/layui/layui.js"></script>
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+
 
 <script type="text/javascript">
          function getFileUrl(sourceId) {
@@ -124,7 +124,25 @@
              obj.src ="/api/v1/user/getcode?"+Math.random();
          }
 </script> 
-</div>
+<script>
+function getQueryString(name){
+	var reg = new RegExp("(^|&)"+name+"=([^&]*)(&|$)");
+	var r = window.location.search.substr(1).match(reg);
+	if(r!=null){
+		return decodeURIComponent(r[2]); 
+	}
+	return '';
+}
+
+$(function () {
+	var msg = getQueryString("msg");
+	console.log(msg);
+	layui.use('layer', function(){
+		  var layer = layui.layer;
+			  layer.msg(msg,{icon:5});
+	});
+})
+</script>
 </div>
 </body>
 </html>

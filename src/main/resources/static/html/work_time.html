@@ -209,16 +209,16 @@
        	            		  var layer = layui.layer;
        	            		  console.log(suc);
        	            		if (suc.code==0){
-       	            			layer.msg(suc.data);
+       	            			layer.msg(suc.data,{icon:1});
        	            		}
        	            		else  
-       	            			layer.msg(suc.msg);
+       	            			layer.msg(suc.msg,{icon:5});
        	            	});
                      },
        	             error:function(err) {
        	            	layui.use('layer', function(){
        	            		  var layer = layui.layer;
-       	  					  layer.msg("网络连接失败，请稍后重试",err);
+       	  					  layer.msg("网络连接失败，请稍后重试",{icon:5});
        	            	});
      	            }
                  });  

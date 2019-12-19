@@ -22,7 +22,7 @@ public interface UserCaseMapper {
 	@Select("select * from usercase where case_id = #{caseId}")
 	UserCase findById(@Param("caseId")Integer caseId);
 	
-	@Select("SELECT * FROM usercase WHERE user_id=#{userId} ORDER BY case_date DESC LIMIT 0,3")
+	@Select("SELECT * FROM usercase WHERE user_id=#{userId} ORDER BY case_date DESC LIMIT 0,5")
 	List<UserCase> findByUserId(@Param("userId") String userId);
 
 	@Select("SELECT * FROM usercase WHERE user_id=#{userId} AND case_date=#{caseDate}")

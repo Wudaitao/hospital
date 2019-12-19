@@ -103,7 +103,7 @@ script>
          	if(name==""||pwd==""){
          		layui.use('layer', function(){
           		  var layer = layui.layer;
-					  layer.msg("必填项不能为空");
+					  layer.msg("必填项不能为空",{icon:5});
           		});
          		return false;
          	}

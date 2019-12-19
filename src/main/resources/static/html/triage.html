@@ -83,90 +83,20 @@ $(function () {
 				else {
 					layui.use('layer', function(){
 						var layer = layui.layer;
-						layer.msg(result.msg);
+						layer.msg(result.msg,{icon:5});
 					});
 				}
 			},
 			error:function(err) {
 				layui.use('layer', function(){
 					  var layer = layui.layer;
-					  layer.msg("网络连接失败，请稍后重试",err);
+					  layer.msg("网络连接失败，请稍后重试",{icon:5});
 				});
 			}
 		});
 	});
 });
 </script>
-<!-- <script>
-layui.use('layer', function(){ //独立版的layer无需执行这一句
-  var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
-  
-  //触发事件
-  var active = {
-    setTop: function(){
-      var that = this; 
-      //多窗口模式，层叠置顶
-      layer.open({
-        type: 2 //此处以iframe举例
-        ,title: '当你选择该窗体时，即会在最顶端'
-        ,area: ['390px', '260px']
-        ,shade: 0
-        ,maxmin: true
-        ,offset: [ //为了演示，随机坐标
-          Math.random()*($(window).height()-300)
-          ,Math.random()*($(window).width()-390)
-        ] 
-        ,content: '//layer.layui.com/test/settop.html'
-        ,btn: ['继续弹出', '全部关闭'] //只是为了演示
-        ,yes: function(){
-          $(that).click(); 
-        }
-        ,btn2: function(){
-          layer.closeAll();
-        }
-        
-        ,zIndex: layer.zIndex //重点1
-        ,success: function(layero){
-          layer.setTop(layero); //重点2
-        }
-      });
-    }
-    
-    
-    ,offset: function(othis){
-      var type = othis.data('type')
-      ,text = othis.text();
-      var order=35;
-	  var depart="口腔科";
-	  var doctor="李医生";
-      layer.open({
-        type: 1
-        ,offset: type //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
-        ,id: 'layerDemo'+type //防止重复弹出
-	
-		,content: '<div style="margin-left:50px;margin-top:20px;margin-right:50px;">'+'<p>'+
-				"您现在排在： "+order+"位"+'<br><br><br>'+"预约科室为： "+depart +
-				'<br><br><br>'+"预约医生： "+doctor+
-				'</p>'+'</div>'
-        ,btn: '好的'
-        ,btnAlign: 'c' //按钮居中
-        ,shade: 0 //不显示遮罩
-        ,yes: function(){
-          layer.closeAll();
-        }
-      });
-    }
-  };
-  
-  $('#layerDemo .layui-btn').on('click', function(){
-    var othis = $(this), method = othis.data('method');
-    active[method] ? active[method].call(this, othis) : '';
-  });
-  
-});
-</script> -->
-
-	
 </div>
 </div>
 </body>

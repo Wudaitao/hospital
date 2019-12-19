@@ -59,12 +59,13 @@ public class LoginController {
 				return "redirect:/html/test.html";         //分诊台页面
 			}
 			else {
-				return JsonData.buildError("不识别职位类别！");
+				attributes.addAttribute("msg","不识别职位");
+				return "redirect:/html/index1.html";
 			}
 		}
 		else {
 			attributes.addAttribute("msg","密码错误");
-			return "redirect:/api/v1/user/toLogin";
+			return "redirect:/html/index1.html";
 		}
 	}
 	
@@ -92,7 +93,7 @@ public class LoginController {
 	public String toLogin(ModelMap map,HttpServletRequest request) {
 		map.addAttribute("msg", request.getParameter("msg"));
 		//System.out.println(request.getParameter("msg"));
-		return "admin/login";
+		return "redirect:/html/index1.html";
 	}
 	
 	

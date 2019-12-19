@@ -172,13 +172,13 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
           	console.log(data);
           	layui.use('layer', function(){
         		  var layer = layui.layer;
-					  layer.msg(data.msg);
+					  layer.msg(data.msg,{icon:1});
         		});   
           },
           error:function(err) {
           	layui.use('layer', function(){
           		  var layer = layui.layer;
-          		  layer.msg("病人Id为" + data.data + data.msg);
+          		  layer.msg("网络连接失败，请稍后重试",{icon:5});
           	});
           }
         });
@@ -195,13 +195,13 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
             	console.log(data);
             	layui.use('layer', function(){
           		  var layer = layui.layer;
-  					  layer.msg("病人Id为" + data.data + data.msg);
+  					  layer.msg("病人Id为" + data.data + data.msg,{icon:1});
           		});   
             },
             error:function(err) {
             	layui.use('layer', function(){
             		  var layer = layui.layer;
-  					  layer.msg("网络连接失败，请稍后重试",err);
+  					  layer.msg("网络连接失败，请稍后重试",{icon:5});
             	});
             }
           });

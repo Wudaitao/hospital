@@ -113,7 +113,7 @@
     $(function () {
         $("#save").click(function () {
         	var doctor_id = sessionStorage.getItem("workerId");
-        	var user_id = JSON.parse(sessionStorage.getItem("userId"));
+        	var user_id = sessionStorage.getItem("userId");
         	//var user_id = id.split('：')[1];
             var info = {
             		"user_id":user_id,
@@ -132,13 +132,13 @@
                 	console.log(data);
                 	layui.use('layer', function(){
               		  var layer = layui.layer;
-						  layer.msg(data.msg); 
+						  layer.msg(data.msg,{icon:1}); 
               		});
         		},
 	        	error:function(err) {
 	            	layui.use('layer', function(){
 	            		  var layer = layui.layer;
-	  					  layer.msg("网络连接失败，请稍后重试",err);
+	  					  layer.msg("网络连接失败，请稍后重试",{icon:5});
 	            	});
 	            }
             });
